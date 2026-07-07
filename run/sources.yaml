@@ -1,0 +1,61 @@
+# run/sources.yaml — standing sources for /research
+#
+# This is the durable "what to keep watching" list. /research reads this file plus everything
+# dropped in run/inbox/. Add arXiv queries, reading lists, and URLs here; drop one-off PDFs/notes
+# into run/inbox/. Every source still gets vetted and tiered per CLAUDE.md — listing something
+# here is NOT an endorsement of its tier.
+#
+# Schema:
+#   arxiv_queries:  list of { query, categories?, domain, note? }
+#   reading_lists:  list of { title, url, domain, kind, note? }   # kind per claim schema
+#   urls:           list of { title, url, domain, kind, note? }
+#
+# Domains (match CLAUDE.md mission): physics, mathematics-geometry, quantum-foundations,
+#   philosophy-of-mind, metaphysics, comparative-religion, mysticism, esoteric,
+#   consciousness-science, ai-consciousness
+
+arxiv_queries:
+  - query: "orchestrated objective reduction microtubule consciousness"
+    categories: [q-bio.NC, quant-ph]
+    domain: consciousness-science
+    note: Orch-OR biophysics; tier honestly (generally E3 with caveats).
+  - query: "integrated information theory phi consciousness"
+    categories: [q-bio.NC]
+    domain: consciousness-science
+  - query: "large language model subjective experience self-referential"
+    categories: [cs.CL, cs.AI]
+    domain: ai-consciousness
+    note: e.g. arXiv:2510.24797 — observed behavior is E-lower than its interpretation.
+  - query: "E8 lie group unification particle physics"
+    categories: [hep-th, math.RT]
+    domain: physics
+
+reading_lists:
+  - title: Stanford Encyclopedia of Philosophy — Panpsychism
+    url: https://plato.stanford.edu/entries/panpsychism/
+    domain: philosophy-of-mind
+    kind: secondary
+  - title: Stanford Encyclopedia of Philosophy — Consciousness
+    url: https://plato.stanford.edu/entries/consciousness/
+    domain: philosophy-of-mind
+    kind: secondary
+
+urls:
+  - title: ARC-COGITATE adversarial collaboration (IIT vs GNWT)
+    url: https://www.arc-cogitate.com/
+    domain: consciousness-science
+    kind: web
+  - title: "Wiest 2025 — A quantum microtubule substrate of consciousness (Neuroscience of Consciousness)"
+    url: https://academic.oup.com/nc/article/2025/1/niaf011/8127081
+    domain: consciousness-science
+    kind: peer-reviewed
+    note: Read the actual argument; separate the anesthesia observation from the Orch-OR interpretation.
+  - title: "ALBUS — Altered Beliefs Under Psychedelics (Neuroscience of Consciousness)"
+    url: https://academic.oup.com/nc/article/2025/1/niae038/8011394
+    domain: consciousness-science
+    kind: peer-reviewed
+  - title: Orchestrated objective reduction — Wikipedia (orientation only, not a citable source)
+    url: https://en.wikipedia.org/wiki/Orchestrated_objective_reduction
+    domain: consciousness-science
+    kind: web
+    note: Use for orientation; cite the primary literature it points to, not the encyclopedia entry.

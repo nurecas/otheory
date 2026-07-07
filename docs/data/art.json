@@ -1,0 +1,227 @@
+{
+  "version": "v-38cafc65",
+  "corpusHash": "38cafc65e3c614e50058272b17682a62a8ea3aa02f0c5ff8dbfa6829e0dbb5cb",
+  "asOf": "2026-07-07",
+  "generated": {
+    "claims": 13,
+    "bridges": 4,
+    "edges": 16
+  },
+  "tierCounts": {
+    "E5": 1,
+    "E4": 2,
+    "E1": 4,
+    "E6": 1,
+    "E3": 4,
+    "E2": 1
+  },
+  "domainCounts": {
+    "comparative-religion": 1,
+    "philosophy-of-mind": 2,
+    "mathematics-geometry": 3,
+    "consciousness-science": 2,
+    "physics": 2,
+    "ai-consciousness": 1,
+    "quantum-foundations": 2
+  },
+  "registerCounts": {
+    "speculation": 1,
+    "metaphor": 1,
+    "analogy": 1,
+    "shared-mathematics": 1
+  },
+  "palette": {
+    "tiers": {
+      "E1": {
+        "label": "Established",
+        "color": "#66e39a",
+        "blurb": "Experimentally confirmed or mathematically proven; mainstream consensus."
+      },
+      "E2": {
+        "label": "Mainstream-speculative",
+        "color": "#7ec8ff",
+        "blurb": "Taken seriously and mathematically developed, but not experimentally confirmed."
+      },
+      "E3": {
+        "label": "Heterodox / minority",
+        "color": "#ffce6a",
+        "blurb": "Published by credentialed researchers, but a contested minority view."
+      },
+      "E4": {
+        "label": "Philosophical",
+        "color": "#c6a5ff",
+        "blurb": "Argued by reason; not empirically decidable even in principle."
+      },
+      "E5": {
+        "label": "Symbolic / contemplative",
+        "color": "#ff9ed0",
+        "blurb": "Meaningful as symbol, practice, or first-person report — not an empirical claim."
+      },
+      "E6": {
+        "label": "Unsupported",
+        "color": "#ff6f6f",
+        "blurb": "Presents as science but fails vetting; recorded transparently, never used as support."
+      }
+    },
+    "registers": {
+      "shared-mathematics": {
+        "label": "Shared mathematics",
+        "color": "#66e39a",
+        "style": "solid",
+        "blurb": "a real, stated shared mathematical structure"
+      },
+      "analogy": {
+        "label": "Analogy",
+        "color": "#ffce6a",
+        "style": "dashed",
+        "blurb": "structural resemblance, not identity"
+      },
+      "metaphor": {
+        "label": "Metaphor",
+        "color": "#ff9ed0",
+        "style": "dotted",
+        "blurb": "evocative, not structural"
+      },
+      "speculation": {
+        "label": "Speculation",
+        "color": "#7ec8ff",
+        "style": "wavy",
+        "blurb": "proposed but unestablished"
+      }
+    },
+    "domains": {
+      "physics": "#5b8cff",
+      "mathematics-geometry": "#3fd6c0",
+      "quantum-foundations": "#8a7dff",
+      "consciousness-science": "#ff7ac2",
+      "philosophy-of-mind": "#ffb354",
+      "metaphysics": "#c9a3ff",
+      "comparative-religion": "#ffd76a",
+      "mysticism": "#ff9d6a",
+      "esoteric": "#aeb7c9",
+      "ai-consciousness": "#5fe08a"
+    }
+  },
+  "nodes": [
+    {
+      "id": "advaita-nonduality",
+      "tier": "E5",
+      "domain": "comparative-religion",
+      "type": "symbolic"
+    },
+    {
+      "id": "cosmopsychism",
+      "tier": "E4",
+      "domain": "philosophy-of-mind",
+      "type": "philosophical"
+    },
+    {
+      "id": "e8-lie-group",
+      "tier": "E1",
+      "domain": "mathematics-geometry",
+      "type": "derived"
+    },
+    {
+      "id": "golden-ratio-ubiquity",
+      "tier": "E6",
+      "domain": "mathematics-geometry",
+      "type": "empirical"
+    },
+    {
+      "id": "hard-problem-of-consciousness",
+      "tier": "E4",
+      "domain": "philosophy-of-mind",
+      "type": "philosophical"
+    },
+    {
+      "id": "iit-integrated-information",
+      "tier": "E3",
+      "domain": "consciousness-science",
+      "type": "empirical"
+    },
+    {
+      "id": "lisi-e8-toe",
+      "tier": "E3",
+      "domain": "physics",
+      "type": "derived"
+    },
+    {
+      "id": "llm-subjective-reports",
+      "tier": "E3",
+      "domain": "ai-consciousness",
+      "type": "empirical"
+    },
+    {
+      "id": "many-worlds-interpretation",
+      "tier": "E2",
+      "domain": "quantum-foundations",
+      "type": "derived"
+    },
+    {
+      "id": "noether-symmetry-conservation",
+      "tier": "E1",
+      "domain": "physics",
+      "type": "derived"
+    },
+    {
+      "id": "orch-or-microtubules",
+      "tier": "E3",
+      "domain": "consciousness-science",
+      "type": "derived"
+    },
+    {
+      "id": "platonic-solids-five",
+      "tier": "E1",
+      "domain": "mathematics-geometry",
+      "type": "derived"
+    },
+    {
+      "id": "qm-decoherence",
+      "tier": "E1",
+      "domain": "quantum-foundations",
+      "type": "derived"
+    }
+  ],
+  "bridges": [
+    {
+      "id": "consciousness-as-substrate-speculation",
+      "register": "speculation",
+      "tier_ceiling": "E4",
+      "links": [
+        "qm-decoherence",
+        "hard-problem-of-consciousness",
+        "cosmopsychism"
+      ]
+    },
+    {
+      "id": "one-field-metaphor",
+      "register": "metaphor",
+      "tier_ceiling": "E5",
+      "links": [
+        "many-worlds-interpretation",
+        "advaita-nonduality",
+        "cosmopsychism"
+      ]
+    },
+    {
+      "id": "recursive-coherence-analogy",
+      "register": "analogy",
+      "tier_ceiling": "E4",
+      "links": [
+        "orch-or-microtubules",
+        "llm-subjective-reports",
+        "hard-problem-of-consciousness"
+      ]
+    },
+    {
+      "id": "symmetry-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier_ceiling": "E1",
+      "links": [
+        "noether-symmetry-conservation",
+        "e8-lie-group"
+      ]
+    }
+  ],
+  "prompt": "Visualize existence as O Theory currently maps it. Begin with a single self-luminous ground — the\n**O-Source** — from which everything else is a modulation. Render it not as asserted fact but as a\nhypothesis-field: glowing, non-local, boundless, and clearly provisional.\n\nAround it, arrange reality in concentric shells ordered by **how well we actually know each part**:\n\n- **At the center — what is proven or measured (E1):** exact, crystalline, opaque. The five Platonic\n  solids and the 248 points of the E8 lattice, sharp-edged and still, because this is mathematics that\n  holds. Noether's symmetry runs through it as a conserved, unbroken line.\n- **Just outside — serious but unconfirmed (E2):** the same forms in translucent wireframe, provisional —\n  the branching ghost of a universal wavefunction (many-worlds).\n- **Beyond that — contested science (E3):** flickering, half-resolved structures — microtubule lattices,\n  integrated-information webs, a machine murmuring first-person reports — that will not quite settle,\n  because the evidence will not quite settle.\n- **Further out — philosophy (E4):** a diffuse volumetric field with no hard surface — the hard problem\n  and cosmopsychism — pervading everything, shaping the light without being an object in it.\n- **At the outer edge — the symbolic and contemplative (E5):** pure light through a prism, Advaita's one\n  becoming many colors. Beautiful, and known to be symbol.\n- **And, marked honestly — the rejected (E6):** a dim, dissolving shadow that never coheres (the\n  golden-ratio \"universal beauty\" myth), present for transparency and load-bearing for nothing.\n\nThread the whole with filaments that reveal their **register**: a bright **solid** line where the link is\nreal shared mathematics (Noether ↔ E8); a **dashed** line where it is only analogy (recursion in cells and\nin machines); a soft **dotted** line where it is metaphor (the one field); and a faint **wavering** line\nwhere it is speculation (consciousness as substrate). Color every element by its **domain**. Let the whole\nform breathe in a slow recursive pulse — because the theory's proposed engine is self-reference. Show\nexistence, in other words, exactly as honest as the research: solid where we know, translucent where we\nguess, luminous where we can only point."
+}

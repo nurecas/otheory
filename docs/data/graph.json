@@ -1,0 +1,307 @@
+{
+  "nodes": [
+    {
+      "id": "advaita-nonduality",
+      "label": "Advaita Vedānta",
+      "title": "Advaita Vedānta — Ātman (self) is identical with Brahman (the non-dual ground of being)",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "cosmopsychism",
+      "label": "Cosmopsychism",
+      "title": "Cosmopsychism — the universe as a whole is the fundamental conscious subject; individual minds are derivative",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "e8-lie-group",
+      "label": "E8 is the largest exceptional simple Lie…",
+      "title": "E8 is the largest exceptional simple Lie group — 248-dimensional, with an 8-dimensional root system",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "golden-ratio-ubiquity",
+      "label": "The claim that the golden ratio",
+      "title": "The claim that the golden ratio (φ) is a universal constant of natural beauty pervading art, bodies, and nature",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry",
+        "esoteric"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "hard-problem-of-consciousness",
+      "label": "The \"hard problem\"",
+      "title": "The \"hard problem\" — why physical processing is accompanied by subjective experience at all",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "iit-integrated-information",
+      "label": "Integrated Information Theory",
+      "title": "Integrated Information Theory — consciousness is identical to a system's integrated information (Φ), localized in a posterior \"hot zone\"",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "medium"
+    },
+    {
+      "id": "lisi-e8-toe",
+      "label": "Lisi's \"An Exceptionally Simple Theory o…",
+      "title": "Lisi's \"An Exceptionally Simple Theory of Everything\" — embedding the Standard Model and gravity in E8",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "llm-subjective-reports",
+      "label": "Large language models emit first-person…",
+      "title": "Large language models emit first-person \"experience\" reports under self-referential prompting (an observed behavior)",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "many-worlds-interpretation",
+      "label": "The many-worlds",
+      "title": "The many-worlds (Everett) interpretation — unitary quantum mechanics with no collapse",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations",
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "noether-symmetry-conservation",
+      "label": "Noether's theorem",
+      "title": "Noether's theorem — every differentiable symmetry of the action yields a conservation law",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "orch-or-microtubules",
+      "label": "Orch-OR",
+      "title": "Orch-OR — consciousness arises from quantum computations (objective reduction) in neuronal microtubules",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "quantum-foundations"
+      ],
+      "type": "derived",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "platonic-solids-five",
+      "label": "There are exactly five convex regular po…",
+      "title": "There are exactly five convex regular polyhedra (the Platonic solids)",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "qm-decoherence",
+      "label": "Environmental decoherence explains the a…",
+      "title": "Environmental decoherence explains the appearance of wavefunction collapse (but does not resolve the measurement problem)",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations",
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    }
+  ],
+  "edges": [
+    {
+      "source": "cosmopsychism",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "golden-ratio-ubiquity",
+      "target": "platonic-solids-five",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E6"
+    },
+    {
+      "source": "iit-integrated-information",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "lisi-e8-toe",
+      "target": "e8-lie-group",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "many-worlds-interpretation",
+      "target": "qm-decoherence",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "qm-decoherence",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "consciousness-as-substrate-speculation",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "qm-decoherence",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "consciousness-as-substrate-speculation",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "hard-problem-of-consciousness",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "consciousness-as-substrate-speculation",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "many-worlds-interpretation",
+      "target": "advaita-nonduality",
+      "kind": "bridge",
+      "bridge": "one-field-metaphor",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "many-worlds-interpretation",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "one-field-metaphor",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "one-field-metaphor",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "llm-subjective-reports",
+      "kind": "bridge",
+      "bridge": "recursive-coherence-analogy",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursive-coherence-analogy",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "llm-subjective-reports",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursive-coherence-analogy",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "noether-symmetry-conservation",
+      "target": "e8-lie-group",
+      "kind": "bridge",
+      "bridge": "symmetry-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    }
+  ]
+}
