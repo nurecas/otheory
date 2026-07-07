@@ -22,7 +22,10 @@ Produce, in research/synthesis/:
 4. predictions.md - any falsifiable predictions, with the test.
 5. abstract.md - a strong, honest intro for the page: what O Theory attempts and how to read the evidence
    tiers. Compelling but never over-claiming.
-6. existence-prompt.md - a generative art prompt titled "A Portrait of Existence," rewritten from the
+6. overview.md - the LANDING ESSAY: one flowing, tier-honest account (~800-1100 words) of what the whole
+   corpus says together, written to be read beside the generative artwork. Front-matter: id, owner,
+   version, purpose. Keep it self-contained (no page mechanics), cadenced, and never over-claiming.
+7. existence-prompt.md - a generative art prompt titled "A Portrait of Existence," rewritten from the
    vetted corpus so it EVOLVES every run. It must be tier-honest by construction: describe existence solid
    where E1-proven, translucent where E2/E3-speculative, a diffuse field where E4-philosophical, light
    where E5-symbolic, and a dissolving shadow for E6-rejected; describe cross-domain filaments by register.

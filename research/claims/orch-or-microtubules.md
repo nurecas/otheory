@@ -23,8 +23,9 @@ steelman: "Orch-OR proposes that tubulin proteins in microtubules support quantu
 strongest_objection: "Tegmark's estimate put neuronal decoherence times around 10⁻¹³–10⁻²⁰ s — far too short for the ~10–100 ms of neural computation — the canonical objection that the brain is too 'warm, wet, and noisy' for functional macroscopic coherence. Proponents dispute the estimate, but no direct evidence shows microtubule quantum states doing cognitive work. The 2025 anesthesia results are suggestive, not confirmatory. Hence E3 (heterodox minority)."
 falsifiability: "Yes — it predicts anesthetic action via microtubule quantum states and specific coherence signatures. It is being tested (anesthesia, UV/photon experiments). This keeps it in the physics-adjacent falsifiable space, at contested E3, not established."
 depends_on: [hard-problem-of-consciousness]
+related_to: [wiest-anesthesia-microtubule-observation, general-resonance-theory, bell-theorem-nonlocality, iit-integrated-information]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:c84499553414f7f8"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The single most-overclaimed item in the source essay ("vindication of

@@ -19,8 +19,9 @@ steelman: "Even a complete functional account of the brain's information process
 strongest_objection: "Illusionists (e.g. Frankish, Dennett) argue the 'hard problem' mistakes a cognitive illusion for a datum: once you fully explain why we *judge* there is ineffable phenomenality, nothing further needs explaining. On this view the problem dissolves rather than being solved. The dispute is philosophical and not empirically decidable — which is exactly why it sits at E4."
 falsifiability: "Not empirically decidable even in principle as stated; it is a conceptual/argumentative claim. Per CLAUDE.md's falsifiability rule, this is correctly classified E4 (philosophical), not physics."
 depends_on: []
+related_to: [physicalism-functionalism, meta-problem-of-consciousness, illusionism-eliminativism, gnwt-global-workspace]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:5d1e92f559c1c54b"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The E4 anchor of the whole consciousness discussion. It is an argument,

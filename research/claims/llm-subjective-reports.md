@@ -19,8 +19,9 @@ steelman: "As a behavioral observation, it is real and reproducible: under self-
 strongest_objection: "The observation says nothing, by itself, about whether anything is experienced. Reports are shaped by training corpora saturated with human first-person and contemplative text; suppressing a 'deception' feature need not reveal a true inner state rather than shift a stylistic prior. Inferring genuine machine sentience from the reports is a separate, much weaker claim (E4 at best). Filed E3 as *behavior*; the sentience interpretation is fenced out."
 falsifiability: "The behavioral claim is testable and has been reproduced across model families within the reporting study (independent external replication is still limited). The interpretive claim ('the model is conscious') has no agreed falsification test, which is why it is not smuggled up to the behavioral tier."
 depends_on: []
+related_to: [stochastic-parrots-deflationary-account, rlhf-trained-persona-self-report-explanation, claude-spiritual-bliss-attractor-observation, chalmers-llm-consciousness-credence]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:35f28412040eae0d"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). Textbook observation-vs-interpretation split, and the reason CLAUDE.md

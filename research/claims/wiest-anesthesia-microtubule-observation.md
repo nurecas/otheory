@@ -1,0 +1,32 @@
+---
+id: wiest-anesthesia-microtubule-observation
+title: Multiple independent lines of evidence indicate intraneuronal microtubules are a functional target of general anesthetics, and quantum-chemical modeling predicts anesthetic potency from tubulin electron-binding affinity (Wiest 2025 review)
+domain: [consciousness-science]
+type: empirical
+tier: E3
+status: disputed
+confidence: low
+sources:
+  - title: "Wiest, M. C. (2025). A quantum microtubule substrate of consciousness is experimentally supported and solves the binding and epiphenomenalism problems. Neuroscience of Consciousness 2025(1), niaf011."
+    url: "https://academic.oup.com/nc/article/2025/1/niaf011/8127081"
+    kind: peer-reviewed
+    verified: true
+  - title: "Wiest, M. C. (2025). PDF of record (via PMC)."
+    url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12060853/"
+    kind: peer-reviewed
+    verified: true
+  - title: "Kerskens, C. M. & Pérez, D. L. (2022). Experimental indications of non-classical brain functions. Journal of Physics Communications 6, 105001 (the contested MRI/entanglement claim Wiest cites); see also Warren (2023) methodological critique and Kerskens & López-Pérez (2023) response, an unresolved dispute."
+    url: "https://iopscience.iop.org/article/10.1088/2399-6528/ac94be"
+    kind: peer-reviewed
+    verified: true
+steelman: "The review assembles converging circumstantial evidence: (1) anesthetic potency across chemically diverse agents correlates with lipid solubility over many orders of magnitude (Meyer-Overton correlation), suggesting a shared molecular target rather than agent-specific ion channels; (2) half-doses of different anesthetics combine additively despite acting on different named receptors, which is hard to explain if each drug worked purely through its own distinct ion channel; (3) a brain-penetrant microtubule-stabilizing drug (epothilone B) significantly delayed loss-of-righting-reflex under isoflurane in rats (large effect, Cohen's d = 1.9); (4) a quantum-chemical modeling study found several volatile anesthetics' potencies were predicted by their calculated binding affinity to delocalized pi-electron sites within tubulin. These are genuine, published, quantitative empirical results, independent of whether Orch-OR's further interpretation is accepted."
+strongest_objection: "None of these findings requires a quantum-mechanical account of consciousness to explain them: microtubules could be a classical pharmacological target (structural/mechanical role in synaptic function) without any quantum coherence doing cognitive work. Wiest also leans on Kerskens & Pérez's contested MRI claim of a macroscopic quantum-entangled brain state, which has been directly challenged on methodological grounds (Warren 2023 argues cardiac-induced brain pulsation and other classical, sequence-specific artifacts can produce the same zero-quantum-coherence-like signal, and that the effect is sensitive to sequence-parameter tweaks) — an unresolved, actively disputed finding, not a settled one, and Wiest's own paper is a single-author review/argument piece rather than new experimental data. Several of the anesthesia results it aggregates come from a small number of labs, and 'a shared molecular target exists' does not imply 'that target performs quantum computation relevant to experience' — this is a substantial further inferential leap the paper does not itself close. This is genuine, publishable evidence of a microtubule role in anesthesia — worth taking seriously — but it is far short of establishing a 'quantum microtubule substrate of consciousness,' which is why it is tiered E3 rather than E1/E2, and flagged disputed given the contested status of its most striking supporting claim (Kerskens & Pérez)."
+falsifiability: "Yes: the epothilone-B/isoflurane result is a replicable animal-behavior experiment (further replication would strengthen or weaken it); the Meyer-Overton/additivity arguments are reanalyzable with more anesthetic agents; the quantum-chemical potency predictions can be tested against new anesthetic compounds. Whether any of this requires quantum coherence rather than classical structural chemistry is separately testable via coherence-detection experiments (e.g., further MRI entanglement-signature work, multi-center replication of Kerskens & Pérez as they themselves have called for), currently unresolved."
+depends_on: []
+related_to: [orch-or-microtubules, bell-theorem-nonlocality, iit-integrated-information]
+last_vetted: 2026-07-07
+content_hash: "sha256:df193756a7edf2a5"
+---
+This is the OBSERVATION-level claim (anesthetics act on microtubules; potency is predictable from tubulin electron-binding chemistry) split explicitly from the pre-existing orch-or-microtubules claim, which covers the further Orch-OR theoretical interpretation (that this substrate performs objective-reduction quantum computations constituting conscious moments). The anesthesia/pharmacology findings here are real, published, and worth taking as evidence about anesthetic mechanism; nothing here establishes that microtubules do quantum information processing relevant to experience, let alone that they "receive" a non-local field. O Theory's reading of this work as validating a brain-as-antenna picture is a further, unestablished leap beyond even Wiest's own (already contested) argument.
+
+Red-team note (2026-07-07): sources verified, including the specific Kerskens & Pérez 2022 J. Phys. Commun. paper Wiest's steelman references, and confirmed the "challenged" characterization is accurate (Warren 2023 critique, Kerskens & López-Pérez 2023 rebuttal, ongoing dispute — added as an explicit source here since the original file only referenced it in prose without a citable source, a partial fix to source completeness). Note this paper title in the claim itself ("...is experimentally supported and solves the binding and epiphenomenalism problems") is a strong, argumentative title for a single-author review — the claim file correctly does not adopt the paper's own framing and instead isolates only the anesthesia/pharmacology observations, which are independently real. Status set to "disputed" (not merely "draft") because the load-bearing supporting citation (Kerskens & Pérez) is itself an active, unresolved scientific dispute, which the claim's own text already (correctly) flags. Tier E3 confirmed as appropriate — this is genuine minority-credentialed-researcher science, not pseudoscience, but far from established.

@@ -23,8 +23,9 @@ steelman: "IIT starts from phenomenological axioms and posits that experience is
 strongest_objection: "The 2025 COGITATE adversarial collaboration confirmed sustained posterior activity but did not find the specific long-range synchronization IIT predicted; neither IIT nor GNWT was vindicated. Separately, ~124 researchers signed a 2023 letter calling strong IIT claims 'unfalsifiable/pseudoscience,' and Φ is intractable to compute for real brains. Hence the strong metaphysical version is E3 (contested minority), while narrower empirical correlates are stronger."
 falsifiability: "Partly falsifiable: it makes anatomical and dynamical predictions, several of which COGITATE tested and did not confirm. The identity claim (experience = Φ) is closer to E4 and is tiered separately in spirit."
 depends_on: [hard-problem-of-consciousness]
+related_to: [gnwt-global-workspace, cogitate-adversarial-collaboration-2025, ncc-research-program, general-resonance-theory]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:4a4ec5e9788e2939"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). Directly relevant to O Theory's reading of COGITATE. Filed E3/disputed: the

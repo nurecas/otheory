@@ -19,8 +19,9 @@ steelman: "If experience cannot be got from wholly non-experiential ingredients 
 strongest_objection: "The 'decombination problem': it is unclear how one cosmic subject yields many private, bounded subjects without the same explanatory gap it was meant to avoid — arguably relocating the hard problem rather than solving it. Being a metaphysical position, it is argued rather than tested; E4, and it must never be presented as an empirical finding."
 falsifiability: "Not empirically decidable; a metaphysical position argued by reason. Correctly E4."
 depends_on: [hard-problem-of-consciousness]
+related_to: [panpsychism-combination-problem, priority-monism-schaffer, aware-ii-nde-survival-interpretation]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:d16ae4d8986c0da4"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). This is the closest academic analogue to O Theory's "O-Source." Filing it

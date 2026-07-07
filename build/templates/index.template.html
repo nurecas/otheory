@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="O Theory — an honest, layered synthesis of theories of everything across physics, geometry, quantum foundations, philosophy of mind, and contemplative traditions. Every claim carries an evidence tier.">
+  <meta name="description" content="O Theory — an honest, layered synthesis of theories of everything. Every claim carries an evidence tier; the artwork is a pure function of the research.">
   <meta name="author" content="O Theory Project">
   <meta property="og:title" content="O Theory — an honest map of everything">
   <meta property="og:description" content="A layered synthesis where every claim carries an evidence tier (E1–E6). Facts as facts; interpretation clearly fenced.">
@@ -15,33 +15,53 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-head">
-    <div class="brand"><span class="brand-o">O</span> Theory</div>
-    <nav class="site-nav" aria-label="Sections">
-      <a href="#rigorous-core">Rigorous Core</a>
-      <a href="#interpretive">Interpretive</a>
-      <a href="#portrait">Portrait</a>
-    </nav>
+    <a class="brand" href="#/synthesis"><span class="brand-o">O</span><span class="brand-word">Theory</span></a>
+    <nav class="site-nav" aria-label="Chapters">{{CHAPTER_NAV}}</nav>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+    <button id="nav-toggle" class="nav-toggle" aria-label="Open chapter menu" aria-expanded="false"><span></span></button>
   </header>
 
   <main id="main">
-    <!-- INTRO / FRAMING -->
-    <section class="intro" aria-labelledby="intro-h">
-      <h1 id="intro-h">O&nbsp;Theory</h1>
-      <p class="lede">An honest, layered map of theories of everything — physics, geometry, quantum foundations,
-        mind, and the contemplative traditions. <strong>Every claim carries an evidence tier.</strong>
-        Facts are stated as facts; interpretation is clearly fenced.</p>
-      <div class="abstract prose">{{ABSTRACT}}</div>
-      {{EVIDENCE_KEY}}
+
+    <!-- ══ 01 · THE SYNTHESIS (landing) ══ -->
+    <section class="chapter is-active" data-chapter="synthesis" aria-labelledby="ch-synthesis-h">
+      <div class="landing">
+        <div class="landing-art">
+          <div id="portrait-canvas" role="img" aria-label="Generative portrait of existence, derived from the knowledge base"></div>
+          <div class="art-bar">
+            <div class="art-toggle" role="tablist" aria-label="Portrait mode">
+              <button class="art-mode is-on" data-mode="honest" role="tab" aria-selected="true">As evidenced</button>
+              <button class="art-mode" data-mode="unified" role="tab" aria-selected="false">As if all were true</button>
+            </div>
+            <p class="art-caption" id="art-caption">Solid where we know, translucent where we guess, luminous where we can only point.</p>
+            <p class="art-stamp">version <strong>{{BUILD_VERSION}}</strong> · {{N_CLAIMS}} claims · {{N_BRIDGES}} bridges · as of {{BUILD_ASOF}}</p>
+          </div>
+        </div>
+        <div class="landing-text">
+          <p class="kicker">A living synthesis · {{N_CLAIMS}} vetted claims · {{N_DOMAINS}} domains</p>
+          <h1 id="ch-synthesis-h" class="landing-title">{{OVERVIEW_TITLE}}</h1>
+          <div class="overview prose prose-serif">{{OVERVIEW}}</div>
+          <div class="key-fold">
+            <h3 class="key-h">How to read the evidence</h3>
+            {{EVIDENCE_KEY_MINI}}
+          </div>
+          <details class="prompt-details">
+            <summary>The artwork's generated prompt — it evolves with every research run</summary>
+            <div class="prompt prose">{{EXISTENCE_PROMPT}}</div>
+          </details>
+          {{NEXT_SYNTHESIS}}
+        </div>
+      </div>
     </section>
 
-    <!-- HERO CONNECTION GRAPH -->
-    <section class="hero" aria-labelledby="graph-h">
-      <div class="section-head">
-        <h2 id="graph-h">The connection graph</h2>
-        <p class="section-sub">Nodes are claims, colored by domain and badged by tier. Solid edges are
-          derivations; dashed/dotted/wavy edges are interpretive bridges, styled by register.
-          Click a node for its provenance.</p>
+    <!-- ══ 02 · THE MAP ══ -->
+    <section class="chapter" data-chapter="map" aria-labelledby="ch-map-h" hidden>
+      <div class="chapter-head">
+        <p class="kicker">02 · The Map</p>
+        <h2 id="ch-map-h">Every claim, and what actually connects it</h2>
+        <p class="section-sub">Nodes are claims, colored by domain, badged by tier. <strong>Solid arrows</strong> are derivations;
+          <strong>thin lines</strong> are conceptual relations (rivals, lineage, same debate); <strong>dashed, dotted and
+          wavering strands</strong> are interpretive bridges, styled by register. Click any node to read the claim.</p>
       </div>
       <div class="graph-controls" role="group" aria-label="Graph filters">
         <label class="ctl">Domain
@@ -57,70 +77,63 @@
             <option value="E5">E1–E5</option>
           </select>
         </label>
-        <label class="ctl switch">
-          <input type="checkbox" id="toggle-bridges" checked>
-          <span>Show interpretive bridges</span>
-        </label>
+        <label class="ctl switch"><input type="checkbox" id="toggle-bridges" checked><span>Interpretive bridges</span></label>
+        <label class="ctl switch"><input type="checkbox" id="toggle-relations" checked><span>Relations</span></label>
         <button id="graph-reset" class="ctl-btn">Reset</button>
       </div>
-      <div class="graph-wrap">
-        <div id="cy" role="img" aria-label="Force-directed graph of claims and their connections"></div>
-        <aside id="claim-panel" class="claim-panel" aria-live="polite" hidden></aside>
-      </div>
+      <div class="graph-wrap"><div id="cy" role="img" aria-label="Force-directed graph of claims and their connections"></div></div>
+      <footer class="chapter-foot">{{NEXT_MAP}}</footer>
     </section>
 
-    <!-- ZONE A — RIGOROUS CORE -->
-    <section class="zone zone-a" id="rigorous-core" aria-labelledby="zoneA-h">
-      <div class="zone-banner">
-        <span class="zone-tag">Zone A</span>
-        <h2 id="zoneA-h">Rigorous Core</h2>
-        <p>Facts, derivations, and empirical claims — stated plainly, each with a tier badge and full
-          provenance. Contested (E3) and rejected (E6) empirical claims appear here too, clearly badged.</p>
+    <!-- ══ 03 · THE EVIDENCE ══ -->
+    <section class="chapter" data-chapter="evidence" aria-labelledby="ch-evidence-h" hidden>
+      <div class="chapter-head">
+        <p class="kicker">03 · The Evidence</p>
+        <h2 id="ch-evidence-h">The rigorous core</h2>
+        <p class="section-sub">Facts, derivations, and empirical claims — stated plainly, each with its tier and full
+          provenance. Contested (E3) and rejected (E6) empirical claims are here too, clearly badged. Choose a domain.</p>
       </div>
-      {{ZONE_A}}
+      {{EVIDENCE_CHAPTER}}
       <div class="landscape-block">
         <h3>The landscape — domain × tier</h3>
         <p class="section-sub">How much of the corpus is established, speculative, or symbolic. Honesty as a picture.</p>
         {{LANDSCAPE}}
       </div>
+      <footer class="chapter-foot">{{NEXT_EVIDENCE}}</footer>
     </section>
 
-    <!-- ZONE B — INTERPRETIVE SYNTHESIS -->
-    <section class="zone zone-b" id="interpretive" aria-labelledby="zoneB-h">
-      <div class="zone-banner interp">
-        <span class="zone-tag">Zone B · Interpretive</span>
-        <h2 id="zoneB-h">Interpretive Synthesis</h2>
-        <p>The pattern-matching layer. Allowed to be speculative and beautiful — <em>because</em> it is
-          clearly marked. Nothing here restates a lower-tier claim as higher.</p>
+    <!-- ══ 04 · THE INTERPRETATIONS ══ -->
+    <section class="chapter chapter-interp" data-chapter="interpretations" aria-labelledby="ch-interp-h" hidden>
+      <div class="chapter-head">
+        <p class="kicker interp-kicker">04 · The Interpretations — clearly marked</p>
+        <h2 id="ch-interp-h">The pattern-matching layer</h2>
+        <p class="section-sub">Cross-domain connections, philosophical positions, and symbolic traditions — allowed to be
+          speculative and beautiful <em>because</em> every one is labeled: its register, its ceiling, its strongest objection.
+          Nothing here restates a lower-tier claim as higher.</p>
       </div>
-
-      {{ZONE_B_CLAIMS}}
 
       <div class="bridges-block">
-        <h3>Cross-domain bridges</h3>
-        <p class="section-sub">Each connection is exactly one register — shared-mathematics, analogy,
-          metaphor, or speculation — and may never imply a tier above its ceiling.</p>
-        <div class="bridge-grid">{{BRIDGES}}</div>
+        <h3>The bridges, by register</h3>
+        {{BRIDGES_BY_REGISTER}}
       </div>
 
-      <div class="chord-block">
-        <h3>The bridge chord</h3>
-        <p class="section-sub">Domains around the circle; ribbons are bridges, styled by register.</p>
-        <div id="chord" role="img" aria-label="Chord diagram of cross-domain bridges"></div>
-      </div>
-
-      <div class="layer-block">
-        <h3>The layer stack</h3>
-        <p class="section-sub">Established core → speculative extensions → philosophical interpretation →
-          symbolic resonance. Click a layer to filter the graph above.</p>
-        <div class="layer-stack">{{LAYER_STACK}}</div>
+      <div class="two-col">
+        <div class="chord-block">
+          <h3>The bridge chord</h3>
+          <p class="section-sub">Domains around the circle; ribbons are bridges, styled by register.</p>
+          <div id="chord" role="img" aria-label="Chord diagram of cross-domain bridges"></div>
+        </div>
+        <div class="layer-block">
+          <h3>The layer stack</h3>
+          <p class="section-sub">From proven core to symbol — every claim in its honest layer.</p>
+          <div class="layer-stack">{{LAYER_STACK}}</div>
+        </div>
       </div>
 
       <div class="geo-block">
-        <h3>Geometry visualizer</h3>
-        <p class="section-sub">The real mathematics behind "sacred geometry": the five Platonic solids, the
-          golden ratio, and a projection of the E8 root system. Shown as mathematics and symbol — never
-          asserted as physics.</p>
+        <h3>The geometry</h3>
+        <p class="section-sub">The real mathematics behind "sacred geometry" — the five Platonic solids, the golden ratio,
+          the E8 root system. Shown as mathematics and symbol, never asserted as physics.</p>
         <div class="geo-controls" role="group" aria-label="Geometry controls">
           <button class="geo-btn is-on" data-geo="solids">Platonic solids</button>
           <button class="geo-btn" data-geo="golden">Golden ratio</button>
@@ -130,51 +143,69 @@
         <p id="geo-caption" class="geo-caption"></p>
       </div>
 
-      <!-- PORTRAIT OF EXISTENCE -->
-      <div class="portrait-block" id="portrait">
-        <h3>A Portrait of Existence</h3>
-        <p class="section-sub">A generative artwork that visualizes existence <em>exactly as honest as the
-          current research</em> — solid where we know, translucent where we guess, luminous where we can
-          only point. It is a pure function of the knowledge base, so it evolves with every research run.</p>
-        <div id="portrait-canvas" role="img" aria-label="Generative three.js portrait of existence, derived from the knowledge base"></div>
-        <div class="portrait-meta">
-          <span class="pv-stamp">version <strong>{{BUILD_VERSION}}</strong></span>
-          <span class="pv-sep">·</span><span>{{N_CLAIMS}} claims · {{N_BRIDGES}} bridges</span>
-          <span class="pv-sep">·</span><span>as of {{BUILD_ASOF}}</span>
-        </div>
-        <details class="prompt-details" open>
-          <summary>The generated prompt (this version)</summary>
-          <div class="prompt prose">{{EXISTENCE_PROMPT}}</div>
-        </details>
+      <div class="interp-claims-block">
+        <h3>The interpretive claims</h3>
+        <p class="section-sub">Argued (E4) or symbolic (E5) — presented on their own terms, each with its strongest objection.</p>
+        {{INTERP_GROUPS}}
       </div>
 
-      <div class="synth-prose">
-        <details class="synth-fold"><summary>The layered framework, in full</summary><div class="prose">{{FRAMEWORK}}</div></details>
-        <details class="synth-fold"><summary>Open problems — the honest ledger</summary><div class="prose">{{OPEN_PROBLEMS}}</div></details>
-        <details class="synth-fold"><summary>Falsifiable predictions</summary><div class="prose">{{PREDICTIONS}}</div></details>
-      </div>
+      <details class="synth-fold"><summary>The layered framework, in full</summary><div class="prose">{{FRAMEWORK}}</div></details>
+      <footer class="chapter-foot">{{NEXT_INTERPRETATIONS}}</footer>
     </section>
 
-    <!-- PRESERVED VIDEO -->
-    <section class="video-block" aria-label="O Theory video">
-      <div class="video-frame">
-        <video controls loop muted playsinline preload="metadata">
-          <source src="videos/ovideo.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
+    <!-- ══ 05 · OPEN QUESTIONS ══ -->
+    <section class="chapter" data-chapter="questions" aria-labelledby="ch-questions-h" hidden>
+      <div class="chapter-head">
+        <p class="kicker">05 · Open Questions</p>
+        <h2 id="ch-questions-h">The honest ledger</h2>
+        <p class="section-sub">Where the map has gaps, contradictions, and tensions — and what would move each. The gaps
+          are on the page on purpose.</p>
       </div>
+      <div class="prose prose-serif questions-prose">{{OPEN_PROBLEMS}}</div>
+      <div class="predictions-block">
+        <h3>Falsifiable predictions</h3>
+        <div class="prose">{{PREDICTIONS}}</div>
+      </div>
+      <footer class="chapter-foot">{{NEXT_QUESTIONS}}</footer>
+    </section>
+
+    <!-- ══ 06 · THE METHOD ══ -->
+    <section class="chapter" data-chapter="method" aria-labelledby="ch-method-h" hidden>
+      <div class="chapter-head">
+        <p class="kicker">06 · The Method</p>
+        <h2 id="ch-method-h">How this map is made</h2>
+      </div>
+      <div class="prose prose-serif">{{ABSTRACT}}</div>
+      <div class="key-block">
+        <h3>The Evidence Key, in full</h3>
+        {{EVIDENCE_KEY_FULL}}
+      </div>
+      <div class="video-block">
+        <h3>The film</h3>
+        <div class="video-frame">
+          <video controls loop muted playsinline preload="metadata">
+            <source src="videos/ovideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <footer class="site-foot">
+        <p>O Theory · a layered, tier-honest synthesis. Build <code>{{BUILD_HASH}}</code> · {{N_CLAIMS}} claims ·
+          {{N_BRIDGES}} bridges · as of {{BUILD_ASOF}}.</p>
+        <p class="foot-note">Every claim resolves to a real, cited source. The site is a deterministic function of a
+          vetted knowledge base; the theory's full history lives in version control.</p>
+      </footer>
+      <footer class="chapter-foot">{{NEXT_METHOD}}</footer>
     </section>
   </main>
 
-  <footer class="site-foot">
-    <p>O Theory · a layered, tier-honest synthesis. Build <code>{{BUILD_HASH}}</code> · {{N_CLAIMS}} claims ·
-      {{N_BRIDGES}} bridges · as of {{BUILD_ASOF}}.</p>
-    <p class="foot-note">Every claim resolves to a real, cited source. The site is a deterministic function
-      of a vetted knowledge base; the theory's full history lives in version control.</p>
-  </footer>
+  <!-- Claim detail drawer (shared, reachable from anywhere) -->
+  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+  <aside id="claim-drawer" class="claim-drawer" role="dialog" aria-modal="true" aria-label="Claim detail" hidden></aside>
 
   <script id="graph-data" type="application/json">{{GRAPH_JSON}}</script>
   <script id="art-data" type="application/json">{{ART_JSON}}</script>
+  <script id="claims-data" type="application/json">{{CLAIMS_JSON}}</script>
   <script src="assets/vendor/cytoscape.min.js" defer></script>
   <script src="assets/vendor/three.min.js" defer></script>
   <script src="assets/vendor/OrbitControls.js" defer></script>

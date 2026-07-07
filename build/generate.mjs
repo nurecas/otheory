@@ -6,6 +6,14 @@
 //   docs/index.html · docs/data/graph.json · docs/data/art.json · docs/assets/*  (copied from build/assets)
 // Preserves docs/videos/. Relative paths only (publishes under /otheory/).
 //
+// Page model (v2): a chaptered reading experience —
+//   01 Synthesis (landing: overview essay + the Portrait, honest/unified toggle)
+//   02 Map (connection graph: derivations + relations + bridges)
+//   03 Evidence (rigorous core by domain + landscape)
+//   04 Interpretations (bridges by register, chord, layers, interpretive claims)
+//   05 Open Questions (open problems + predictions)
+//   06 Method (how it works, evidence key, video, colophon)
+//
 // Usage:  node build/generate.mjs         (build)
 //         node build/generate.mjs --check  (build in memory, diff vs committed docs/, report drift)
 
@@ -20,41 +28,51 @@ const R = (...p) => join(ROOT, ...p);
 const CHECK = process.argv.includes('--check');
 
 // ---------------------------------------------------------------------------
-// Shared vocabulary (kept in sync with CLAUDE.md; also emitted into art.json so
-// the client uses identical colors/labels — single source of truth).
+// Shared vocabulary (kept in sync with CLAUDE.md; emitted into art.json so the
+// client uses identical colors/labels — single source of truth).
+// Two palettes: light (default page theme) and dark (toggle + canvas art).
 // ---------------------------------------------------------------------------
 const TIERS = {
-  E1: { label: 'Established', color: '#66e39a', blurb: 'Experimentally confirmed or mathematically proven; mainstream consensus.' },
-  E2: { label: 'Mainstream-speculative', color: '#7ec8ff', blurb: 'Taken seriously and mathematically developed, but not experimentally confirmed.' },
-  E3: { label: 'Heterodox / minority', color: '#ffce6a', blurb: 'Published by credentialed researchers, but a contested minority view.' },
-  E4: { label: 'Philosophical', color: '#c6a5ff', blurb: 'Argued by reason; not empirically decidable even in principle.' },
-  E5: { label: 'Symbolic / contemplative', color: '#ff9ed0', blurb: 'Meaningful as symbol, practice, or first-person report — not an empirical claim.' },
-  E6: { label: 'Unsupported', color: '#ff6f6f', blurb: 'Presents as science but fails vetting; recorded transparently, never used as support.' },
+  E1: { label: 'Established', color: '#1b7f4d', dark: '#66e39a', blurb: 'Experimentally confirmed or mathematically proven; mainstream consensus.' },
+  E2: { label: 'Mainstream-speculative', color: '#2b64b5', dark: '#7ec8ff', blurb: 'Taken seriously and mathematically developed, but not experimentally confirmed.' },
+  E3: { label: 'Heterodox / minority', color: '#a86a10', dark: '#ffce6a', blurb: 'Published by credentialed researchers, but a contested minority view.' },
+  E4: { label: 'Philosophical', color: '#7148b8', dark: '#c6a5ff', blurb: 'Argued by reason; not empirically decidable even in principle.' },
+  E5: { label: 'Symbolic / contemplative', color: '#b83d78', dark: '#ff9ed0', blurb: 'Meaningful as symbol, practice, or first-person report — not an empirical claim.' },
+  E6: { label: 'Unsupported', color: '#bb3a3a', dark: '#ff6f6f', blurb: 'Presents as science but fails vetting; recorded transparently, never used as support.' },
 };
 const REGISTERS = {
-  'shared-mathematics': { label: 'Shared mathematics', color: '#66e39a', style: 'solid', blurb: 'a real, stated shared mathematical structure' },
-  analogy: { label: 'Analogy', color: '#ffce6a', style: 'dashed', blurb: 'structural resemblance, not identity' },
-  metaphor: { label: 'Metaphor', color: '#ff9ed0', style: 'dotted', blurb: 'evocative, not structural' },
-  speculation: { label: 'Speculation', color: '#7ec8ff', style: 'wavy', blurb: 'proposed but unestablished' },
+  'shared-mathematics': { label: 'Shared mathematics', color: '#1b7f4d', dark: '#66e39a', style: 'solid', blurb: 'a real, stated shared mathematical structure' },
+  analogy: { label: 'Analogy', color: '#a86a10', dark: '#ffce6a', style: 'dashed', blurb: 'structural resemblance, not identity' },
+  metaphor: { label: 'Metaphor', color: '#b83d78', dark: '#ff9ed0', style: 'dotted', blurb: 'evocative, not structural' },
+  speculation: { label: 'Speculation', color: '#2b64b5', dark: '#7ec8ff', style: 'wavy', blurb: 'proposed but unestablished' },
 };
 const DOMAINS = {
-  physics: '#5b8cff',
-  'mathematics-geometry': '#3fd6c0',
-  'quantum-foundations': '#8a7dff',
-  'consciousness-science': '#ff7ac2',
-  'philosophy-of-mind': '#ffb354',
-  metaphysics: '#c9a3ff',
-  'comparative-religion': '#ffd76a',
-  mysticism: '#ff9d6a',
-  esoteric: '#aeb7c9',
-  'ai-consciousness': '#5fe08a',
+  physics: { color: '#3b63d8', dark: '#5b8cff' },
+  'mathematics-geometry': { color: '#0f9d8a', dark: '#3fd6c0' },
+  'quantum-foundations': { color: '#6c58e0', dark: '#8a7dff' },
+  'consciousness-science': { color: '#d84f9f', dark: '#ff7ac2' },
+  'philosophy-of-mind': { color: '#c47a18', dark: '#ffb354' },
+  metaphysics: { color: '#8f5fd6', dark: '#c9a3ff' },
+  'comparative-religion': { color: '#a8860b', dark: '#ffd76a' },
+  mysticism: { color: '#d0662f', dark: '#ff9d6a' },
+  esoteric: { color: '#6e7b8f', dark: '#aeb7c9' },
+  'ai-consciousness': { color: '#25904e', dark: '#5fe08a' },
 };
-const domainColor = (d) => DOMAINS[d] || '#9aa4b2';
+const domainColor = (d) => (DOMAINS[d] || { color: '#8a94a6' }).color;
 const domainLabel = (d) => d.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
+const CHAPTERS = [
+  { slug: 'synthesis', num: '01', title: 'The Synthesis' },
+  { slug: 'map', num: '02', title: 'The Map' },
+  { slug: 'evidence', num: '03', title: 'The Evidence' },
+  { slug: 'interpretations', num: '04', title: 'The Interpretations' },
+  { slug: 'questions', num: '05', title: 'Open Questions' },
+  { slug: 'method', num: '06', title: 'The Method' },
+];
+
 // ---------------------------------------------------------------------------
-// Minimal, format-specific front-matter parser (handles our controlled subset:
-// scalars, inline [flow] arrays, block sequences of maps, folded ">" scalars).
+// Front-matter parser (controlled subset: scalars, inline [flow] arrays,
+// block sequences of maps, folded ">" scalars).
 // ---------------------------------------------------------------------------
 const stripQuotes = (s) => {
   s = s.trim();
@@ -132,8 +150,8 @@ function parseYaml(yaml) {
 }
 
 // ---------------------------------------------------------------------------
-// Tiny, controlled Markdown -> HTML (headings, lists, tables, blockquote, hr,
-// bold/italic/code/links). Sufficient for our synthesis prose.
+// Controlled Markdown -> HTML (headings, lists w/ continuations, tables,
+// blockquote, hr, bold/italic/code/links).
 // ---------------------------------------------------------------------------
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function inline(s) {
@@ -220,6 +238,7 @@ function loadClaims() {
       const { front } = splitFrontMatter(readFileSync(join(dir, f), 'utf8'));
       front.domain = Array.isArray(front.domain) ? front.domain : (front.domain ? [front.domain] : []);
       front.depends_on = Array.isArray(front.depends_on) ? front.depends_on : [];
+      front.related_to = Array.isArray(front.related_to) ? front.related_to : [];
       front.sources = Array.isArray(front.sources) ? front.sources : [];
       return front;
     })
@@ -240,8 +259,7 @@ const readSynth = (name) => {
   const p = R('research', 'synthesis', name);
   return existsSync(p) ? readFileSync(p, 'utf8') : '';
 };
-// Strip authoring scaffolding (a leading H1, owner/seed/placeholder notes, HTML comments)
-// so internal working notes never leak onto the public page.
+// Strip authoring scaffolding (leading H1, owner/seed notes, HTML comments).
 function stripAuthoring(md) {
   const { body } = splitFrontMatter(md);
   const lines = (body || md).split('\n');
@@ -251,16 +269,26 @@ function stripAuthoring(md) {
   while (i < lines.length) {
     const t = lines[i].trim();
     if (!t) { i++; continue; }
-    if (/^_.*_$/.test(t) && /(owned by|placeholder|seed version|owner:)/i.test(t)) { i++; continue; }
+    if (/^_/.test(t) && /(owned by|placeholder|seed version|wide-sweep version|owner:)/i.test(t)) {
+      // authoring note in italics — may wrap across lines; consume until the closing underscore
+      while (i < lines.length && !/_$/.test(lines[i].trim())) i++;
+      i++; continue;
+    }
     if (/^<!--.*-->$/.test(t)) { i++; continue; }
     break;
   }
   return lines.slice(i).join('\n').replace(/^<!--[\s\S]*?-->\s*$/gm, '').trim();
 }
 const truncateBefore = (md, marker) => { const idx = md.indexOf(marker); return idx === -1 ? md : md.slice(0, idx).trim(); };
+// Extract a leading H1 as the piece's display title.
+function titleAndBody(md) {
+  const { body } = splitFrontMatter(md);
+  const m = (body || md).match(/^#\s+(.+)$/m);
+  return { title: m ? m[1].trim() : '', body: stripAuthoring(md) };
+}
 
 // ---------------------------------------------------------------------------
-// Build graph.json + art.json
+// Graph + art data
 // ---------------------------------------------------------------------------
 const shortLabel = (title) => {
   let t = title.split(/\s+[—–-]\s+/)[0].split(/\s+\(/)[0];
@@ -268,6 +296,7 @@ const shortLabel = (title) => {
   return t;
 };
 function pairs(arr) { const out = []; for (let a = 0; a < arr.length; a++) for (let b = a + 1; b < arr.length; b++) out.push([arr[a], arr[b]]); return out; }
+const pairKey = (a, b) => (a < b ? a + '|' + b : b + '|' + a);
 
 function buildGraph(claims, bridges) {
   const ids = new Set(claims.map((c) => c.id));
@@ -283,14 +312,23 @@ function buildGraph(claims, bridges) {
     confidence: c.confidence,
   }));
   const edges = [];
+  const seen = new Set();
   for (const c of claims) for (const dep of c.depends_on) {
-    if (ids.has(dep)) edges.push({ source: c.id, target: dep, kind: 'derivation', register: null, tier: c.tier });
+    if (ids.has(dep)) { edges.push({ source: c.id, target: dep, kind: 'derivation', register: null, tier: c.tier }); seen.add(pairKey(c.id, dep)); }
   }
   for (const b of bridges) {
     const linked = b.links.filter((l) => ids.has(l));
     for (const [s, t] of pairs(linked)) {
+      if (seen.has(pairKey(s, t))) continue;
+      seen.add(pairKey(s, t));
       edges.push({ source: s, target: t, kind: 'bridge', bridge: b.id, register: b.register, tier: b.tier_ceiling });
     }
+  }
+  for (const c of claims) for (const rel of c.related_to) {
+    if (!ids.has(rel) || rel === c.id) continue;
+    if (seen.has(pairKey(c.id, rel))) continue;
+    seen.add(pairKey(c.id, rel));
+    edges.push({ source: c.id, target: rel, kind: 'relation', register: null, tier: null });
   }
   return { nodes, edges };
 }
@@ -305,17 +343,16 @@ function buildArt(claims, bridges, graph) {
   const tierCounts = countBy(claims, 'tier');
   const domainCounts = countBy(claims, (c) => c.domain[0] || 'metaphysics');
   const registerCounts = countBy(bridges, 'register');
-  // deterministic signature of the corpus
   const sig = JSON.stringify({
-    c: claims.map((c) => [c.id, c.tier, c.type, c.status, c.confidence, c.domain, c.depends_on, c.sources.map((s) => s.url)]).sort(),
+    c: claims.map((c) => [c.id, c.tier, c.type, c.status, c.confidence, c.domain, c.depends_on, c.related_to, c.sources.map((s) => s.url)]).sort(),
     b: bridges.map((b) => [b.id, b.register, b.tier_ceiling, b.links]).sort(),
     p: readSynth('existence-prompt.md'),
   });
   const corpusHash = createHash('sha256').update(sig).digest('hex');
   const asOf = claims.map((c) => c.last_vetted).filter(Boolean).sort().pop() || '';
-  // extract the prompt blockquote text from existence-prompt.md
   const { body: epBody } = splitFrontMatter(readSynth('existence-prompt.md'));
   const promptText = (epBody.match(/^>.*$/gm) || []).map((l) => l.replace(/^>\s?/, '')).join('\n').trim();
+  const relationPairs = graph.edges.filter((e) => e.kind === 'relation').map((e) => [e.source, e.target]);
   return {
     version: 'v-' + corpusHash.slice(0, 8),
     corpusHash,
@@ -325,113 +362,130 @@ function buildArt(claims, bridges, graph) {
     palette: { tiers: TIERS, registers: REGISTERS, domains: DOMAINS },
     nodes: graph.nodes.map((n) => ({ id: n.id, tier: n.tier, domain: n.domain, type: n.type })),
     bridges: bridges.map((b) => ({ id: b.id, register: b.register, tier_ceiling: b.tier_ceiling, links: b.links })),
+    relationPairs,
     prompt: promptText,
   };
 }
 
+// Claims payload for the client-side detail drawer.
+function buildClaimsJson(claims) {
+  const out = {};
+  for (const c of claims) {
+    out[c.id] = {
+      title: c.title, tier: c.tier, type: c.type, status: c.status, confidence: c.confidence,
+      domains: c.domain, steelman: c.steelman || '', objection: c.strongest_objection || '',
+      falsifiability: c.falsifiability || '', depends_on: c.depends_on, related_to: c.related_to,
+      sources: c.sources.map((s) => ({ t: s.title, u: s.url, k: s.kind, v: String(s.verified) === 'true' })),
+    };
+  }
+  return out;
+}
+
 // ---------------------------------------------------------------------------
-// HTML section builders
+// HTML builders
 // ---------------------------------------------------------------------------
-const tierBadge = (t) => `<span class="badge tier" data-tier="${t}" style="--tc:${TIERS[t]?.color || '#888'}">${t} · ${TIERS[t]?.label || ''}</span>`;
-const typeBadge = (t) => `<span class="badge type">${t}</span>`;
+const tierBadge = (t) => `<span class="badge tier" data-tier="${t}" style="--tc:${TIERS[t]?.color || '#888'}">${t}</span>`;
+const tierBadgeFull = (t) => `<span class="badge tier" data-tier="${t}" style="--tc:${TIERS[t]?.color || '#888'}">${t} · ${TIERS[t]?.label || ''}</span>`;
 const statusBadge = (s) => s && s !== 'vetted' ? `<span class="badge status status-${s}">${s}</span>` : '';
 
 function claimCard(c) {
-  const domTags = c.domain.map((d) => `<span class="dom-tag" style="--dc:${domainColor(d)}">${domainLabel(d)}</span>`).join('');
-  const srcs = c.sources.map((s) => {
-    const kind = s.kind ? ` <span class="src-kind">${esc(s.kind)}</span>` : '';
-    const ok = String(s.verified) === 'true' ? '<span class="src-ok" title="source verified">✓</span>' : '';
-    return `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.title)}</a>${kind} ${ok}</li>`;
-  }).join('');
-  const fal = c.falsifiability ? `<div class="cc-row"><span class="cc-k">Falsifiability</span><span class="cc-v">${inline(c.falsifiability)}</span></div>` : '';
-  return `<article class="claim" id="claim-${c.id}" data-tier="${c.tier}" data-domain="${c.domain[0] || ''}" data-type="${c.type}" tabindex="0">
-    <header class="claim-h">
-      <h4>${esc(c.title)}</h4>
-      <div class="badges">${tierBadge(c.tier)} ${typeBadge(c.type)} ${statusBadge(c.status)}</div>
-    </header>
-    <div class="dom-tags">${domTags}</div>
-    <div class="cc-row"><span class="cc-k">Steelman</span><span class="cc-v">${inline(c.steelman || '')}</span></div>
-    <div class="cc-row"><span class="cc-k">Strongest objection</span><span class="cc-v">${inline(c.strongest_objection || '')}</span></div>
-    ${fal}
-    <details class="sources"><summary>Sources &amp; provenance (${c.sources.length})</summary><ul>${srcs}</ul></details>
-  </article>`;
+  return `<button class="claim-card" data-claim="${c.id}" data-tier="${c.tier}" data-domain="${c.domain[0] || ''}">
+    <span class="cc-top">${tierBadge(c.tier)}${statusBadge(c.status)}<span class="cc-type">${c.type}</span></span>
+    <span class="cc-title">${esc(c.title)}</span>
+    <span class="cc-steel">${esc((c.steelman || '').slice(0, 170))}${(c.steelman || '').length > 170 ? '…' : ''}</span>
+    <span class="cc-more">Read the claim →</span>
+  </button>`;
 }
 
-function evidenceKey() {
+function evidenceKey(full) {
   const items = Object.entries(TIERS).map(([k, v]) =>
     `<li class="ek" style="--tc:${v.color}"><span class="ek-badge">${k}</span><span class="ek-body"><strong>${v.label}</strong><span>${esc(v.blurb)}</span></span></li>`).join('');
   const regs = Object.entries(REGISTERS).map(([k, v]) =>
     `<li class="rk" style="--rc:${v.color}"><span class="rk-swatch reg-${v.style}"></span><span><strong>${v.label}</strong> — ${esc(v.blurb)}</span></li>`).join('');
   return `<div class="evidence-key" aria-label="Evidence key">
-    <h3>The Evidence Key</h3>
-    <p class="ek-note">Every claim carries a tier. A claim's tier is never restated as higher than it is.</p>
     <ul class="ek-list">${items}</ul>
-    <h4>Cross-domain connections are labeled by register</h4>
-    <ul class="rk-list">${regs}</ul>
+    ${full ? `<h4>Cross-domain connections are labeled by register</h4><ul class="rk-list">${regs}</ul>` : ''}
   </div>`;
 }
 
-function zoneA(claims) {
+// Evidence chapter: domain rail + per-domain claim panels (rigorous types only).
+function evidenceChapter(claims) {
   const core = claims.filter((c) => ['fact', 'derived', 'empirical'].includes(c.type));
   const byDomain = {};
   for (const c of core) { const d = c.domain[0] || 'other'; (byDomain[d] = byDomain[d] || []).push(c); }
   const order = Object.keys(DOMAINS).filter((d) => byDomain[d]);
-  return order.map((d) =>
-    `<section class="domain-group" data-domain="${d}">
-      <h3 class="domain-h"><span class="dom-dot" style="--dc:${domainColor(d)}"></span>${domainLabel(d)}</h3>
+  const rail = order.map((d, i) =>
+    `<button class="rail-item${i === 0 ? ' is-on' : ''}" data-panel="${d}" style="--dc:${domainColor(d)}">
+      <span class="rail-dot"></span><span class="rail-name">${domainLabel(d)}</span><span class="rail-count">${byDomain[d].length}</span>
+    </button>`).join('');
+  const panels = order.map((d, i) =>
+    `<div class="domain-panel${i === 0 ? ' is-on' : ''}" data-panel="${d}">
       <div class="claim-grid">${byDomain[d].map(claimCard).join('')}</div>
-    </section>`).join('');
+    </div>`).join('');
+  return `<div class="evidence-layout">
+    <nav class="domain-rail" aria-label="Domains">${rail}</nav>
+    <div class="domain-panels">${panels}</div>
+  </div>`;
 }
 
-function zoneBInterpretiveClaims(claims) {
+// Interpretations: interpretive claims grouped by domain (collapsible).
+function interpretiveGroups(claims) {
   const interp = claims.filter((c) => ['philosophical', 'symbolic'].includes(c.type));
-  if (!interp.length) return '';
-  return `<div class="interp-claims"><h3>Interpretive claims — argued or symbolic, on their own terms</h3>
-    <div class="claim-grid">${interp.map(claimCard).join('')}</div></div>`;
+  const byDomain = {};
+  for (const c of interp) { const d = c.domain[0] || 'other'; (byDomain[d] = byDomain[d] || []).push(c); }
+  const order = Object.keys(DOMAINS).filter((d) => byDomain[d]);
+  return order.map((d, i) =>
+    `<details class="interp-group"${i === 0 ? ' open' : ''} style="--dc:${domainColor(d)}">
+      <summary><span class="rail-dot"></span>${domainLabel(d)}<span class="rail-count">${byDomain[d].length}</span></summary>
+      <div class="claim-grid">${byDomain[d].map(claimCard).join('')}</div>
+    </details>`).join('');
 }
 
-function bridgeCards(bridges, claimsById) {
-  return bridges.map((b) => {
-    const reg = REGISTERS[b.register] || { label: b.register, color: '#888', style: 'solid' };
-    const links = b.links.map((l) => {
-      const c = claimsById[l];
-      return c ? `<a href="#claim-${l}" class="bridge-link">${esc(shortLabel(c.title))} <span class="mini-tier" style="--tc:${TIERS[c.tier]?.color}">${c.tier}</span></a>` : `<span class="bridge-link">${esc(l)}</span>`;
+function bridgesByRegister(bridges, claimsById) {
+  const order = ['shared-mathematics', 'analogy', 'metaphor', 'speculation'];
+  return order.filter((r) => bridges.some((b) => b.register === r)).map((r) => {
+    const reg = REGISTERS[r];
+    const cards = bridges.filter((b) => b.register === r).map((b) => {
+      const links = b.links.map((l) => {
+        const c = claimsById[l];
+        return c ? `<button class="chip claim-chip" data-claim="${l}">${esc(shortLabel(c.title))} <span class="mini-tier" style="--tc:${TIERS[c.tier]?.color}">${c.tier}</span></button>` : '';
+      }).join('');
+      return `<article class="bridge" style="--rc:${reg.color}">
+        <header><h4>${esc(b.title)}</h4><span class="ceiling">ceiling ${b.tier_ceiling}</span></header>
+        <p>${inline(b.narrative || '')}</p>
+        <div class="bridge-links">${links}</div>
+      </article>`;
     }).join('');
-    return `<article class="bridge" style="--rc:${reg.color}">
-      <header><h4>${esc(b.title)}</h4>
-        <span class="reg-badge reg-${reg.style}">${reg.label}</span>
-        <span class="ceiling">ceiling ${b.tier_ceiling}</span>
-      </header>
-      <p>${inline(b.narrative || '')}</p>
-      <div class="bridge-links">${links}</div>
-    </article>`;
+    return `<section class="register-group" style="--rc:${reg.color}">
+      <h3 class="register-h"><span class="rk-swatch reg-${reg.style}"></span>${reg.label}<span class="register-note">${esc(reg.blurb)}</span></h3>
+      <div class="bridge-grid">${cards}</div>
+    </section>`;
   }).join('');
 }
 
 function layerStack(claims) {
   const layers = [
-    { key: 'L1', title: 'Established core', tiers: ['E1'], blurb: 'Proven or measured. Mathematics and confirmed physics.' },
-    { key: 'L2', title: 'Speculative extensions', tiers: ['E2', 'E3'], blurb: 'Serious but unconfirmed, or contested science.' },
-    { key: 'L3', title: 'Philosophical interpretation', tiers: ['E4'], blurb: 'Argued by reason; not empirically decidable.' },
-    { key: 'L4', title: 'Symbolic / contemplative', tiers: ['E5'], blurb: 'Symbol, practice, and first-person report, on their own terms.' },
-    { key: 'L6', title: 'Recorded, not supported', tiers: ['E6'], blurb: 'Failed vetting. Kept for transparency; never used as support.' },
+    { title: 'Established core', tiers: ['E1'], blurb: 'Proven or measured. Mathematics and confirmed physics.' },
+    { title: 'Speculative extensions', tiers: ['E2', 'E3'], blurb: 'Serious but unconfirmed, or contested science.' },
+    { title: 'Philosophical interpretation', tiers: ['E4'], blurb: 'Argued by reason; not empirically decidable.' },
+    { title: 'Symbolic / contemplative', tiers: ['E5'], blurb: 'Symbol, practice, and first-person report, on their own terms.' },
+    { title: 'Recorded, not supported', tiers: ['E6'], blurb: 'Failed vetting. Kept for transparency; never used as support.' },
   ];
   const byTier = {};
   for (const c of claims) (byTier[c.tier] = byTier[c.tier] || []).push(c);
-  return layers.map((L) => {
+  return layers.map((L, idx) => {
     const cs = L.tiers.flatMap((t) => byTier[t] || []);
     if (!cs.length) return '';
     const color = TIERS[L.tiers[0]].color;
-    const chips = cs.map((c) => `<a href="#claim-${c.id}" class="layer-chip" style="--dc:${domainColor(c.domain[0])}" data-tier="${c.tier}">${esc(shortLabel(c.title))}</a>`).join('');
-    return `<div class="layer" data-tiers="${L.tiers.join(',')}" style="--lc:${color}">
-      <button class="layer-head" aria-expanded="true"><span class="layer-title">${L.title}</span><span class="layer-tiers">${L.tiers.join(' · ')}</span><span class="layer-count">${cs.length}</span></button>
+    const chips = cs.map((c) => `<button class="chip claim-chip" data-claim="${c.id}" style="--dc:${domainColor(c.domain[0])}">${esc(shortLabel(c.title))}</button>`).join('');
+    return `<details class="layer"${idx === 0 ? ' open' : ''} style="--lc:${color}">
+      <summary><span class="layer-title">${L.title}</span><span class="layer-tiers">${L.tiers.join(' · ')}</span><span class="rail-count">${cs.length}</span></summary>
       <div class="layer-body"><p class="layer-blurb">${esc(L.blurb)}</p><div class="layer-chips">${chips}</div></div>
-    </div>`;
+    </details>`;
   }).join('');
 }
 
 function landscape(claims) {
-  // domain × tier matrix — honesty as a picture
   const domains = Object.keys(DOMAINS).filter((d) => claims.some((c) => (c.domain[0] || '') === d));
   const tiers = Object.keys(TIERS);
   let max = 1;
@@ -441,20 +495,34 @@ function landscape(claims) {
   const rows = domains.map((d) => {
     const tds = tiers.map((t) => {
       const n = cell[d + '|' + t] || 0;
-      const a = n ? (0.18 + 0.82 * (n / max)).toFixed(3) : 0;
-      return `<td class="ls-cell" ${n ? `data-n="${n}" style="background:color-mix(in srgb, ${TIERS[t].color} ${Math.round(a * 100)}%, transparent)"` : ''}>${n || ''}</td>`;
+      const a = n ? (0.14 + 0.86 * (n / max)) : 0;
+      return `<td class="ls-cell" ${n ? `data-n="${n}" style="background:color-mix(in srgb, ${TIERS[t].color} ${Math.round(a * 60)}%, transparent)"` : ''}>${n || ''}</td>`;
     }).join('');
-    return `<tr><th class="ls-dom"><span class="dom-dot" style="--dc:${domainColor(d)}"></span>${domainLabel(d)}</th>${tds}</tr>`;
+    return `<tr><th class="ls-dom"><span class="rail-dot" style="--dc:${domainColor(d)}"></span>${domainLabel(d)}</th>${tds}</tr>`;
   }).join('');
   return `<div class="table-wrap"><table class="landscape"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
 }
 
+function chapterNav() {
+  return CHAPTERS.map((c) =>
+    `<a class="nav-chapter" href="#/${c.slug}" data-chapter-link="${c.slug}"><span class="nav-num">${c.num}</span><span class="nav-title">${c.title}</span></a>`).join('');
+}
+function nextLink(slug) {
+  const i = CHAPTERS.findIndex((c) => c.slug === slug);
+  const n = CHAPTERS[i + 1];
+  if (!n) return `<a class="next-link" href="#/synthesis"><span class="next-label">Return to</span><span class="next-title">${CHAPTERS[0].title} ↺</span></a>`;
+  return `<a class="next-link" href="#/${n.slug}"><span class="next-label">Next — ${n.num}</span><span class="next-title">${n.title} →</span></a>`;
+}
+
 // ---------------------------------------------------------------------------
-// Assemble the page
+// Assemble
 // ---------------------------------------------------------------------------
 function assemble({ claims, bridges, graph, art }) {
   const claimsById = Object.fromEntries(claims.map((c) => [c.id, c]));
   const template = readFileSync(R('build', 'templates', 'index.template.html'), 'utf8');
+
+  const overviewRaw = readSynth('overview.md');
+  const ov = overviewRaw ? titleAndBody(overviewRaw) : { title: 'The Synthesis', body: stripAuthoring(readSynth('abstract.md')) };
   const abstract = renderMarkdown(truncateBefore(stripAuthoring(readSynth('abstract.md')), '## How to read the evidence'));
   const framework = renderMarkdown(stripAuthoring(readSynth('framework.md')));
   const openProblems = renderMarkdown(stripAuthoring(readSynth('open-problems.md')));
@@ -467,19 +535,31 @@ function assemble({ claims, bridges, graph, art }) {
     BUILD_ASOF: art.asOf,
     N_CLAIMS: String(art.generated.claims),
     N_BRIDGES: String(art.generated.bridges),
-    ABSTRACT: abstract,
-    EVIDENCE_KEY: evidenceKey(),
-    ZONE_A: zoneA(claims),
-    ZONE_B_CLAIMS: zoneBInterpretiveClaims(claims),
-    BRIDGES: bridgeCards(bridges, claimsById),
-    LAYER_STACK: layerStack(claims),
+    N_DOMAINS: String(Object.keys(art.domainCounts).length),
+    CHAPTER_NAV: chapterNav(),
+    OVERVIEW_TITLE: esc(ov.title || 'The Synthesis'),
+    OVERVIEW: renderMarkdown(ov.body),
+    EVIDENCE_KEY_MINI: evidenceKey(false),
+    EVIDENCE_KEY_FULL: evidenceKey(true),
+    EVIDENCE_CHAPTER: evidenceChapter(claims),
     LANDSCAPE: landscape(claims),
+    INTERP_GROUPS: interpretiveGroups(claims),
+    BRIDGES_BY_REGISTER: bridgesByRegister(bridges, claimsById),
+    LAYER_STACK: layerStack(claims),
+    ABSTRACT: abstract,
     FRAMEWORK: framework,
     OPEN_PROBLEMS: openProblems,
     PREDICTIONS: predictions,
     EXISTENCE_PROMPT: promptHtml,
+    NEXT_SYNTHESIS: nextLink('synthesis'),
+    NEXT_MAP: nextLink('map'),
+    NEXT_EVIDENCE: nextLink('evidence'),
+    NEXT_INTERPRETATIONS: nextLink('interpretations'),
+    NEXT_QUESTIONS: nextLink('questions'),
+    NEXT_METHOD: nextLink('method'),
     GRAPH_JSON: JSON.stringify(graph).replace(/</g, '\\u003c'),
     ART_JSON: JSON.stringify(art).replace(/</g, '\\u003c'),
+    CLAIMS_JSON: JSON.stringify(buildClaimsJson(claims)).replace(/</g, '\\u003c'),
   };
   let html = template;
   for (const [k, v] of Object.entries(repl)) html = html.split(`{{${k}}}`).join(v);
@@ -487,7 +567,7 @@ function assemble({ claims, bridges, graph, art }) {
 }
 
 // ---------------------------------------------------------------------------
-// FS helpers
+// FS helpers + main
 // ---------------------------------------------------------------------------
 function copyDir(src, dst) {
   mkdirSync(dst, { recursive: true });
@@ -506,9 +586,6 @@ function writeIfChanged(path, content, drift) {
   return true;
 }
 
-// ---------------------------------------------------------------------------
-// Main
-// ---------------------------------------------------------------------------
 function main() {
   const claims = loadClaims();
   const bridges = loadBridges();
@@ -523,13 +600,14 @@ function main() {
   if (writeIfChanged(R('docs', 'data', 'art.json'), JSON.stringify(art, null, 2), drift)) changed.push('data/art.json');
   if (!CHECK) copyDir(R('build', 'assets'), R('docs', 'assets'));
 
+  const kinds = countBy(graph.edges, 'kind');
+  const iso = (() => { const d = {}; graph.nodes.forEach((n) => d[n.id] = 0); graph.edges.forEach((e) => { d[e.source]++; d[e.target]++; }); return Object.values(d).filter((x) => x === 0).length; })();
   const tierLine = Object.keys(TIERS).map((t) => `${t}:${art.tierCounts[t] || 0}`).join('  ');
-  const regLine = Object.keys(REGISTERS).map((r) => `${r}:${art.registerCounts[r] || 0}`).join('  ');
-  console.log('\n[o-theory build] deterministic generate.mjs');
+  console.log('\n[o-theory build] deterministic generate.mjs (page model v2 — chaptered)');
   console.log(`  version    ${art.version}  (corpus ${art.corpusHash.slice(0, 12)}, as of ${art.asOf})`);
   console.log(`  claims     ${claims.length}   [ ${tierLine} ]`);
-  console.log(`  bridges    ${bridges.length}   [ ${regLine} ]`);
-  console.log(`  graph      ${graph.nodes.length} nodes / ${graph.edges.length} edges`);
+  console.log(`  bridges    ${bridges.length}   edges: derivation:${kinds.derivation || 0} bridge:${kinds.bridge || 0} relation:${kinds.relation || 0}`);
+  console.log(`  graph      ${graph.nodes.length} nodes / ${graph.edges.length} edges — isolated: ${iso}`);
   if (CHECK) {
     if (drift.length) { console.log(`  CHECK: DRIFT in ${drift.join(', ')} — docs/ is NOT in sync with research/.`); process.exitCode = 1; }
     else console.log('  CHECK: docs/ is identical to a fresh build — deterministic ✓');

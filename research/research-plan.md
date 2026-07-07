@@ -7,16 +7,16 @@ The durable plan and log for the RUN module. `/research` reads and appends here.
 
 | Domain | Scope brief (key theories / figures / traditions) | Phase |
 |---|---|---|
-| physics | Noether/symmetry, gauge theory, GR, thermodynamics; TOE candidates: string/M-theory, LQG, E8 (Lisi) | not-started |
-| mathematics-geometry | Platonic solids, golden ratio, group theory/symmetry, E8 root system, information/entropy | not-started |
-| quantum-foundations | Measurement problem, decoherence, Born rule, interpretations (Copenhagen, many-worlds, Bohm, objective-collapse) | not-started |
-| consciousness-science | NCC program, IIT, GNWT, COGITATE, Orch-OR, resonance theories, terminal lucidity, NDE/AWARE-II, psychedelics (REBUS/ALBUS) | not-started |
-| philosophy-of-mind | Hard problem, physicalism, dualism, panpsychism, cosmopsychism, idealism, dual-aspect monism | not-started |
-| metaphysics | Mathematical Platonism, information as substrate, process philosophy, ground-of-being | not-started |
-| comparative-religion | Advaita Vedanta (Brahman/Atman/Maya), Mahayana (Sunyata/Dharmakaya), Western idealism/Absolute | not-started |
-| mysticism | Contemplative phenomenology, unitive/oceanic states, samadhi, perennial philosophy | not-started |
-| esoteric | Sacred geometry as symbol, Hermetic correspondence, subtle-body/energy schemes | not-started |
-| ai-consciousness | LLM self-report studies, "spiritual bliss attractor," recursive-coherence proposals, machine-sentience arguments | not-started |
+| physics | Noether/symmetry, gauge theory, GR, thermodynamics; TOE candidates: string/M-theory, LQG, E8 (Lisi) | survey |
+| mathematics-geometry | Platonic solids, golden ratio, group theory/symmetry, E8 root system, information/entropy | survey |
+| quantum-foundations | Measurement problem, decoherence, Born rule, interpretations (Copenhagen, many-worlds, Bohm, objective-collapse) | survey |
+| consciousness-science | NCC program, IIT, GNWT, COGITATE, Orch-OR, resonance theories, terminal lucidity, NDE/AWARE-II, psychedelics (REBUS/ALBUS) | survey |
+| philosophy-of-mind | Hard problem, physicalism, dualism, panpsychism, cosmopsychism, idealism, dual-aspect monism | survey |
+| metaphysics | Mathematical Platonism, information as substrate, process philosophy, ground-of-being | survey |
+| comparative-religion | Advaita Vedanta (Brahman/Atman/Maya), Mahayana (Sunyata/Dharmakaya), Western idealism/Absolute | survey |
+| mysticism | Contemplative phenomenology, unitive/oceanic states, samadhi, perennial philosophy | survey |
+| esoteric | Sacred geometry as symbol, Hermetic correspondence, subtle-body/energy schemes | survey |
+| ai-consciousness | LLM self-report studies, "spiritual bliss attractor," recursive-coherence proposals, machine-sentience arguments | survey |
 
 Phases per domain: `not-started -> survey -> deep-dive -> stable`.
 
@@ -39,3 +39,4 @@ Phases per domain: `not-started -> survey -> deep-dive -> stable`.
   all 4 bridge registers/ceilings confirmed, every source flipped to `verified: true`. Fixes: Schlosshauer
   year, E8 Weyl order, added IIT hot-zone source, repointed dead Markowsky URL, reworded 1 framework spine
   sentence. Audit trail: `research/audit/{citations,red-team}.md`. 0 unresolved criticals.
+- 2026-07-07 — **/research run.** Wide sweep (10-domain SURVEY): +110 researched claims (13→123) via domain-researchers, each independently vetted with live source checks; 8 E6 rejected, 9 disputed, 1 fabricated citation (Tegmark) caught & fixed. Re-synthesized framework/abstract/open-problems/predictions/existence-prompt; bridges 4→11 (registers+ceilings labeled). Skeptic-audit: 0 critical, 2 major fixed. Domains graduated not-started→survey. Ingested: (no inbox items). Claims re-hashed: 123.

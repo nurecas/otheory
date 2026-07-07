@@ -1,0 +1,2 @@
+Fonts: Fraunces & Newsreader — SIL Open Font License 1.1.
+Sources: https://github.com/undercasetype/Fraunces  https://github.com/productiontype/Newsreader

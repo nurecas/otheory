@@ -19,8 +19,9 @@ steelman: "Lisi proposed identifying all known Standard-Model particles and grav
 strongest_objection: "Distler & Garibaldi proved a no-go result: embedding all three fermion generations as claimed forces the appearance of non-chiral matter contradicting observation — you cannot get the Standard Model's chiral fermions out of E8 this way. The proposal is widely regarded as not viable in its original form. Hence E3 (heterodox, contested), bordering on refuted for the strong version."
 falsifiability: "Yes — it predicted specific new particles and a specific fermion structure. The Distler–Garibaldi theorem plus the absence of the predicted content count against it, illustrating that it *is* physics (falsifiable) and that it has largely been falsified in its strong form."
 depends_on: [e8-lie-group]
+related_to: [string-m-theory-unification, standard-model-gauge-theory, general-relativity-spacetime-curvature]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:bfdc4fe5744ebd1c"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The instructive contrast to `e8-lie-group`: same beautiful object, but the

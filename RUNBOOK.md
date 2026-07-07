@@ -116,6 +116,8 @@ steelman: "The strongest honest version."
 strongest_objection: "The single strongest objection or disconfirming evidence."
 falsifiability: "Required if empirical or derived-as-physics; what would confirm/falsify it."
 depends_on: [other-claim-id]      # → solid derivation edges in the graph
+related_to: [claim-a, claim-b]    # 2–4 REAL conceptual links (rivals, same debate, lineage,
+                                  #   observation↔interpretation) → thin "relation" edges in the graph
 last_vetted: 2026-07-07
 content_hash: "seed"              # ingest stamps a real hash on commit
 ---

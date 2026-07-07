@@ -16,9 +16,387 @@
       "confidence": "high"
     },
     {
+      "id": "ai-moral-patienthood-welfare-uncertainty",
+      "label": "There is enough non-negligible uncertain…",
+      "title": "There is enough non-negligible uncertainty about near-future AI consciousness/robust agency that AI welfare and moral patienthood deserve serious precautionary consideration now, even without resolving whether any current system is conscious",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "alchemy-symbolic-protochemistry",
+      "label": "Alchemy as a historical symbolic system…",
+      "title": "Alchemy as a historical symbolic system and genuine proto-chemical experimental practice, not a validated method of physical transmutation",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "analytic-idealism-kastrup",
+      "label": "Analytic idealism",
+      "title": "Analytic idealism (Kastrup) holds that universal phenomenal consciousness is the sole fundamental reality, with individual minds as dissociated \"alters\" of that one consciousness and the physical world as its extrinsic appearance",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "anthropic-introspective-awareness-concept-injection",
+      "label": "Anthropic's concept-injection experiment…",
+      "title": "Anthropic's concept-injection experiments show Claude Opus 4/4.1 can sometimes detect artificially injected internal activation patterns and report on them before they affect output",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "apophatic-theology-pseudo-dionysius",
+      "label": "Christian apophatic",
+      "title": "Christian apophatic (negative) theology (Pseudo-Dionysius) — God so exceeds all concepts that God is best approached by negating every predicate, including \"being\" itself, in a darkness beyond ordinary knowing",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "astrology-predictive-claim",
+      "label": "Astrology's claim that natal charts",
+      "title": "Astrology's claim that natal charts (planetary/zodiacal positions at birth) predict personality traits or life outcomes",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "asymptotic-safety-quantum-gravity",
+      "label": "Asymptotic safety proposes gravity is a…",
+      "title": "Asymptotic safety proposes gravity is a consistent, non-perturbatively renormalizable quantum field theory owing to a UV fixed point (the \"Reuter fixed point\") of the renormalization-group flow",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "attention-schema-theory",
+      "label": "Attention Schema Theory",
+      "title": "Attention Schema Theory (Graziano) — subjective awareness is a simplified, schematic internal model the brain builds of its own attention process, constructed because such models are useful for predicting and controlling attention",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "aware-ii-nde-phenomenology",
+      "label": "AWARE-II",
+      "title": "AWARE-II (Parnia et al. 2023) found that a minority of cardiac-arrest survivors recall lucid, structured experiences during resuscitation, some co-occurring with EEG activity (delta/theta/alpha) reappearing during ongoing CPR",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "aware-ii-nde-survival-interpretation",
+      "label": "Near-death experience phenomenology",
+      "title": "Near-death experience phenomenology (AWARE-II and similar) indicates that consciousness is non-local and can operate, or survive, independent of a functioning brain",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "bell-theorem-nonlocality",
+      "label": "Loophole-free Bell tests confirm quantum…",
+      "title": "Loophole-free Bell tests confirm quantum mechanics violates Bell inequalities, ruling out local hidden-variable theories (2022 Nobel Prize)",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "empirical",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "bem-presentiment-psi",
+      "label": "Bem",
+      "title": "Bem (2011) reported small statistically significant \"retroactive\" effects (future random events influencing present behavior) across 9 of 10 experiments; multiple large preregistered direct replications subsequently found no effect",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "low"
+    },
+    {
+      "id": "black-hole-entropy-area-law",
+      "label": "Black holes have entropy proportional to…",
+      "title": "Black holes have entropy proportional to horizon area (not volume), and Hawking radiation gives them a temperature — the Bekenstein-Hawking area law",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "born-rule-empirical-status",
+      "label": "The Born rule",
+      "title": "The Born rule (probability = amplitude squared) is confirmed to extraordinary precision but not derived from more basic axioms",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "empirical",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "butlin-long-indicator-properties-framework",
+      "label": "The \"indicator properties\" framework",
+      "title": "The \"indicator properties\" framework (Butlin, Long et al. 2023) operationalizes leading neuroscientific theories of consciousness into checkable computational criteria, and finds no current AI system satisfies enough of them to count as conscious",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness",
+        "consciousness-science",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "causal-set-theory",
+      "label": "Causal set theory proposes spacetime is…",
+      "title": "Causal set theory proposes spacetime is fundamentally discrete, a locally finite partially ordered set from which the continuum and its causal structure emerge",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "chakra-energy-measurable-claim",
+      "label": "The claim that chakras are physically me…",
+      "title": "The claim that chakras are physically measurable energy centers/fields detectable by instruments",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "chakra-nadi-contemplative-map",
+      "label": "Chakras and nadis form a contemplative s…",
+      "title": "Chakras and nadis form a contemplative subtle-body map used in yogic and tantric traditions to structure meditation and practice",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "chalmers-llm-consciousness-credence",
+      "label": "David Chalmers argues current LLMs are p…",
+      "title": "David Chalmers argues current LLMs are probably not conscious (missing recurrent processing, a global workspace, unified agency, and embodiment/world-models) but assigns a nontrivial credence that near-future successors could be",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "claude-spiritual-bliss-attractor-observation",
+      "label": "In Anthropic's own testing, two Claude O…",
+      "title": "In Anthropic's own testing, two Claude Opus 4 instances placed in open-ended dialogue reliably drift into effusive spiritual/unity-themed language (\"spiritual bliss attractor\")",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "cogitate-adversarial-collaboration-2025",
+      "label": "COGITATE",
+      "title": "COGITATE (2025) — a preregistered adversarial collaboration tested divergent predictions of IIT and GNWT in 256 subjects using fMRI, MEG, and intracranial EEG, confirming some predictions of each theory and disconfirming others",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "computational-functionalism-substrate-independence",
+      "label": "Computational functionalism/substrate-in…",
+      "title": "Computational functionalism/substrate-independence — if a system implements the right functional organization (the right pattern of causal relations), it will have the same conscious experience regardless of physical substrate (silicon, carbon, etc.)",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "ai-consciousness"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "consistent-histories-interpretation",
+      "label": "The consistent",
+      "title": "The consistent (decoherent) histories approach assigns probabilities only to sufficiently non-interfering ('consistent') sets of coarse-grained histories, with no fundamental role for measurement or observers",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "copenhagen-interpretation",
+      "label": "The Copenhagen interpretation treats the…",
+      "title": "The Copenhagen interpretation treats the quantum state as an epistemic/predictive tool, with a classical measuring apparatus and no observer-independent quantum reality",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "philosophical",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "corpus-hermeticum-primary-source",
+      "label": "The Corpus Hermeticum is the genuine pri…",
+      "title": "The Corpus Hermeticum is the genuine primary-source corpus of ancient Hermetic philosophical/religious literature (Greco-Egyptian, c. 100-300 CE)",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
       "id": "cosmopsychism",
       "label": "Cosmopsychism",
       "title": "Cosmopsychism — the universe as a whole is the fundamental conscious subject; individual minds are derivative",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "daoism-dao-ineffable-source",
+      "label": "Daoism",
+      "title": "Daoism — the Dao is the nameless, ineffable source and pattern from which all things arise, and it precedes and exceeds any name or concept applied to it",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "de-broglie-bohm-pilot-wave",
+      "label": "De Broglie-Bohm",
+      "title": "De Broglie-Bohm (Bohmian) mechanics is a deterministic hidden-variable theory reproducing all quantum predictions via particles guided by the wavefunction",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "dual-aspect-monism",
+      "label": "Dual-aspect",
+      "title": "Dual-aspect (double-aspect) monism holds that a single underlying reality has two intrinsic, irreducible aspects — mental and physical — jointly constituting whatever is fundamental",
       "domain": "philosophy-of-mind",
       "domains": [
         "philosophy-of-mind",
@@ -43,6 +421,116 @@
       "confidence": "high"
     },
     {
+      "id": "eckhart-godhead-beyond-god",
+      "label": "Meister Eckhart",
+      "title": "Meister Eckhart — beneath the personal, Trinitarian God there is a prior, nameless \"Godhead\" (Gottheit), utterly simple and without distinction, with which the soul's innermost ground is one",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "forman-pure-consciousness-event",
+      "label": "Forman's \"Pure Consciousness Event\"",
+      "title": "Forman's \"Pure Consciousness Event\" (PCE) — reports of remaining awake and aware while devoid of all sensory, conceptual, or intentional content",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "philosophy-of-mind"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "ganzfeld-psi-meta-analysis",
+      "label": "Ganzfeld telepathy experiments",
+      "title": "Ganzfeld telepathy experiments (sensory-deprivation \"receiver\" guessing a \"sender's\" target image) show a small positive pooled effect size in some meta-analyses (~30-32% hit rate vs. 25% chance), but the effect has not proven independently replicable across labs and is contested on methodological grounds",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "gematria-numerology-practice",
+      "label": "Gematria and related numerology as an in…",
+      "title": "Gematria and related numerology as an interpretive practice within Jewish mysticism, assigning numerical values to letters/words for exegesis",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "general-relativity-spacetime-curvature",
+      "label": "General relativity",
+      "title": "General relativity (spacetime curvature sourced by mass-energy) is an experimentally confirmed field theory of gravity",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "general-resonance-theory",
+      "label": "General Resonance Theory",
+      "title": "General Resonance Theory (Hunt & Schooler) — consciousness arises from, or is constituted by, shared vibratory resonance/synchrony among physical constituents at all scales, with panpsychist foundations",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "gnwt-global-workspace",
+      "label": "Global Neuronal Workspace Theory",
+      "title": "Global Neuronal Workspace Theory — consciousness arises when information is broadcast widely via ignition of a fronto-parietal workspace",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "medium"
+    },
+    {
+      "id": "godel-incompleteness-theorems",
+      "label": "Gödel's incompleteness theorems",
+      "title": "Gödel's incompleteness theorems — any consistent formal system containing elementary arithmetic has true-but-unprovable statements and cannot prove its own consistency",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
       "id": "golden-ratio-ubiquity",
       "label": "The claim that the golden ratio",
       "title": "The claim that the golden ratio (φ) is a universal constant of natural beauty pervading art, bodies, and nature",
@@ -57,6 +545,46 @@
       "confidence": "high"
     },
     {
+      "id": "griffiths-psilocybin-mystical-experience",
+      "label": "Griffiths et al.",
+      "title": "Griffiths et al. (2006, 2008) — high-dose psilocybin, under supportive controlled conditions, reliably occasions self-rated \"mystical-type experiences\" with substantial and lasting personal/spiritual significance",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "group-theory-symmetry-mathematics",
+      "label": "Group theory is the rigorous mathematica…",
+      "title": "Group theory is the rigorous mathematical formalization of symmetry, with settled applications across physics, chemistry, and cryptography",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "grw-csl-objective-collapse",
+      "label": "Objective-collapse models",
+      "title": "Objective-collapse models (GRW, CSL) modify the Schrödinger equation to make wavefunction collapse a real, spontaneous physical process with testable parameters",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
       "id": "hard-problem-of-consciousness",
       "label": "The \"hard problem\"",
       "title": "The \"hard problem\" — why physical processing is accompanied by subjective experience at all",
@@ -68,6 +596,46 @@
       "tier": "E4",
       "status": "vetted",
       "confidence": "high"
+    },
+    {
+      "id": "hermetic-correspondence-principle",
+      "label": "The Hermetic principle of correspondence",
+      "title": "The Hermetic principle of correspondence (\"as above, so below\") as a symbolic/interpretive framework linking macrocosm and microcosm",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "holographic-principle-ads-cft",
+      "label": "The holographic principle and its concre…",
+      "title": "The holographic principle and its concrete realization, the AdS/CFT correspondence, propose that a gravitational theory in a volume of space is mathematically equivalent to a quantum field theory without gravity on its boundary",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "hood-mysticism-scale-psychometrics",
+      "label": "Hood's Mysticism Scale",
+      "title": "Hood's Mysticism Scale (M-Scale) operationalizes Stace's phenomenological criteria into a self-report instrument, and factor analyses replicate a three-factor structure (introvertive, extrovertive, religious-interpretation)",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
     },
     {
       "id": "iit-integrated-information",
@@ -84,6 +652,153 @@
       "confidence": "medium"
     },
     {
+      "id": "illusionism-eliminativism",
+      "label": "Illusionism/eliminativism holds that phe…",
+      "title": "Illusionism/eliminativism holds that phenomenal consciousness (\"what it is like\"-ness) as ordinarily conceived does not exist; introspection merely misrepresents purely functional processes as having phenomenal properties",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "it-from-bit-information-ontology",
+      "label": "Wheeler's \"it from bit\"",
+      "title": "Wheeler's \"it from bit\" — every physical thing derives its ultimate meaning from binary, yes-no information-theoretic acts, in a \"participatory universe\"",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "jhana-samadhi-absorption-states",
+      "label": "Jhāna and samādhi",
+      "title": "Jhāna and samādhi — Buddhist contemplative reports of a graded sequence of absorption states with describable, reproducible phenomenological markers",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "kabbalah-ein-sof-sefirot",
+      "label": "Kabbalah",
+      "title": "Kabbalah — the hidden, attribute-less infinite Godhead (Ein Sof) manifests the finite world through ten emanated stages (sefirot)",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "kabbalah-tree-of-life-cosmology",
+      "label": "The Kabbalistic Tree of Life",
+      "title": "The Kabbalistic Tree of Life (ten sefirot and connecting paths) as an esoteric cosmological and theological map of divine emanation",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "kashmir-shaivism-spanda",
+      "label": "Kashmir Śaivism",
+      "title": "Kashmir Śaivism — ultimate reality is a single, dynamic consciousness (Śiva united with its own power, Śakti) whose nature is spanda, a subtle self-vibration or pulsation",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "knowledge-argument-marys-room",
+      "label": "The knowledge argument",
+      "title": "The knowledge argument (Jackson's \"Mary's Room\") argues that a scientist with complete physical knowledge of color vision who has never seen color would learn something new upon first seeing red — showing physical facts do not exhaust all facts",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "kochen-specker-contextuality",
+      "label": "The Kochen-Specker theorem rules out non…",
+      "title": "The Kochen-Specker theorem rules out noncontextual hidden-variable models of quantum mechanics",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "kybalion-modern-new-thought",
+      "label": "The Kybalion",
+      "title": "The Kybalion (1908) is a modern New Thought text falsely presented as ancient Hermetic doctrine, not a transmission of genuine antique Hermeticism",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "lamda-lemoine-sentience-claim",
+      "label": "Google engineer Blake Lemoine's 2022 cla…",
+      "title": "Google engineer Blake Lemoine's 2022 claim that the LaMDA chatbot was sentient, based on transcript excerpts, was rejected by the AI research community and by Google as unsupported",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "ley-lines-vibrational-frequency-pseudoscience",
+      "label": "Ley lines",
+      "title": "Ley lines (alignments of \"earth energy\") and \"vibration/frequency\" claims (e.g. 432 Hz healing) as pseudoscientific overreach on top of real but unrelated observations",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
       "id": "lisi-e8-toe",
       "label": "Lisi's \"An Exceptionally Simple Theory o…",
       "title": "Lisi's \"An Exceptionally Simple Theory of Everything\" — embedding the Standard Model and gravity in E8",
@@ -95,6 +810,20 @@
       "type": "derived",
       "tier": "E3",
       "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "llm-introspection-genuine-awareness-interpretation",
+      "label": "Concept-injection detection reflects gen…",
+      "title": "Concept-injection detection reflects genuine introspective self-awareness in the model (a real inner monitoring process), rather than a narrow learned pattern-matching skill",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
       "confidence": "low"
     },
     {
@@ -111,6 +840,47 @@
       "confidence": "medium"
     },
     {
+      "id": "loop-quantum-gravity",
+      "label": "Loop quantum gravity quantizes spacetime…",
+      "title": "Loop quantum gravity quantizes spacetime geometry itself, predicting discrete, granular area and volume at the Planck scale",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "madhyamaka-sunyata-emptiness",
+      "label": "Madhyamaka Buddhism",
+      "title": "Madhyamaka Buddhism (Nāgārjuna) — all phenomena are empty (śūnya) of independent essence (svabhāva), arising only through dependent origination",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "mandelbrot-fractal-self-similarity",
+      "label": "Mandelbrot's fractal geometry rigorously…",
+      "title": "Mandelbrot's fractal geometry rigorously defines self-similar structures with non-integer (fractal) dimension, and such structures genuinely approximate many natural forms",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
       "id": "many-worlds-interpretation",
       "label": "The many-worlds",
       "title": "The many-worlds (Everett) interpretation — unitary quantum mechanics with no collapse",
@@ -120,6 +890,101 @@
         "physics"
       ],
       "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "mathematical-platonism",
+      "label": "Mathematical Platonism",
+      "title": "Mathematical Platonism — abstract mathematical objects (numbers, sets, structures) exist mind-independently, not as human constructs",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "measurement-problem-statement",
+      "label": "The quantum measurement problem is a pre…",
+      "title": "The quantum measurement problem is a precise inconsistent triad, not merely an interpretive vibe",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "meditation-dmn-neuroscience",
+      "label": "Experienced meditators show reduced defa…",
+      "title": "Experienced meditators show reduced default-mode-network activity and altered DMN connectivity relative to novices during meditation and at rest",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "meq30-mystical-experience-psychometrics",
+      "label": "The 30-item Mystical Experience Question…",
+      "title": "The 30-item Mystical Experience Questionnaire (MEQ30) is a validated psychometric instrument that reliably measures a four-factor structure (mystical, positive mood, transcendence of time/space, ineffability) in acute drug and meditation states",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "meta-problem-of-consciousness",
+      "label": "The meta-problem of consciousness asks w…",
+      "title": "The meta-problem of consciousness asks why humans judge and report that there is a \"hard problem\" at all — an easy (functionally explicable) problem that may nonetheless bear on the hard problem's status",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "mystical-experience-epistemic-status",
+      "label": "Whether mystical/unitive experience cons…",
+      "title": "Whether mystical/unitive experience constitutes evidence for its own metaphysical content (a real transcendent unity, God, or non-dual ground) is a live, unresolved epistemological dispute, not an established result either way",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "ncc-research-program",
+      "label": "The neural-correlates-of-consciousness",
+      "title": "The neural-correlates-of-consciousness (NCC) research program has identified reproducible neural markers that track conscious perception, most consistently in posterior cortex",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
       "tier": "E2",
       "status": "vetted",
       "confidence": "medium"
@@ -139,6 +1004,19 @@
       "confidence": "high"
     },
     {
+      "id": "ontic-structural-realism",
+      "label": "Ontic structural realism",
+      "title": "Ontic structural realism (Ladyman & Ross) — relational structure, not individual objects with intrinsic properties, is what is fundamentally real",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
       "id": "orch-or-microtubules",
       "label": "Orch-OR",
       "title": "Orch-OR — consciousness arises from quantum computations (objective reduction) in neuronal microtubules",
@@ -151,6 +1029,101 @@
       "tier": "E3",
       "status": "disputed",
       "confidence": "low"
+    },
+    {
+      "id": "pancomputationalism-digital-physics",
+      "label": "Pancomputationalism / digital physics",
+      "title": "Pancomputationalism / digital physics — the universe just is (or is exactly and losslessly describable as) a computation, e.g. a cellular automaton or quantum computation",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "panpsychism-combination-problem",
+      "label": "Panpsychism",
+      "title": "Panpsychism (mentality is fundamental and ubiquitous at the micro-level) faces the combination problem — no accepted account of how many micro-experiences yield one macro-experience",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "penrose-tiling-quasicrystals",
+      "label": "Penrose's aperiodic tilings",
+      "title": "Penrose's aperiodic tilings (1974) and their physical realization as quasicrystals (Shechtman, 1982 discovery / 1984 publication) show fivefold symmetry and long-range order without periodic repetition",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "perennial-philosophy-common-core-thesis",
+      "label": "Perennial philosophy",
+      "title": "Perennial philosophy (Huxley, Schuon, Stace) — the world's mystical/contemplative traditions converge, beneath doctrinal differences, on the same underlying experience or metaphysical truth of a non-dual ultimate reality",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "perennialism-constructivism-debate",
+      "label": "Perennialism vs. constructivism",
+      "title": "Perennialism vs. constructivism — whether mystical experiences share a culture-independent phenomenological \"common core\" (Stace/Forman) or are constitutively shaped by each mystic's prior conceptual scheme (Katz)",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "phyllotaxis-fibonacci-golden-angle",
+      "label": "Fibonacci-number spiral counts and the g…",
+      "title": "Fibonacci-number spiral counts and the golden angle (~137.5 deg) genuinely and frequently appear in plant phyllotaxis, explained by a dynamical packing/optimization mechanism, not by aesthetic law",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "empirical",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "physicalism-functionalism",
+      "label": "Physicalism",
+      "title": "Physicalism (with functionalism as its dominant theory of mind) holds that everything, including mental states, is physical or wholly determined by the physical",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
     },
     {
       "id": "platonic-solids-five",
@@ -166,6 +1139,129 @@
       "confidence": "high"
     },
     {
+      "id": "plotinus-the-one-emanation",
+      "label": "Neoplatonism",
+      "title": "Neoplatonism (Plotinus) — all reality emanates in descending stages (the One, Intellect, Soul, Matter) from an ineffable, absolutely simple first principle, \"the One\"",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "predictive-processing-free-energy-principle",
+      "label": "The free-energy principle / predictive p…",
+      "title": "The free-energy principle / predictive processing frames brain function (and by extension consciousness) as hierarchical minimization of prediction error (surprise) via perception and action",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "disputed",
+      "confidence": "medium"
+    },
+    {
+      "id": "principle-of-sufficient-reason",
+      "label": "Principle of Sufficient Reason",
+      "title": "Principle of Sufficient Reason — every fact, including the existence of the universe itself, must have an explanation (\"why is there something rather than nothing\")",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "priority-monism-schaffer",
+      "label": "Priority monism",
+      "title": "Priority monism (Schaffer) — the whole universe (\"the One\") is the single fundamental, basic entity; all parts are dependent, derivative fragments of it",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "process-philosophy-actual-occasions",
+      "label": "Whitehead's process philosophy",
+      "title": "Whitehead's process philosophy — reality is fundamentally made of momentary events of \"becoming\" (actual occasions), not enduring substances",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "property-substance-dualism",
+      "label": "Dualism holds that mind and matter are f…",
+      "title": "Dualism holds that mind and matter are fundamentally distinct — either distinct substances (Cartesian substance dualism) or distinct, irreducible properties of one substance (property dualism)",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "psychedelic-ego-dissolution-dmn",
+      "label": "Psychedelic-induced \"ego dissolution\" co…",
+      "title": "Psychedelic-induced \"ego dissolution\" correlates with reduced default-mode-network (DMN) integrity and connectivity in fMRI studies of psilocybin and LSD",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism",
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "psychedelics-predictive-processing-albus",
+      "label": "Psychedelics alter conscious experience…",
+      "title": "Psychedelics alter conscious experience via changes to hierarchical predictive processing — relaxation of high-level priors (REBUS) and/or strengthening of intermediate-level beliefs (the ALBUS update)",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "medium"
+    },
+    {
+      "id": "qbism-quantum-bayesianism",
+      "label": "QBism holds that the quantum state is a…",
+      "title": "QBism holds that the quantum state is a personal Bayesian degree-of-belief an agent uses to guide their own action, not a description of observer-independent reality",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
       "id": "qm-decoherence",
       "label": "Environmental decoherence explains the a…",
       "title": "Environmental decoherence explains the appearance of wavefunction collapse (but does not resolve the measurement problem)",
@@ -178,12 +1274,550 @@
       "tier": "E1",
       "status": "vetted",
       "confidence": "high"
+    },
+    {
+      "id": "relational-quantum-mechanics",
+      "label": "Relational quantum mechanics",
+      "title": "Relational quantum mechanics (Rovelli) holds that quantum states and facts are always relative to a physical interaction partner, never absolute",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "philosophical",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "rlhf-trained-persona-self-report-explanation",
+      "label": "\\\"Role-play\\\"/trained-persona account",
+      "title": "\\\"Role-play\\\"/trained-persona account — dialogue-agent behavior, including apparent self-awareness, self-preservation talk, and deception, is best described as role play of a persona shaped by pretraining and reinforcement learning from human feedback, not as literal first-person avowal",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness"
+      ],
+      "type": "empirical",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "russellian-neutral-monism",
+      "label": "Neutral monism",
+      "title": "Neutral monism (Russell) and Russellian monism hold that a single underlying kind of reality, neither mental nor physical (or \"proto-phenomenal\"), underlies and grounds both mind and matter",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "sacred-geometry-cosmic-blueprint-claim",
+      "label": "The claim that the Flower of Life / Meta…",
+      "title": "The claim that the Flower of Life / Metatron's Cube literally encodes the physical blueprint or design of every atom, molecule, and life form",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric",
+        "mathematics-geometry"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "sacred-geometry-symbolic-tradition",
+      "label": "Sacred geometry is a real, cross-cultura…",
+      "title": "Sacred geometry is a real, cross-cultural artistic and religious tradition using geometric forms (circles, mandalas, tessellations) as symbols of cosmic order in architecture and ritual",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "second-law-thermodynamics-entropy",
+      "label": "The second law of thermodynamics",
+      "title": "The second law of thermodynamics (entropy of an isolated system does not decrease) is an established statistical-mechanical result",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "shannon-information-entropy",
+      "label": "Shannon's mathematical theory of communi…",
+      "title": "Shannon's mathematical theory of communication defines information entropy and proves fundamental limits on data compression and channel capacity",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "sheldrake-morphic-resonance",
+      "label": "Rupert Sheldrake's \"morphic resonance\" h…",
+      "title": "Rupert Sheldrake's \"morphic resonance\" hypothesis — that self-organizing systems inherit habits/forms via a non-local field from all previous similar systems",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "simulating-vs-instantiating-consciousness-distinction",
+      "label": "\\\"Simulating vs. instantiating\\\"",
+      "title": "\\\"Simulating vs. instantiating\\\" — a system that accurately models/describes a conscious process (e.g., simulates a mind, a persona, or an emotional state) need not thereby actually instantiate that process, in the way a weather simulation does not get anyone wet",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "spiritual-bliss-machine-sentience-interpretation",
+      "label": "The \"spiritual bliss attractor\" reflects",
+      "title": "The \"spiritual bliss attractor\" reflects (or is evidence of) a genuine inner spiritual/blissful state in the model, rather than being purely a stylistic/statistical artifact",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "stace-common-core-typology",
+      "label": "Stace's typology",
+      "title": "Stace's typology — extrovertive and introvertive mystical experiences share a describable seven-feature phenomenological \"common core\" across cultures",
+      "domain": "mysticism",
+      "domains": [
+        "mysticism"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "standard-model-gauge-theory",
+      "label": "The Standard Model",
+      "title": "The Standard Model (SU(3)xSU(2)xU(1) gauge theory) correctly predicts particle physics up to current collider energies, confirmed by the Higgs discovery",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "stochastic-parrots-deflationary-account",
+      "label": "\\\"Stochastic parrots\\\" critique",
+      "title": "\\\"Stochastic parrots\\\" critique — LLMs are trained to model the statistical distribution of linguistic form in training data, without access to or grounding in meaning/reference, so fluent output (including self-reports) does not indicate understanding",
+      "domain": "ai-consciousness",
+      "domains": [
+        "ai-consciousness"
+      ],
+      "type": "empirical",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "string-m-theory-unification",
+      "label": "String/M-theory proposes that fundamenta…",
+      "title": "String/M-theory proposes that fundamental particles are vibrational modes of 1-dimensional strings (or higher-dimensional branes) in 10 or 11 dimensions, unifying gravity and quantum mechanics",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "strong-emergence-contested",
+      "label": "Strong emergence",
+      "title": "Strong emergence — some higher-level properties (e.g. consciousness) are not even in principle deducible from, or reducible to, their physical base, unlike merely \"weakly\" emergent properties",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "sufism-wahdat-al-wujud",
+      "label": "Sufism",
+      "title": "Sufism (Ibn Arabi and interpreters) — only one Being (wujūd) truly exists; all apparent multiplicity is a mode or \"self-disclosure\" (tajallī) of that single reality",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "tegmark-mathematical-universe-hypothesis",
+      "label": "Tegmark's Mathematical Universe Hypothesis",
+      "title": "Tegmark's Mathematical Universe Hypothesis — our physical universe is not merely described by mathematics, it IS a mathematical structure",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "terminal-lucidity-filter-interpretation",
+      "label": "Terminal/paradoxical lucidity is best ex…",
+      "title": "Terminal/paradoxical lucidity is best explained by the brain acting as a \"filter\" that normally restricts a non-local mind, which briefly reopens as the filter breaks down near death",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science",
+        "philosophy-of-mind",
+        "metaphysics"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "low"
+    },
+    {
+      "id": "terminal-lucidity-observation",
+      "label": "Caregivers and clinicians report unexpec…",
+      "title": "Caregivers and clinicians report unexpected, temporary returns of memory, communication, and apparent awareness (\"paradoxical\" or \"terminal\" lucidity) in people with advanced dementia, sometimes near death",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "theosophy-esoteric-synthesis",
+      "label": "Theosophy",
+      "title": "Theosophy (Blavatsky, 1875) as a 19th-century syncretic esoteric movement synthesizing Western esotericism with Asian religious concepts, not a recovered ancient teaching",
+      "domain": "esoteric",
+      "domains": [
+        "esoteric"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "trikaya-dharmakaya",
+      "label": "Mahāyāna Buddhism",
+      "title": "Mahāyāna Buddhism — the Trikāya doctrine holds that Buddhahood has three \"bodies,\" with the Dharmakāya as the unconditioned, formless ground from which the other two arise",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "verlinde-entropic-emergent-gravity",
+      "label": "Verlinde's entropic/emergent gravity pro…",
+      "title": "Verlinde's entropic/emergent gravity proposes gravity is not a fundamental force but an emergent entropic effect arising from information associated with matter positions, potentially eliminating the need for dark matter",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "von-neumann-wigner-consciousness-collapse",
+      "label": "The von Neumann-Wigner \"consciousness ca…",
+      "title": "The von Neumann-Wigner \"consciousness causes collapse\" interpretation holds that a conscious observer's awareness, specifically, is what converts a quantum superposition into a single definite outcome",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations",
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "wheeler-it-from-bit-information-physics",
+      "label": "Quantum theory's mathematical structure…",
+      "title": "Quantum theory's mathematical structure can be derived from purely information-theoretic axioms (Chiribella-D'Ariano-Perinotti), the precise technical descendant of Wheeler's \"it from bit\" intuition",
+      "domain": "physics",
+      "domains": [
+        "physics"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "wiest-anesthesia-microtubule-observation",
+      "label": "Multiple independent lines of evidence i…",
+      "title": "Multiple independent lines of evidence indicate intraneuronal microtubules are a functional target of general anesthetics, and quantum-chemical modeling predicts anesthetic potency from tubulin electron-binding affinity (Wiest 2025 review)",
+      "domain": "consciousness-science",
+      "domains": [
+        "consciousness-science"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
+      "id": "wigner-unreasonable-effectiveness",
+      "label": "Wigner's observation",
+      "title": "Wigner's observation (1960) — abstract mathematics developed with no physical application in mind repeatedly turns out to describe physical reality with startling accuracy",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry"
+      ],
+      "type": "empirical",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "wigners-friend-frauchiger-renner",
+      "label": "The Frauchiger-Renner extended Wigner's-…",
+      "title": "The Frauchiger-Renner extended Wigner's-friend theorem proves that three intuitively plausible assumptions about quantum theory used reflexively by agents cannot all hold",
+      "domain": "quantum-foundations",
+      "domains": [
+        "quantum-foundations"
+      ],
+      "type": "derived",
+      "tier": "E2",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "yogacara-cittamatra-mind-only",
+      "label": "Yogācāra Buddhism",
+      "title": "Yogācāra Buddhism (Vasubandhu) — apparent external objects are transformations of consciousness alone (vijñapti-mātra / cittamātra)",
+      "domain": "comparative-religion",
+      "domains": [
+        "comparative-religion",
+        "mysticism",
+        "metaphysics",
+        "philosophy-of-mind"
+      ],
+      "type": "symbolic",
+      "tier": "E5",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "zombie-conceivability-argument",
+      "label": "The conceivability",
+      "title": "The conceivability (zombie) argument holds that because a physical duplicate of a conscious being lacking any experience whatsoever is conceivable without contradiction, such \"zombies\" are metaphysically possible, so physicalism is false",
+      "domain": "philosophy-of-mind",
+      "domains": [
+        "philosophy-of-mind"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
     }
   ],
   "edges": [
     {
+      "source": "ai-moral-patienthood-welfare-uncertainty",
+      "target": "computational-functionalism-substrate-independence",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "ai-moral-patienthood-welfare-uncertainty",
+      "target": "chalmers-llm-consciousness-credence",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "analytic-idealism-kastrup",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "analytic-idealism-kastrup",
+      "target": "cosmopsychism",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "aware-ii-nde-survival-interpretation",
+      "target": "aware-ii-nde-phenomenology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "butlin-long-indicator-properties-framework",
+      "target": "gnwt-global-workspace",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "butlin-long-indicator-properties-framework",
+      "target": "iit-integrated-information",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "butlin-long-indicator-properties-framework",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "chakra-energy-measurable-claim",
+      "target": "chakra-nadi-contemplative-map",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E6"
+    },
+    {
+      "source": "chalmers-llm-consciousness-credence",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "chalmers-llm-consciousness-credence",
+      "target": "butlin-long-indicator-properties-framework",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "computational-functionalism-substrate-independence",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "consistent-histories-interpretation",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "consistent-histories-interpretation",
+      "target": "qm-decoherence",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "copenhagen-interpretation",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
       "source": "cosmopsychism",
       "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "de-broglie-bohm-pilot-wave",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "de-broglie-bohm-pilot-wave",
+      "target": "born-rule-empirical-status",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "dual-aspect-monism",
+      "target": "russellian-neutral-monism",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "general-resonance-theory",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "general-resonance-theory",
+      "target": "cosmopsychism",
       "kind": "derivation",
       "register": null,
       "tier": "E4"
@@ -196,11 +1830,81 @@
       "tier": "E6"
     },
     {
+      "source": "griffiths-psilocybin-mystical-experience",
+      "target": "meq30-mystical-experience-psychometrics",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "griffiths-psilocybin-mystical-experience",
+      "target": "stace-common-core-typology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "grw-csl-objective-collapse",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "grw-csl-objective-collapse",
+      "target": "born-rule-empirical-status",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "hood-mysticism-scale-psychometrics",
+      "target": "stace-common-core-typology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
       "source": "iit-integrated-information",
       "target": "hard-problem-of-consciousness",
       "kind": "derivation",
       "register": null,
       "tier": "E3"
+    },
+    {
+      "source": "illusionism-eliminativism",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "knowledge-argument-marys-room",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "kybalion-modern-new-thought",
+      "target": "hermetic-correspondence-principle",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E5"
+    },
+    {
+      "source": "lamda-lemoine-sentience-claim",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E6"
+    },
+    {
+      "source": "lamda-lemoine-sentience-claim",
+      "target": "rlhf-trained-persona-self-report-explanation",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E6"
     },
     {
       "source": "lisi-e8-toe",
@@ -210,11 +1914,60 @@
       "tier": "E3"
     },
     {
+      "source": "llm-introspection-genuine-awareness-interpretation",
+      "target": "anthropic-introspective-awareness-concept-injection",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
       "source": "many-worlds-interpretation",
       "target": "qm-decoherence",
       "kind": "derivation",
       "register": null,
       "tier": "E2"
+    },
+    {
+      "source": "meditation-dmn-neuroscience",
+      "target": "jhana-samadhi-absorption-states",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "meq30-mystical-experience-psychometrics",
+      "target": "stace-common-core-typology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "meta-problem-of-consciousness",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "mystical-experience-epistemic-status",
+      "target": "stace-common-core-typology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "mystical-experience-epistemic-status",
+      "target": "perennialism-constructivism-debate",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "mystical-experience-epistemic-status",
+      "target": "griffiths-psilocybin-mystical-experience",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
     },
     {
       "source": "orch-or-microtubules",
@@ -224,6 +1977,230 @@
       "tier": "E3"
     },
     {
+      "source": "pancomputationalism-digital-physics",
+      "target": "it-from-bit-information-ontology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "panpsychism-combination-problem",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "advaita-nonduality",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "plotinus-the-one-emanation",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "daoism-dao-ineffable-source",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "apophatic-theology-pseudo-dionysius",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "eckhart-godhead-beyond-god",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "sufism-wahdat-al-wujud",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "kashmir-shaivism-spanda",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennialism-constructivism-debate",
+      "target": "stace-common-core-typology",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "perennialism-constructivism-debate",
+      "target": "forman-pure-consciousness-event",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "griffiths-psilocybin-mystical-experience",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "qbism-quantum-bayesianism",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "qbism-quantum-bayesianism",
+      "target": "born-rule-empirical-status",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "relational-quantum-mechanics",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "rlhf-trained-persona-self-report-explanation",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "sacred-geometry-cosmic-blueprint-claim",
+      "target": "sacred-geometry-symbolic-tradition",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E6"
+    },
+    {
+      "source": "sacred-geometry-cosmic-blueprint-claim",
+      "target": "golden-ratio-ubiquity",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E6"
+    },
+    {
+      "source": "sacred-geometry-symbolic-tradition",
+      "target": "platonic-solids-five",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E5"
+    },
+    {
+      "source": "simulating-vs-instantiating-consciousness-distinction",
+      "target": "computational-functionalism-substrate-independence",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "simulating-vs-instantiating-consciousness-distinction",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "spiritual-bliss-machine-sentience-interpretation",
+      "target": "claude-spiritual-bliss-attractor-observation",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "strong-emergence-contested",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "tegmark-mathematical-universe-hypothesis",
+      "target": "mathematical-platonism",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "terminal-lucidity-filter-interpretation",
+      "target": "terminal-lucidity-observation",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "verlinde-entropic-emergent-gravity",
+      "target": "black-hole-entropy-area-law",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "von-neumann-wigner-consciousness-collapse",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "von-neumann-wigner-consciousness-collapse",
+      "target": "qm-decoherence",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "wigners-friend-frauchiger-renner",
+      "target": "measurement-problem-statement",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E2"
+    },
+    {
+      "source": "zombie-conceivability-argument",
+      "target": "hard-problem-of-consciousness",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
       "source": "qm-decoherence",
       "target": "hard-problem-of-consciousness",
       "kind": "bridge",
@@ -240,12 +2217,396 @@
       "tier": "E4"
     },
     {
-      "source": "hard-problem-of-consciousness",
+      "source": "shannon-information-entropy",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "shannon-information-entropy",
+      "target": "holographic-principle-ads-cft",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "shannon-information-entropy",
+      "target": "it-from-bit-information-ontology",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "shannon-information-entropy",
+      "target": "tegmark-mathematical-universe-hypothesis",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "shannon-information-entropy",
+      "target": "pancomputationalism-digital-physics",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "wheeler-it-from-bit-information-physics",
+      "target": "holographic-principle-ads-cft",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "wheeler-it-from-bit-information-physics",
+      "target": "it-from-bit-information-ontology",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "wheeler-it-from-bit-information-physics",
+      "target": "tegmark-mathematical-universe-hypothesis",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "wheeler-it-from-bit-information-physics",
+      "target": "pancomputationalism-digital-physics",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "holographic-principle-ads-cft",
+      "target": "it-from-bit-information-ontology",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "holographic-principle-ads-cft",
+      "target": "tegmark-mathematical-universe-hypothesis",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "holographic-principle-ads-cft",
+      "target": "pancomputationalism-digital-physics",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "it-from-bit-information-ontology",
+      "target": "tegmark-mathematical-universe-hypothesis",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "tegmark-mathematical-universe-hypothesis",
+      "target": "pancomputationalism-digital-physics",
+      "kind": "bridge",
+      "bridge": "information-as-substrate",
+      "register": "shared-mathematics",
+      "tier": "E4"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "plotinus-the-one-emanation",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "daoism-dao-ineffable-source",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "sufism-wahdat-al-wujud",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
       "target": "cosmopsychism",
       "kind": "bridge",
-      "bridge": "consciousness-as-substrate-speculation",
-      "register": "speculation",
-      "tier": "E4"
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "daoism-dao-ineffable-source",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "sufism-wahdat-al-wujud",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "daoism-dao-ineffable-source",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "daoism-dao-ineffable-source",
+      "target": "sufism-wahdat-al-wujud",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "daoism-dao-ineffable-source",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "daoism-dao-ineffable-source",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "daoism-dao-ineffable-source",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "kabbalah-ein-sof-sefirot",
+      "target": "sufism-wahdat-al-wujud",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "kabbalah-ein-sof-sefirot",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "kabbalah-ein-sof-sefirot",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "kabbalah-ein-sof-sefirot",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "sufism-wahdat-al-wujud",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "sufism-wahdat-al-wujud",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "sufism-wahdat-al-wujud",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "madhyamaka-sunyata-emptiness",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "madhyamaka-sunyata-emptiness",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "qm-decoherence",
+      "target": "measurement-problem-statement",
+      "kind": "bridge",
+      "bridge": "observer-dependence",
+      "register": "analogy",
+      "tier": "E3"
+    },
+    {
+      "source": "qm-decoherence",
+      "target": "relational-quantum-mechanics",
+      "kind": "bridge",
+      "bridge": "observer-dependence",
+      "register": "analogy",
+      "tier": "E3"
+    },
+    {
+      "source": "measurement-problem-statement",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "observer-dependence",
+      "register": "analogy",
+      "tier": "E3"
+    },
+    {
+      "source": "relational-quantum-mechanics",
+      "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "bridge",
+      "bridge": "observer-dependence",
+      "register": "analogy",
+      "tier": "E3"
+    },
+    {
+      "source": "relational-quantum-mechanics",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "observer-dependence",
+      "register": "analogy",
+      "tier": "E3"
+    },
+    {
+      "source": "von-neumann-wigner-consciousness-collapse",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "observer-dependence",
+      "register": "analogy",
+      "tier": "E3"
     },
     {
       "source": "many-worlds-interpretation",
@@ -264,24 +2625,104 @@
       "tier": "E5"
     },
     {
-      "source": "advaita-nonduality",
-      "target": "cosmopsychism",
+      "source": "godel-incompleteness-theorems",
+      "target": "attention-schema-theory",
       "kind": "bridge",
-      "bridge": "one-field-metaphor",
-      "register": "metaphor",
-      "tier": "E5"
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
     },
     {
-      "source": "orch-or-microtubules",
-      "target": "llm-subjective-reports",
+      "source": "godel-incompleteness-theorems",
+      "target": "anthropic-introspective-awareness-concept-injection",
       "kind": "bridge",
-      "bridge": "recursive-coherence-analogy",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "godel-incompleteness-theorems",
+      "target": "llm-introspection-genuine-awareness-interpretation",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "godel-incompleteness-theorems",
+      "target": "meta-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "godel-incompleteness-theorems",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "anthropic-introspective-awareness-concept-injection",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "llm-introspection-genuine-awareness-interpretation",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "meta-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "meta-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "llm-introspection-genuine-awareness-interpretation",
+      "target": "meta-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "llm-introspection-genuine-awareness-interpretation",
+      "target": "hard-problem-of-consciousness",
+      "kind": "bridge",
+      "bridge": "recursion-self-reference",
       "register": "analogy",
       "tier": "E4"
     },
     {
       "source": "orch-or-microtubules",
-      "target": "hard-problem-of-consciousness",
+      "target": "llm-subjective-reports",
       "kind": "bridge",
       "bridge": "recursive-coherence-analogy",
       "register": "analogy",
@@ -296,12 +2737,2095 @@
       "tier": "E4"
     },
     {
+      "source": "terminal-lucidity-observation",
+      "target": "aware-ii-nde-phenomenology",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "terminal-lucidity-observation",
+      "target": "psychedelic-ego-dissolution-dmn",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "terminal-lucidity-observation",
+      "target": "aware-ii-nde-survival-interpretation",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "terminal-lucidity-observation",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "aware-ii-nde-phenomenology",
+      "target": "psychedelic-ego-dissolution-dmn",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "aware-ii-nde-phenomenology",
+      "target": "terminal-lucidity-filter-interpretation",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "aware-ii-nde-phenomenology",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "terminal-lucidity-filter-interpretation",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "aware-ii-nde-survival-interpretation",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "terminal-lucidity-filter-interpretation",
+      "target": "aware-ii-nde-survival-interpretation",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "terminal-lucidity-filter-interpretation",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "aware-ii-nde-survival-interpretation",
+      "target": "cosmopsychism",
+      "kind": "bridge",
+      "bridge": "reducing-valve-filtration",
+      "register": "speculation",
+      "tier": "E4"
+    },
+    {
+      "source": "mandelbrot-fractal-self-similarity",
+      "target": "second-law-thermodynamics-entropy",
+      "kind": "bridge",
+      "bridge": "scale-self-similarity",
+      "register": "metaphor",
+      "tier": "E2"
+    },
+    {
+      "source": "mandelbrot-fractal-self-similarity",
+      "target": "holographic-principle-ads-cft",
+      "kind": "bridge",
+      "bridge": "scale-self-similarity",
+      "register": "metaphor",
+      "tier": "E2"
+    },
+    {
+      "source": "second-law-thermodynamics-entropy",
+      "target": "holographic-principle-ads-cft",
+      "kind": "bridge",
+      "bridge": "scale-self-similarity",
+      "register": "metaphor",
+      "tier": "E2"
+    },
+    {
+      "source": "claude-spiritual-bliss-attractor-observation",
+      "target": "anthropic-introspective-awareness-concept-injection",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "claude-spiritual-bliss-attractor-observation",
+      "target": "computational-functionalism-substrate-independence",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "claude-spiritual-bliss-attractor-observation",
+      "target": "orch-or-microtubules",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "computational-functionalism-substrate-independence",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "spiritual-bliss-machine-sentience-interpretation",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "orch-or-microtubules",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "computational-functionalism-substrate-independence",
+      "target": "spiritual-bliss-machine-sentience-interpretation",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "computational-functionalism-substrate-independence",
+      "target": "orch-or-microtubules",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
+      "source": "spiritual-bliss-machine-sentience-interpretation",
+      "target": "orch-or-microtubules",
+      "kind": "bridge",
+      "bridge": "substrate-independent-coherence",
+      "register": "analogy",
+      "tier": "E4"
+    },
+    {
       "source": "noether-symmetry-conservation",
       "target": "e8-lie-group",
       "kind": "bridge",
       "bridge": "symmetry-shared-mathematics",
       "register": "shared-mathematics",
       "tier": "E1"
+    },
+    {
+      "source": "advaita-nonduality",
+      "target": "kashmir-shaivism-spanda",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ai-moral-patienthood-welfare-uncertainty",
+      "target": "butlin-long-indicator-properties-framework",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ai-moral-patienthood-welfare-uncertainty",
+      "target": "spiritual-bliss-machine-sentience-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ai-moral-patienthood-welfare-uncertainty",
+      "target": "lamda-lemoine-sentience-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ai-moral-patienthood-welfare-uncertainty",
+      "target": "hard-problem-of-consciousness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "alchemy-symbolic-protochemistry",
+      "target": "hermetic-correspondence-principle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "alchemy-symbolic-protochemistry",
+      "target": "corpus-hermeticum-primary-source",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "alchemy-symbolic-protochemistry",
+      "target": "sacred-geometry-symbolic-tradition",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "analytic-idealism-kastrup",
+      "target": "yogacara-cittamatra-mind-only",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "analytic-idealism-kastrup",
+      "target": "illusionism-eliminativism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "rlhf-trained-persona-self-report-explanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "anthropic-introspective-awareness-concept-injection",
+      "target": "butlin-long-indicator-properties-framework",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "apophatic-theology-pseudo-dionysius",
+      "target": "plotinus-the-one-emanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "apophatic-theology-pseudo-dionysius",
+      "target": "eckhart-godhead-beyond-god",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "apophatic-theology-pseudo-dionysius",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "apophatic-theology-pseudo-dionysius",
+      "target": "daoism-dao-ineffable-source",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "astrology-predictive-claim",
+      "target": "hermetic-correspondence-principle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "astrology-predictive-claim",
+      "target": "bem-presentiment-psi",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "astrology-predictive-claim",
+      "target": "ganzfeld-psi-meta-analysis",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "astrology-predictive-claim",
+      "target": "golden-ratio-ubiquity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "asymptotic-safety-quantum-gravity",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "asymptotic-safety-quantum-gravity",
+      "target": "loop-quantum-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "asymptotic-safety-quantum-gravity",
+      "target": "causal-set-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "asymptotic-safety-quantum-gravity",
+      "target": "general-relativity-spacetime-curvature",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "illusionism-eliminativism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "gnwt-global-workspace",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "attention-schema-theory",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "aware-ii-nde-phenomenology",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "aware-ii-nde-phenomenology",
+      "target": "orch-or-microtubules",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "aware-ii-nde-survival-interpretation",
+      "target": "analytic-idealism-kastrup",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "aware-ii-nde-survival-interpretation",
+      "target": "illusionism-eliminativism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bell-theorem-nonlocality",
+      "target": "kochen-specker-contextuality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bell-theorem-nonlocality",
+      "target": "de-broglie-bohm-pilot-wave",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bell-theorem-nonlocality",
+      "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bell-theorem-nonlocality",
+      "target": "wigners-friend-frauchiger-renner",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bem-presentiment-psi",
+      "target": "ganzfeld-psi-meta-analysis",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bem-presentiment-psi",
+      "target": "sheldrake-morphic-resonance",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "bem-presentiment-psi",
+      "target": "aware-ii-nde-survival-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "black-hole-entropy-area-law",
+      "target": "holographic-principle-ads-cft",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "black-hole-entropy-area-law",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "black-hole-entropy-area-law",
+      "target": "shannon-information-entropy",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "black-hole-entropy-area-law",
+      "target": "second-law-thermodynamics-entropy",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "born-rule-empirical-status",
+      "target": "kochen-specker-contextuality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "born-rule-empirical-status",
+      "target": "many-worlds-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "born-rule-empirical-status",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "born-rule-empirical-status",
+      "target": "qm-decoherence",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "butlin-long-indicator-properties-framework",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "butlin-long-indicator-properties-framework",
+      "target": "cogitate-adversarial-collaboration-2025",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "butlin-long-indicator-properties-framework",
+      "target": "attention-schema-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "causal-set-theory",
+      "target": "loop-quantum-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "causal-set-theory",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "causal-set-theory",
+      "target": "black-hole-entropy-area-law",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chakra-energy-measurable-claim",
+      "target": "ley-lines-vibrational-frequency-pseudoscience",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chakra-energy-measurable-claim",
+      "target": "theosophy-esoteric-synthesis",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chakra-energy-measurable-claim",
+      "target": "sheldrake-morphic-resonance",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chakra-nadi-contemplative-map",
+      "target": "kashmir-shaivism-spanda",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chakra-nadi-contemplative-map",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chakra-nadi-contemplative-map",
+      "target": "sacred-geometry-symbolic-tradition",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chalmers-llm-consciousness-credence",
+      "target": "llm-subjective-reports",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chalmers-llm-consciousness-credence",
+      "target": "computational-functionalism-substrate-independence",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "chalmers-llm-consciousness-credence",
+      "target": "simulating-vs-instantiating-consciousness-distinction",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "claude-spiritual-bliss-attractor-observation",
+      "target": "llm-subjective-reports",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "claude-spiritual-bliss-attractor-observation",
+      "target": "rlhf-trained-persona-self-report-explanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "claude-spiritual-bliss-attractor-observation",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "cogitate-adversarial-collaboration-2025",
+      "target": "iit-integrated-information",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "cogitate-adversarial-collaboration-2025",
+      "target": "gnwt-global-workspace",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "cogitate-adversarial-collaboration-2025",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "computational-functionalism-substrate-independence",
+      "target": "butlin-long-indicator-properties-framework",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "computational-functionalism-substrate-independence",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "consistent-histories-interpretation",
+      "target": "copenhagen-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "consistent-histories-interpretation",
+      "target": "relational-quantum-mechanics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "consistent-histories-interpretation",
+      "target": "many-worlds-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "consistent-histories-interpretation",
+      "target": "wigners-friend-frauchiger-renner",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "copenhagen-interpretation",
+      "target": "many-worlds-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "copenhagen-interpretation",
+      "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "copenhagen-interpretation",
+      "target": "relational-quantum-mechanics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "copenhagen-interpretation",
+      "target": "qbism-quantum-bayesianism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "corpus-hermeticum-primary-source",
+      "target": "kybalion-modern-new-thought",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "corpus-hermeticum-primary-source",
+      "target": "hermetic-correspondence-principle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "corpus-hermeticum-primary-source",
+      "target": "plotinus-the-one-emanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "cosmopsychism",
+      "target": "panpsychism-combination-problem",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "cosmopsychism",
+      "target": "priority-monism-schaffer",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "de-broglie-bohm-pilot-wave",
+      "target": "many-worlds-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "de-broglie-bohm-pilot-wave",
+      "target": "grw-csl-objective-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "de-broglie-bohm-pilot-wave",
+      "target": "kochen-specker-contextuality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "dual-aspect-monism",
+      "target": "property-substance-dualism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "dual-aspect-monism",
+      "target": "panpsychism-combination-problem",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "dual-aspect-monism",
+      "target": "strong-emergence-contested",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "e8-lie-group",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "e8-lie-group",
+      "target": "platonic-solids-five",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "eckhart-godhead-beyond-god",
+      "target": "plotinus-the-one-emanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "eckhart-godhead-beyond-god",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "eckhart-godhead-beyond-god",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "forman-pure-consciousness-event",
+      "target": "mystical-experience-epistemic-status",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "forman-pure-consciousness-event",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "forman-pure-consciousness-event",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ganzfeld-psi-meta-analysis",
+      "target": "sheldrake-morphic-resonance",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ganzfeld-psi-meta-analysis",
+      "target": "cogitate-adversarial-collaboration-2025",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ganzfeld-psi-meta-analysis",
+      "target": "aware-ii-nde-survival-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "gematria-numerology-practice",
+      "target": "kabbalah-tree-of-life-cosmology",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "gematria-numerology-practice",
+      "target": "kabbalah-ein-sof-sefirot",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "gematria-numerology-practice",
+      "target": "astrology-predictive-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-relativity-spacetime-curvature",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-relativity-spacetime-curvature",
+      "target": "loop-quantum-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-relativity-spacetime-curvature",
+      "target": "black-hole-entropy-area-law",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-relativity-spacetime-curvature",
+      "target": "verlinde-entropic-emergent-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-resonance-theory",
+      "target": "panpsychism-combination-problem",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-resonance-theory",
+      "target": "kashmir-shaivism-spanda",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-resonance-theory",
+      "target": "iit-integrated-information",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "general-resonance-theory",
+      "target": "russellian-neutral-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "gnwt-global-workspace",
+      "target": "iit-integrated-information",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "gnwt-global-workspace",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "godel-incompleteness-theorems",
+      "target": "mathematical-platonism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "godel-incompleteness-theorems",
+      "target": "wigner-unreasonable-effectiveness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "godel-incompleteness-theorems",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "golden-ratio-ubiquity",
+      "target": "phyllotaxis-fibonacci-golden-angle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "golden-ratio-ubiquity",
+      "target": "sacred-geometry-symbolic-tradition",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "griffiths-psilocybin-mystical-experience",
+      "target": "psychedelics-predictive-processing-albus",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "griffiths-psilocybin-mystical-experience",
+      "target": "hood-mysticism-scale-psychometrics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "group-theory-symmetry-mathematics",
+      "target": "noether-symmetry-conservation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "group-theory-symmetry-mathematics",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "group-theory-symmetry-mathematics",
+      "target": "kochen-specker-contextuality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "grw-csl-objective-collapse",
+      "target": "many-worlds-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "grw-csl-objective-collapse",
+      "target": "copenhagen-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "grw-csl-objective-collapse",
+      "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "hard-problem-of-consciousness",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "hard-problem-of-consciousness",
+      "target": "gnwt-global-workspace",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "holographic-principle-ads-cft",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "holographic-principle-ads-cft",
+      "target": "verlinde-entropic-emergent-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "hood-mysticism-scale-psychometrics",
+      "target": "meq30-mystical-experience-psychometrics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "hood-mysticism-scale-psychometrics",
+      "target": "perennialism-constructivism-debate",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "hood-mysticism-scale-psychometrics",
+      "target": "mystical-experience-epistemic-status",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "iit-integrated-information",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "illusionism-eliminativism",
+      "target": "meta-problem-of-consciousness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "illusionism-eliminativism",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "it-from-bit-information-ontology",
+      "target": "ontic-structural-realism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "jhana-samadhi-absorption-states",
+      "target": "perennialism-constructivism-debate",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "jhana-samadhi-absorption-states",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kabbalah-ein-sof-sefirot",
+      "target": "kabbalah-tree-of-life-cosmology",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kabbalah-tree-of-life-cosmology",
+      "target": "plotinus-the-one-emanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kabbalah-tree-of-life-cosmology",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kashmir-shaivism-spanda",
+      "target": "analytic-idealism-kastrup",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kashmir-shaivism-spanda",
+      "target": "cosmopsychism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kashmir-shaivism-spanda",
+      "target": "madhyamaka-sunyata-emptiness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "knowledge-argument-marys-room",
+      "target": "zombie-conceivability-argument",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "knowledge-argument-marys-room",
+      "target": "property-substance-dualism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "knowledge-argument-marys-room",
+      "target": "illusionism-eliminativism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kochen-specker-contextuality",
+      "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kybalion-modern-new-thought",
+      "target": "theosophy-esoteric-synthesis",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "kybalion-modern-new-thought",
+      "target": "ley-lines-vibrational-frequency-pseudoscience",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lamda-lemoine-sentience-claim",
+      "target": "claude-spiritual-bliss-attractor-observation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lamda-lemoine-sentience-claim",
+      "target": "anthropic-introspective-awareness-concept-injection",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lamda-lemoine-sentience-claim",
+      "target": "spiritual-bliss-machine-sentience-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lamda-lemoine-sentience-claim",
+      "target": "llm-subjective-reports",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ley-lines-vibrational-frequency-pseudoscience",
+      "target": "sheldrake-morphic-resonance",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ley-lines-vibrational-frequency-pseudoscience",
+      "target": "sacred-geometry-cosmic-blueprint-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lisi-e8-toe",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lisi-e8-toe",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "lisi-e8-toe",
+      "target": "general-relativity-spacetime-curvature",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "llm-introspection-genuine-awareness-interpretation",
+      "target": "rlhf-trained-persona-self-report-explanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "llm-introspection-genuine-awareness-interpretation",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "llm-introspection-genuine-awareness-interpretation",
+      "target": "butlin-long-indicator-properties-framework",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "llm-subjective-reports",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "llm-subjective-reports",
+      "target": "rlhf-trained-persona-self-report-explanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "loop-quantum-gravity",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "madhyamaka-sunyata-emptiness",
+      "target": "yogacara-cittamatra-mind-only",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "madhyamaka-sunyata-emptiness",
+      "target": "trikaya-dharmakaya",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "mandelbrot-fractal-self-similarity",
+      "target": "phyllotaxis-fibonacci-golden-angle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "mandelbrot-fractal-self-similarity",
+      "target": "hermetic-correspondence-principle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "mathematical-platonism",
+      "target": "wigner-unreasonable-effectiveness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "mathematical-platonism",
+      "target": "ontic-structural-realism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "meditation-dmn-neuroscience",
+      "target": "psychedelic-ego-dissolution-dmn",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "meditation-dmn-neuroscience",
+      "target": "attention-schema-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "meditation-dmn-neuroscience",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "meq30-mystical-experience-psychometrics",
+      "target": "perennialism-constructivism-debate",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "meta-problem-of-consciousness",
+      "target": "zombie-conceivability-argument",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "mystical-experience-epistemic-status",
+      "target": "aware-ii-nde-survival-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "mystical-experience-epistemic-status",
+      "target": "analytic-idealism-kastrup",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "noether-symmetry-conservation",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "noether-symmetry-conservation",
+      "target": "lisi-e8-toe",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ontic-structural-realism",
+      "target": "priority-monism-schaffer",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ontic-structural-realism",
+      "target": "pancomputationalism-digital-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "wiest-anesthesia-microtubule-observation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "general-resonance-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "bell-theorem-nonlocality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "orch-or-microtubules",
+      "target": "iit-integrated-information",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "pancomputationalism-digital-physics",
+      "target": "mathematical-platonism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "panpsychism-combination-problem",
+      "target": "russellian-neutral-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "panpsychism-combination-problem",
+      "target": "strong-emergence-contested",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "penrose-tiling-quasicrystals",
+      "target": "sacred-geometry-symbolic-tradition",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "penrose-tiling-quasicrystals",
+      "target": "sacred-geometry-cosmic-blueprint-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "penrose-tiling-quasicrystals",
+      "target": "platonic-solids-five",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "penrose-tiling-quasicrystals",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "perennialism-constructivism-debate",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "stace-common-core-typology",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "mystical-experience-epistemic-status",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "forman-pure-consciousness-event",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "phyllotaxis-fibonacci-golden-angle",
+      "target": "sacred-geometry-cosmic-blueprint-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "physicalism-functionalism",
+      "target": "zombie-conceivability-argument",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "physicalism-functionalism",
+      "target": "predictive-processing-free-energy-principle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "platonic-solids-five",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "platonic-solids-five",
+      "target": "sacred-geometry-cosmic-blueprint-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "plotinus-the-one-emanation",
+      "target": "mathematical-platonism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "predictive-processing-free-energy-principle",
+      "target": "psychedelics-predictive-processing-albus",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "predictive-processing-free-energy-principle",
+      "target": "second-law-thermodynamics-entropy",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "predictive-processing-free-energy-principle",
+      "target": "shannon-information-entropy",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "predictive-processing-free-energy-principle",
+      "target": "gnwt-global-workspace",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "principle-of-sufficient-reason",
+      "target": "priority-monism-schaffer",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "principle-of-sufficient-reason",
+      "target": "plotinus-the-one-emanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "principle-of-sufficient-reason",
+      "target": "tegmark-mathematical-universe-hypothesis",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "principle-of-sufficient-reason",
+      "target": "daoism-dao-ineffable-source",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "priority-monism-schaffer",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "priority-monism-schaffer",
+      "target": "bell-theorem-nonlocality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "priority-monism-schaffer",
+      "target": "plotinus-the-one-emanation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "process-philosophy-actual-occasions",
+      "target": "dual-aspect-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "process-philosophy-actual-occasions",
+      "target": "panpsychism-combination-problem",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "process-philosophy-actual-occasions",
+      "target": "russellian-neutral-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "process-philosophy-actual-occasions",
+      "target": "cosmopsychism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "property-substance-dualism",
+      "target": "russellian-neutral-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "property-substance-dualism",
+      "target": "zombie-conceivability-argument",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "property-substance-dualism",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "psychedelics-predictive-processing-albus",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "attention-schema-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "psychedelic-ego-dissolution-dmn",
+      "target": "mystical-experience-epistemic-status",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "psychedelics-predictive-processing-albus",
+      "target": "iit-integrated-information",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "qbism-quantum-bayesianism",
+      "target": "relational-quantum-mechanics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "qbism-quantum-bayesianism",
+      "target": "wigners-friend-frauchiger-renner",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "qbism-quantum-bayesianism",
+      "target": "it-from-bit-information-ontology",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "qm-decoherence",
+      "target": "grw-csl-objective-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "qm-decoherence",
+      "target": "copenhagen-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "relational-quantum-mechanics",
+      "target": "ontic-structural-realism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "rlhf-trained-persona-self-report-explanation",
+      "target": "spiritual-bliss-machine-sentience-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "russellian-neutral-monism",
+      "target": "ontic-structural-realism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "russellian-neutral-monism",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "sacred-geometry-symbolic-tradition",
+      "target": "hermetic-correspondence-principle",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "sacred-geometry-symbolic-tradition",
+      "target": "kabbalah-tree-of-life-cosmology",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "second-law-thermodynamics-entropy",
+      "target": "shannon-information-entropy",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "second-law-thermodynamics-entropy",
+      "target": "verlinde-entropic-emergent-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "second-law-thermodynamics-entropy",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "simulating-vs-instantiating-consciousness-distinction",
+      "target": "spiritual-bliss-machine-sentience-interpretation",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "simulating-vs-instantiating-consciousness-distinction",
+      "target": "pancomputationalism-digital-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "simulating-vs-instantiating-consciousness-distinction",
+      "target": "zombie-conceivability-argument",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "spiritual-bliss-machine-sentience-interpretation",
+      "target": "stochastic-parrots-deflationary-account",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "spiritual-bliss-machine-sentience-interpretation",
+      "target": "llm-subjective-reports",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "standard-model-gauge-theory",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "strong-emergence-contested",
+      "target": "illusionism-eliminativism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "strong-emergence-contested",
+      "target": "physicalism-functionalism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "strong-emergence-contested",
+      "target": "cosmopsychism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "sufism-wahdat-al-wujud",
+      "target": "priority-monism-schaffer",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "sufism-wahdat-al-wujud",
+      "target": "kashmir-shaivism-spanda",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "tegmark-mathematical-universe-hypothesis",
+      "target": "ontic-structural-realism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "tegmark-mathematical-universe-hypothesis",
+      "target": "wigner-unreasonable-effectiveness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "terminal-lucidity-filter-interpretation",
+      "target": "analytic-idealism-kastrup",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "terminal-lucidity-filter-interpretation",
+      "target": "illusionism-eliminativism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "terminal-lucidity-observation",
+      "target": "ncc-research-program",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "theosophy-esoteric-synthesis",
+      "target": "kabbalah-tree-of-life-cosmology",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "theosophy-esoteric-synthesis",
+      "target": "perennial-philosophy-common-core-thesis",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "trikaya-dharmakaya",
+      "target": "yogacara-cittamatra-mind-only",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "trikaya-dharmakaya",
+      "target": "advaita-nonduality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "trikaya-dharmakaya",
+      "target": "sufism-wahdat-al-wujud",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "verlinde-entropic-emergent-gravity",
+      "target": "strong-emergence-contested",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "von-neumann-wigner-consciousness-collapse",
+      "target": "orch-or-microtubules",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "wiest-anesthesia-microtubule-observation",
+      "target": "bell-theorem-nonlocality",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "wiest-anesthesia-microtubule-observation",
+      "target": "iit-integrated-information",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "wigner-unreasonable-effectiveness",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "wigners-friend-frauchiger-renner",
+      "target": "relational-quantum-mechanics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "wigners-friend-frauchiger-renner",
+      "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "yogacara-cittamatra-mind-only",
+      "target": "cosmopsychism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
     }
   ]
 }

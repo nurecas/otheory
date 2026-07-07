@@ -19,8 +19,9 @@ steelman: "Take the Schrödinger equation literally and universally: there is no
 strongest_objection: "It is not experimentally distinguished from rival interpretations — every interpretation reproduces the same Born-rule statistics, so no current experiment selects among them. It also faces the unsolved 'probability problem' (why the Born rule, given all branches occur). Hence E2 (mainstream-speculative), never E1: it is a mathematically developed framework, not a confirmed fact."
 falsifiability: "As standardly formulated it makes the same empirical predictions as other interpretations, so it is not currently falsifiable against them. This is precisely why it sits at E2, not E1."
 depends_on: [qm-decoherence]
+related_to: [copenhagen-interpretation, de-broglie-bohm-pilot-wave, grw-csl-objective-collapse, born-rule-empirical-status]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:4445fbacbcebe31e"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The corpus's clean E2 example: serious, mathematically developed, but not

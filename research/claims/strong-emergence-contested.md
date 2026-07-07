@@ -1,0 +1,24 @@
+---
+id: strong-emergence-contested
+title: Strong emergence — some higher-level properties (e.g. consciousness) are not even in principle deducible from, or reducible to, their physical base, unlike merely "weakly" emergent properties
+domain: [metaphysics]
+type: philosophical
+tier: E4
+status: vetted
+confidence: medium
+sources:
+  - title: "O'Connor, T. & Wong, H.Y. (2002/2024). Emergent Properties. Stanford Encyclopedia of Philosophy."
+    url: "https://plato.stanford.edu/entries/properties-emergent/"
+    kind: secondary
+    verified: true
+steelman: "Weak emergence (e.g. wetness, turbulence, most complex-systems phenomena) is uncontroversial: higher-level properties are in-principle predictable from complete lower-level information plus laws, just not in practice due to computational complexity; but proponents of strong emergence argue some phenomena — paradigmatically, phenomenal consciousness in the 'hard problem' tradition — show a genuine explanatory and (some argue) nomological gap from physical base to emergent property, such that even ideal knowledge of the physical facts would not let one deduce the emergent property, implying real, sui generis higher-level causal powers ('downward causation') irreducible to physics."
+strongest_objection: "Strong emergence, if it involves genuinely novel causal powers not fixed by the physical base, appears to conflict with the causal closure of physics (the well-supported principle that every physical effect has a sufficient physical cause) and risks overdetermination — the SEP entry documents this exact tension, noting that even proponents of WEAK emergence must navigate a 'physical causal closure' premise that Jaegwon Kim argues generates an overdetermination problem, a difficulty that is only sharper for strong emergence's stronger, causal-power-adding claims. The majority view among philosophers of mind and science remains that no uncontroversial actual instance of strong emergence has been identified — consciousness is the leading candidate but that status is itself exactly what is contested (see hard-problem-of-consciousness)."
+falsifiability: "Weak emergence is compatible with, and describable within, standard physicalism and is not itself contentious; strong emergence, as a claim about in-principle (not merely practical) non-deducibility and novel downward causal powers, is not currently empirically decidable and is argued philosophically — E4, and explicitly flagged here as a minority, contested position even among emergentists (the SEP entry itself frames strong-emergence accounts as rejecting standard physicalism, which is precisely why they remain a minority view)."
+depends_on: [hard-problem-of-consciousness]
+related_to: [panpsychism-combination-problem, illusionism-eliminativism, physicalism-functionalism, cosmopsychism]
+last_vetted: 2026-07-07
+content_hash: "sha256:8449ec79a4a9eefe"
+---
+Emergence names the phenomenon of higher-level properties arising from lower-level parts and their organization; "weak" emergence (novel-but-in-principle-predictable patterns, e.g. most complex-systems behavior) is uncontroversial, while "strong" emergence (genuinely novel, in-principle-irreducible causal powers at higher levels) is a live but minority and contested position, most often invoked for consciousness. This bears on O Theory's substrate claims two ways: it is the main rival to "consciousness/information is fundamental" (consciousness could instead be a strongly emergent, still-physical novelty), and it is also sometimes invoked BY substrate-monist views to explain how a simple ground gives rise to rich, apparently novel phenomena. Keep the two levels distinct: that complex, practically-unpredictable patterns arise from simple rules is observed and uncontroversial (weak emergence); that some higher-level properties are IN-PRINCIPLE irreducible novelties (strong emergence) is the separate, contested E4 interpretation.
+
+Red-team notes: Source verified directly and confirmed to substantively cover weak/strong emergence, downward causation, and the causal-closure/overdetermination objection exactly as represented (with Jaegwon Kim correctly identified as the source of the overdetermination challenge). Single-source claim, but SEP is an appropriate authoritative tertiary reference for a contested-position survey of this kind, and the position itself (that strong emergence is a genuine minority view, not consensus) is independently well known in philosophy of mind — no fabrication or misrepresentation found. Tier E4 is correct and explicitly held even though this claim sits adjacent to live science (complexity theory, neuroscience): the "strong" thesis specifically (in-principle irreducibility + novel causal powers) is what remains philosophical and untestable; this is stated plainly in falsifiability. Status moved draft to vetted.

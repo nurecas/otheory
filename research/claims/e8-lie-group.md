@@ -19,8 +19,9 @@ steelman: "E8 is one of the five exceptional simple Lie groups. It has dimension
 strongest_objection: "None to the mathematics. Caution belongs only to physical claims that *use* E8 (see `lisi-e8-toe`): the beauty of the object does not transfer confidence to any physics built on it."
 falsifiability: "Proven mathematics; not empirically falsifiable."
 depends_on: []
+related_to: [group-theory-symmetry-mathematics, noether-symmetry-conservation, lisi-e8-toe, platonic-solids-five]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:323598d4745d24b3"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The E8 root projection is a signature visual for the geometry section. It

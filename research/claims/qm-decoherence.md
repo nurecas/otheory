@@ -19,8 +19,9 @@ steelman: "Interaction with an environment rapidly diagonalizes a system's reduc
 strongest_objection: "Decoherence explains the *appearance* of collapse and the emergence of classicality, but it does not by itself explain why a single definite outcome is experienced (the 'and-vs-or' problem). It presupposes the Born rule and a system/environment split. So it is E1 as a phenomenon while leaving the interpretive measurement problem open — a distinction routinely blurred in popular accounts."
 falsifiability: "Predicts specific decoherence timescales as a function of system size and coupling; these have been measured and confirmed. A failure to observe interference loss at predicted rates would falsify it."
 depends_on: []
+related_to: [consistent-histories-interpretation, born-rule-empirical-status, grw-csl-objective-collapse, copenhagen-interpretation]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:80a7cd2955d82614"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). Deliberately split from interpretation: the decoherence *mechanism* is

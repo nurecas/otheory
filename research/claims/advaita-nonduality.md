@@ -19,8 +19,9 @@ steelman: "In Advaita Vedānta, ultimate reality (Brahman) is non-dual, and the 
 strongest_objection: "As metaphysics it is not empirically decidable; as a first-person soteriology its 'evidence' is contemplative report, not third-person data. It should be represented as a tradition's position and practice (E5), never as a scientific result. Rival darśanas (e.g. Dvaita) and Western critics contest the identity thesis on argumentative grounds."
 falsifiability: "Not an empirical claim; belongs to the symbolic/contemplative register (E5). Any attempt to state it as physics would be a category error."
 depends_on: []
+related_to: [madhyamaka-sunyata-emptiness, kashmir-shaivism-spanda, analytic-idealism-kastrup, sufism-wahdat-al-wujud]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:db87c58329211bce"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The religious/mystical anchor. Filed E5 and represented as Advaita's own

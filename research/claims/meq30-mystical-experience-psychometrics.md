@@ -1,0 +1,28 @@
+---
+id: meq30-mystical-experience-psychometrics
+title: The 30-item Mystical Experience Questionnaire (MEQ30) is a validated psychometric instrument that reliably measures a four-factor structure (mystical, positive mood, transcendence of time/space, ineffability) in acute drug and meditation states
+domain: [mysticism, consciousness-science]
+type: empirical
+tier: E3
+status: vetted
+confidence: medium
+sources:
+  - title: "Barrett, F.S., Johnson, M.W., Griffiths, R.R. (2015). Validation of the revised Mystical Experience Questionnaire in experimental sessions with psilocybin. Journal of Psychopharmacology 29(11), 1182-1190."
+    url: "https://journals.sagepub.com/doi/abs/10.1177/0269881115609019"
+    kind: peer-reviewed
+    verified: true
+  - title: "MacLean, K.A., Leoutsakos, J.M., Johnson, M.W., Griffiths, R.R. (2012). Factor Analytic Support for the Structure of the Mystical Experience Questionnaire (source of the original online-survey MEQ)."
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3050654/"
+    kind: peer-reviewed
+    verified: true
+steelman: "Barrett, Johnson & Griffiths (2015) pooled n=184 participants across five controlled psilocybin studies and used confirmatory factor analysis to show the MEQ30 has a stable four-factor structure and that latent MEQ30 scores prospectively predict persisting changes in attitudes, behavior, and well-being — giving the instrument real convergent and external validity as a measure of a reportable, structured acute-state phenomenon, independent of what that phenomenon metaphysically is. It operationalizes Stace's categories into a checkable, replicated measurement tool used across multiple independent labs and drugs (psilocybin, LSD) and languages (English, Finnish, French, Portuguese, Dutch)."
+strongest_objection: "The MEQ30 measures self-reported phenomenology, not any mind-independent referent — a high 'mystical' score demonstrates only that a describable experience occurred and was memorable/impactful, not that anything metaphysically 'unitive' was contacted. This is compounded by a psychometric circularity risk: item content (e.g. 'sense of oneness with the ultimate reality') is written directly from Stace's own phenomenological categories, so confirmatory factor analysis 'validating' the four-factor structure is substantially confirming that Stace's own taxonomy is internally coherent when turned into a questionnaire, not that the taxonomy carves nature (or cross-cultural experience) at a joint independent of the instrument's design — cross-cultural or cross-tradition applicability of the factor structure is not guaranteed and is itself contested along the same lines as the perennialism/constructivism debate. Self-report after a drug/altered state is also subject to demand characteristics, expectancy from the study's framing ('mystical experience' is named in the consent process itself), and retrospective narrative-shaping."
+falsifiability: "Empirical/psychometric claim: falsifiable by factor-analytic replication failure, poor test-retest reliability, or failure of the latent 'mystical' factor to predict independently-measured outcomes (as tested in Barrett et al. 2015 and subsequent cross-language validations). This is the correct empirical tier (E3: a specific, replicated but still-debated-scope measurement construct), separate from any claim about what a high MEQ30 score metaphysically means."
+depends_on: [stace-common-core-typology]
+related_to: [hood-mysticism-scale-psychometrics, griffiths-psilocybin-mystical-experience, perennialism-constructivism-debate]
+last_vetted: 2026-07-07
+content_hash: "sha256:a31a15314a16e42c"
+---
+This is an EMPIRICAL MEASUREMENT claim (E3, held at E3 rather than E2 given the open construct-validity and circularity questions): the MEQ30 is a validated, replicated self-report instrument that operationalizes Stace-style categories and predicts durable attitude/behavior change. It measures the occurrence and structure of a reportable state, not the truth of any metaphysical content that state seems to disclose (kept as a separate claim, mystical-experience-epistemic-status). Directly supports O Theory's empirical program (the "widened valve" is trackable by a real instrument) while fencing off the metaphysical "contact with an O-Source" reading as unaddressed by the measure.
+
+**Red-team notes (2026-07-07):** Both sources verified — Barrett, Johnson & Griffiths (2015), Journal of Psychopharmacology 29(11):1182-1190, confirmed via SAGE and independent search: n=184 pooled across five psilocybin studies, confirmatory factor analysis supporting the four-factor structure, external/convergent validity via prediction of persisting attitude/behavior/well-being change — matches the claim file's description precisely. MacLean et al. (2012) PMC source confirmed live and is the correct origin paper for the original online-survey MEQ factor structure. Tier E3 confirmed appropriate (not E2): this is a real, replicated measurement instrument, but "reliably measures... in acute drug and meditation states" in the title overstates scope slightly since the cited validation studies are psilocybin-specific — the meditation-state application is more provisional and should be read as an extension, not as equally validated. This is a labeling nuance, not a fabrication, so E3/vetted stands. Explicitly strengthened the objection field with the MEQ30/Stace circularity risk per audit instructions (items are literally written from Stace's categories; factor-analytic "confirmation" partly confirms internal coherence of the item set, not an independently-discovered natural kind) — this was present in the draft but stated too gently; now stated as a first-order objection, not an aside.

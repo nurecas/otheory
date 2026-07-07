@@ -42,8 +42,11 @@ Optional argument `$ARGUMENTS`:
    + strongest objection, and updates `research/claims-index.md`.
 
 4. **Re-synthesize.** Run `synthesizer` over the vetted corpus so
-   `synthesis/{abstract,framework,open-problems,predictions,existence-prompt}.md` and `synthesis/bridges/*`
-   stay current (keep the existence-prompt "Render contract" intact). Then run `skeptic-auditor`
+   `synthesis/{abstract,overview,framework,open-problems,predictions,existence-prompt}.md` and
+   `synthesis/bridges/*` stay current (`overview.md` is the landing essay; keep the existence-prompt
+   "Render contract" intact). Researchers/vetters also maintain each claim's `related_to` front-matter
+   field (2-4 real conceptual links: rivals, same debate, lineage, observation↔interpretation) — these
+   render as the thin "relation" edges that keep the graph connected. Then run `skeptic-auditor`
    (red-team + citation audit -> `research/audit/`). Nothing is publish-ready while a critical is open.
 
 5. **Commit (deterministic).** Run:

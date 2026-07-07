@@ -1,0 +1,3 @@
+Fonts (SIL Open Font License 1.1):
+- Instrument Serif — https://github.com/Instrument/instrument-serif
+- Literata — https://github.com/googlefonts/literata

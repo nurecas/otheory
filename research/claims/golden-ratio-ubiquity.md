@@ -19,8 +19,9 @@ steelman: "φ = (1+√5)/2 is a genuine and beautiful mathematical constant (the
 strongest_objection: "The broad claim — that φ governs the Parthenon, the Mona Lisa, the 'ideal' human body, and beauty generally — fails on inspection. Markowsky (1992) documents that the celebrated examples are cherry-picked, measured loosely, or fabricated; controlled aesthetic-preference studies do not single out φ. Presented as a scientific/universal law it is E6 (unsupported), recorded here only to mark the boundary honestly."
 falsifiability: "The ubiquity/aesthetics claim is testable and has largely failed testing (no reliable preference for φ; landmark 'φ in the Parthenon' cases don't hold up). It is falsified as a universal law — hence E6, not the E1 mathematics it borrows prestige from."
 depends_on: [platonic-solids-five]
+related_to: [phyllotaxis-fibonacci-golden-angle, sacred-geometry-cosmic-blueprint-claim, sacred-geometry-symbolic-tradition]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:198c024c6c6125c1"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The deliberate E6 exemplar. It shows the corpus recording a popular claim

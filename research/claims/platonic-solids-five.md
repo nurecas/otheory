@@ -19,8 +19,9 @@ steelman: "A convex regular polyhedron requires identical regular polygonal face
 strongest_objection: "None to the mathematics. The only thing to guard against is the *symbolic* freight often attached to it (elements, cosmos, 'sacred geometry') — that is a separate E5 register and must not borrow the theorem's E1 certainty."
 falsifiability: "A proven theorem; not empirically falsifiable. The claim would be false only if the definition of 'convex regular polyhedron' were changed."
 depends_on: []
+related_to: [sacred-geometry-symbolic-tradition, penrose-tiling-quasicrystals, group-theory-symmetry-mathematics, sacred-geometry-cosmic-blueprint-claim]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:2fac178b65a84708"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). The real mathematics that the geometry visualizer will render. It is E1

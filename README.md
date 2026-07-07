@@ -107,11 +107,23 @@ To add knowledge and grow the theory, see **RUNBOOK.md**. In short: drop sources
 
 ## What's on the page
 
-Two visually distinct zones: **Zone A — Rigorous Core** (claims by domain, tier-badged, full provenance +
-a domain×tier landscape) and **Zone B — Interpretive Synthesis** (bridges, a chord diagram, an interactive
-layer stack, a three.js geometry visualizer, and the **Portrait of Existence** — a generative artwork that
-is a pure function of the corpus and evolves with every research run). The Evidence Key is visible up front;
-every claim links its sources.
+A **chaptered reading experience** (hash-routed, fully static) rather than one long scroll:
+
+1. **The Synthesis** — the landing: the generative **Portrait of Existence** beside the synthesizer's
+   unified essay (`synthesis/overview.md`). The portrait has two modes: *as evidenced* (tier-honest shells)
+   and *as if all were true* (every claim rendered solid — one radiant counterfactual whole, labeled as art).
+2. **The Map** — the connection graph: derivation arrows, thin `related_to` relation edges, and dashed
+   interpretive bridges by register; filters + click-through to any claim.
+3. **The Evidence** — the rigorous core (Zone A): claims by domain with full provenance + the domain×tier
+   landscape.
+4. **The Interpretations** — the clearly-marked layer (Zone B): bridges by register, the chord, the layer
+   stack, the geometry visualizer, and the E4/E5 claims on their own terms.
+5. **Open Questions** — the honest ledger + falsifiable predictions.
+6. **The Method** — how the machine works, the full Evidence Key, the film.
+
+A shared claim drawer opens from anywhere (map node, chip, card) with steelman, objection, falsifiability,
+and verified sources. Light theme by default (dark toggle); typography is vendored Fraunces + Newsreader
+(SIL OFL). Every claim links its sources; the artwork and the whole site are a pure function of the corpus.
 
 ## Notes on this implementation (deviations from the original spec)
 

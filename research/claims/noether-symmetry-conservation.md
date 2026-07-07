@@ -19,8 +19,9 @@ steelman: "For any physical system whose action is invariant under a continuous 
 strongest_objection: "None to the theorem itself — it is proven. The only honest caution is scope: it applies to symmetries of a variational action; it does not by itself tell you which symmetries nature actually has, nor does it license metaphysical readings of 'symmetry' as cosmic unity."
 falsifiability: "As a mathematical theorem it is not empirically falsifiable; it is proven from the calculus of variations. Its physical applications (which conservation laws hold) are independently testable and confirmed."
 depends_on: []
+related_to: [standard-model-gauge-theory, group-theory-symmetry-mathematics, e8-lie-group, lisi-e8-toe]
 last_vetted: 2026-07-07
-content_hash: "seed"
+content_hash: "sha256:78d2ccac8d5ce235"
 seed: true
 ---
 SEED CLAIM (Stage 2 bootstrap). A genuine theorem — the word "proof" is used correctly here. Noether's
