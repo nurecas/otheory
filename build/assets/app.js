@@ -310,11 +310,12 @@
     return roots;
   }
   function e8Basis() {
-    const c = (k) => Math.cos((2 * Math.PI * k) / 8 + 0.35), s = (k) => Math.sin((2 * Math.PI * k) / 8 + 0.35);
-    let u = [], w = [];
-    for (let k = 0; k < 8; k++) { u.push(c(k)); w.push(s(k)); }
-    const norm = (a) => { const n = Math.hypot(...a); return a.map((x) => x / n); };
-    return [norm(u), norm(w)];
+    // the TRUE E8 Coxeter-plane projection — computed from the Coxeter element and verified offline to be
+    // perfectly 30-fold symmetric (8 rings × 30 roots). This is the genuine "E8 mandala", not an approximation.
+    return [
+      [-0.075643, -0.436276, -0.305414, -0.136021, 0.064499, 0.287382, 0.522889, -0.576195],
+      [-0.060561, -0.196697, 0.002379, 0.169897, 0.298535, 0.382672, 0.418630, 0.719694],
+    ];
   }
   const fallbackMsg = (kind) => `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#9aa2b5;text-align:center;padding:2rem;font-size:0.9rem">This ${kind} needs WebGL, which isn't available in this browser. Every claim it draws from is listed with full provenance.</div>`;
 
@@ -464,7 +465,7 @@
       const N = Math.max(nodes.length, 1);
       const anchors = {};
       const GA = Math.PI * (3 - Math.sqrt(5));
-      const SEG = 96; // higher segment count → smooth, non-angular fiber circles
+      const SEG = 200; // high segment count → smooth, truly circular fibers
 
       // Hopf fiber: base point (theta,phi) on S^2 -> a circle in S^3, stereographically projected to R^3.
       // Nearby base points give linked rings (nested tori) — the classic Hopf image.
@@ -510,15 +511,16 @@
       pg.setAttribute('color', new THREE.Float32BufferAttribute(pcol, 3));
       unified.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.7, map: glow, opacity: 0.95, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
 
-      // connections — bridges + relations — as filaments converging through the core
+      // connections — bridges + relations — as filaments that BOW GENTLY INWARD (not funneled through the exact
+      // centre, which additively blows out to white and hides the core). Dim, so the web reads without glare.
       const drawFil = (a, b, color, op) => {
         const A = anchors[a], B = anchors[b]; if (!A || !B) return;
-        const mid = A.clone().add(B).multiplyScalar(0.5).setLength(2.4 + rng() * 2);
+        const mid = A.clone().add(B).multiplyScalar(0.5).multiplyScalar(0.55);
         const pts = new THREE.QuadraticBezierCurve3(A, mid, B).getPoints(26);
         unified.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), reg('unified', new THREE.LineBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false, blending: THREE.AdditiveBlending }))));
       };
-      (art.bridges || []).forEach((b) => { const col = hex(regCanvas(b.register)); for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.5); });
-      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.14));
+      (art.bridges || []).forEach((b) => { const col = hex(regCanvas(b.register)); for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.28); });
+      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.055));
 
       // core — nested vector equilibrium (cuboctahedron), gold
       const core = new THREE.Group(); unified.add(core); unified.userData.core = core;
@@ -529,22 +531,27 @@
       };
       const ve = [[1,1,0],[1,-1,0],[-1,1,0],[-1,-1,0],[1,0,1],[1,0,-1],[-1,0,1],[-1,0,-1],[0,1,1],[0,1,-1],[0,-1,1],[0,-1,-1]].map((v) => new THREE.Vector3(v[0], v[1], v[2]));
       const veEdges = []; for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) if (Math.abs(ve[i].distanceTo(ve[j]) - Math.SQRT2) < 0.02) veEdges.push([i, j]);
-      goldLines(ve, veEdges, 1.9, 0.55); goldLines(ve, veEdges, 1.15, 0.4); goldLines(ve, veEdges, 0.62, 0.3); // fractal nesting
-      // the E8 mandala — 240 roots projected, retained as the beautiful lattice at mid radius
+      goldLines(ve, veEdges, 2.3, 0.7); goldLines(ve, veEdges, 1.42, 0.55); goldLines(ve, veEdges, 0.78, 0.4); // fractal nesting, brighter so it reads as a structure
+      // the E8 mandala — 240 roots in the true Coxeter plane (30-fold symmetric, 8 rings). Kept flat (depth is a
+      // gentle radius-only bowl, so the perfect symmetry is preserved) and set at mid radius.
       (function e8mandala() {
         const roots = e8Roots(); const b = e8Basis();
-        const v3 = (() => { const a = []; for (let k = 0; k < 8; k++) a.push(Math.cos((4 * Math.PI * k) / 8 + 0.9)); const n = Math.hypot(...a); return a.map((x) => x / n); })();
-        const pos = [], col = []; const gold = hex('#ffe6a8'), white = hex('#fff6e0'); let mx = 0.001;
-        const raw = roots.map((r) => { let x = 0, y = 0, z = 0; for (let k = 0; k < 8; k++) { x += r[k] * b[0][k]; y += r[k] * b[1][k]; z += r[k] * v3[k]; } mx = Math.max(mx, Math.hypot(x, y)); return [x, y, z]; });
-        const s = 5.7 / mx;
-        raw.forEach((p, i) => { pos.push(p[0] * s, p[1] * s, p[2] * s * 0.32); const c = (i % 3 === 0) ? gold : white; col.push(c.r, c.g, c.b); });
+        const raw = roots.map((r) => { let x = 0, y = 0; for (let k = 0; k < 8; k++) { x += r[k] * b[0][k]; y += r[k] * b[1][k]; } return [x, y]; });
+        let mx = 0.001; raw.forEach(([x, y]) => { mx = Math.max(mx, Math.hypot(x, y)); });
+        const s = 5.5 / mx; const pos = [], col = []; const gold = hex('#ffe0a0'), white = hex('#fff6e0');
+        raw.forEach(([x, y], i) => {
+          const X = x * s, Y = y * s, rr = Math.hypot(X, Y);
+          const Z = rr * rr * 0.05 - 1.0; // radius-only bowl → depth without breaking 30-fold symmetry
+          pos.push(X, Y, Z); const c = (i % 2 === 0) ? gold : white; col.push(c.r, c.g, c.b);
+        });
         const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
-        unified.add(new THREE.Points(g, reg('unified', new THREE.PointsMaterial({ size: 0.17, map: glow, vertexColors: true, transparent: true, opacity: 0.72, depthWrite: false, blending: THREE.AdditiveBlending }))));
+        unified.add(new THREE.Points(g, reg('unified', new THREE.PointsMaterial({ size: 0.2, map: glow, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }))));
       })();
-      const cpos = [], ccol = []; const g1 = hex('#ffe9b3'), w = hex('#ffffff');
-      for (let i = 0; i < 320; i++) { const r = Math.pow(rng(), 0.6) * 2.1; const th = Math.acos(2 * rng() - 1), ph = 2 * Math.PI * rng(); cpos.push(r * Math.sin(th) * Math.cos(ph), r * Math.cos(th), r * Math.sin(th) * Math.sin(ph)); const c = rng() < 0.5 ? g1 : w; ccol.push(c.r, c.g, c.b); }
+      // a SMALL, soft central glow (was a big white sun that hid the geometry)
+      const cpos = [], ccol = []; const g1 = hex('#ffe9b3'), w = hex('#fff3d6');
+      for (let i = 0; i < 90; i++) { const r = Math.pow(rng(), 0.7) * 1.25; const th = Math.acos(2 * rng() - 1), ph = 2 * Math.PI * rng(); cpos.push(r * Math.sin(th) * Math.cos(ph), r * Math.cos(th), r * Math.sin(th) * Math.sin(ph)); const c = rng() < 0.5 ? g1 : w; ccol.push(c.r, c.g, c.b); }
       const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cpos, 3)); cg.setAttribute('color', new THREE.Float32BufferAttribute(ccol, 3));
-      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.55, map: glow, opacity: 0.85, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.42, map: glow, opacity: 0.4, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
     })(); } catch (e) { console.error('unified art', e); }
 
     /* — crossfade + loop — */

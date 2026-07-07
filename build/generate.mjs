@@ -546,6 +546,10 @@ function assemble({ claims, bridges, graph, art }) {
 
   const overviewRaw = readSynth('overview.md');
   const ov = overviewRaw ? titleAndBody(overviewRaw) : { title: 'The Synthesis', body: stripAuthoring(readSynth('abstract.md')) };
+  // Split the essay: the THEORY (landing) vs "How the theory was assembled, and what it rests on" (Method & Map).
+  const _ovSplit = ov.body.indexOf('## How the theory was assembled');
+  const theoryBody = (_ovSplit === -1 ? ov.body : ov.body.slice(0, _ovSplit)).replace(/^##\s+The theory\s*$/m, '').trim();
+  const assemblyBody = _ovSplit === -1 ? '' : ov.body.slice(_ovSplit).trim();
   // Split the abstract's "what O Theory is" narrative: lead (→ landing intro) + rest (→ method framing).
   const absClean = truncateBefore(stripAuthoring(readSynth('abstract.md')), '## How to read the evidence');
   const absBlocks = absClean.split(/\n\s*\n/).filter((b) => b.trim());
@@ -569,7 +573,8 @@ function assemble({ claims, bridges, graph, art }) {
     GRAPH_LEGEND: graphLegend(),
     CHAPTER_NAV: chapterNav(),
     OVERVIEW_TITLE: esc(ov.title || 'The Synthesis'),
-    OVERVIEW: renderMarkdown(ov.body),
+    OVERVIEW: renderMarkdown(theoryBody),
+    ASSEMBLY: renderMarkdown(assemblyBody),
     EVIDENCE_KEY_MINI: evidenceKey(false),
     EVIDENCE_KEY_FULL: evidenceKey(true),
     EVIDENCE_CHAPTER: evidenceChapter(claims),
