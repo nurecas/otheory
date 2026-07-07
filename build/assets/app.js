@@ -317,6 +317,15 @@
       [-0.060561, -0.196697, 0.002379, 0.169897, 0.298535, 0.382672, 0.418630, 0.719694],
     ];
   }
+  function e8Edges(roots) {            // 6720 root pairs at squared-distance 2 — the rosette edges (Gosset 4_21)
+    const E = [];
+    for (let i = 0; i < roots.length; i++)
+      for (let j = i + 1; j < roots.length; j++) {
+        let d2 = 0; for (let k = 0; k < 8; k++) { const dd = roots[i][k] - roots[j][k]; d2 += dd * dd; }
+        if (Math.abs(d2 - 2) < 1e-6) E.push([i, j]);
+      }
+    return E;                          // length 6720 (verified 30-fold symmetric: 224 edge-midpoints / 12° sector)
+  }
   const fallbackMsg = (kind) => `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#9aa2b5;text-align:center;padding:2rem;font-size:0.9rem">This ${kind} needs WebGL, which isn't available in this browser. Every claim it draws from is listed with full provenance.</div>`;
 
   /* ═══════════ geometry (lazy: interpretations) ═══════════ */
@@ -465,51 +474,53 @@
       const N = Math.max(nodes.length, 1);
       const anchors = {};
       const GA = Math.PI * (3 - Math.sqrt(5));
-      const SEG = 200; // high segment count → smooth, truly circular fibers
-
       // Hopf fiber: base point (theta,phi) on S^2 -> a circle in S^3, stereographically projected to R^3.
-      // Nearby base points give linked rings (nested tori) — the classic Hopf image.
-      const fiber = (theta, phi) => {
-        const a = Math.cos(theta / 2), b = Math.sin(theta / 2);
-        const ring = [];
+      // NO clamp — theta is restricted to a band (0.17π..0.47π) where d=1-y2 stays >= 0.328, so every fiber is a
+      // complete SMOOTH Villarceau circle: no singularity walls (the old "rounded-square" look), no far-flung spikes.
+      // A d<CULL guard splits the strip as belt-and-suspenders; verified to fire on 0 segments in-band.
+      const SEG = 220, CULL = 0.28, TLO = 0.17, THI = 0.47;
+      const fiber = (theta, phi) => {                        // array of {v, d}
+        const a = Math.cos(theta / 2), b = Math.sin(theta / 2), out = [];
         for (let k = 0; k <= SEG; k++) {
           const psi = (k / SEG) * 2 * Math.PI;
           const x1 = a * Math.cos(psi), y1 = a * Math.sin(psi);
           const x2 = b * Math.cos(psi + phi), y2 = b * Math.sin(psi + phi);
-          let d = 1 - y2; if (d < 0.16) d = 0.16;            // clamp the projection singularity
-          ring.push(new THREE.Vector3(x1 / d, y1 / d, x2 / d));
+          const d = 1 - y2;
+          out.push({ v: new THREE.Vector3(x1 / d, y1 / d, x2 / d), d });
         }
-        return ring;
+        return out;
       };
-      // first pass — raw rings + max extent for scaling
+      // first pass — raw rings + max extent (from kept samples only) for scaling
       const raw = []; let maxLen = 0.001;
       nodes.forEach((n, i) => {
-        const theta = 0.24 * Math.PI + 0.52 * Math.PI * ((i + 0.5) / N);
-        const r = fiber(theta, GA * i);
-        r.forEach((p) => { maxLen = Math.max(maxLen, p.length()); });
-        raw.push(r);
+        const theta = TLO * Math.PI + (THI - TLO) * Math.PI * ((i + 0.5) / N);
+        const ring = fiber(theta, GA * i);
+        ring.forEach((s) => { if (s.d >= CULL) maxLen = Math.max(maxLen, s.v.length()); });
+        raw.push(ring);
       });
-      const scale = 9.6 / maxLen;
-      // second pass — one LineSegments for all fibers (vertex-colored) + bright claim points
+      const scale = 9.6 / maxLen;                            // veil halo at ~9.6, nearly 2× the rosette (5.5)
+      // second pass — one LineSegments for all fibers (vertex-colored) + one anchor Point per node
       const lpos = [], lcol = [], ppos = [], pcol = [];
       nodes.forEach((n, i) => {
-        const col = hex(domCanvas(n.domain)); const r = raw[i];
-        for (let k = 0; k < r.length - 1; k++) {
-          const p = r[k], q = r[k + 1];
-          lpos.push(p.x * scale, p.y * scale, p.z * scale, q.x * scale, q.y * scale, q.z * scale);
+        const col = hex(domCanvas(n.domain)); const ring = raw[i];
+        for (let k = 0; k < ring.length - 1; k++) {
+          const P = ring[k], Q = ring[k + 1];
+          if (P.d < CULL || Q.d < CULL) continue;            // break the strip — never draw a giant chord (spike)
+          lpos.push(P.v.x * scale, P.v.y * scale, P.v.z * scale, Q.v.x * scale, Q.v.y * scale, Q.v.z * scale);
           lcol.push(col.r, col.g, col.b, col.r, col.g, col.b);
         }
-        const anc = r[Math.floor(rng() * r.length)].clone().multiplyScalar(scale);
+        const kept = ring.filter((s) => s.d >= CULL);        // anchor guaranteed on a kept vertex
+        const anc = kept[Math.floor(rng() * kept.length)].v.clone().multiplyScalar(scale);
         anchors[n.id] = anc; ppos.push(anc.x, anc.y, anc.z); pcol.push(col.r, col.g, col.b);
       });
       const lg = new THREE.BufferGeometry();
       lg.setAttribute('position', new THREE.Float32BufferAttribute(lpos, 3));
       lg.setAttribute('color', new THREE.Float32BufferAttribute(lcol, 3));
-      unified.add(new THREE.LineSegments(lg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.3, depthWrite: false, blending: THREE.AdditiveBlending }))));
-      const pg = new THREE.BufferGeometry();
-      pg.setAttribute('position', new THREE.Float32BufferAttribute(ppos, 3));
-      pg.setAttribute('color', new THREE.Float32BufferAttribute(pcol, 3));
-      unified.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.7, map: glow, opacity: 0.95, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      unified.add(new THREE.LineSegments(lg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.18, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      const pg2 = new THREE.BufferGeometry();
+      pg2.setAttribute('position', new THREE.Float32BufferAttribute(ppos, 3));
+      pg2.setAttribute('color', new THREE.Float32BufferAttribute(pcol, 3));
+      unified.add(new THREE.Points(pg2, reg('unified', new THREE.PointsMaterial({ size: 0.55, map: glow, opacity: 0.95, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
 
       // connections — bridges + relations — as filaments that BOW GENTLY INWARD (not funneled through the exact
       // centre, which additively blows out to white and hides the core). Dim, so the web reads without glare.
@@ -519,8 +530,8 @@
         const pts = new THREE.QuadraticBezierCurve3(A, mid, B).getPoints(26);
         unified.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), reg('unified', new THREE.LineBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false, blending: THREE.AdditiveBlending }))));
       };
-      (art.bridges || []).forEach((b) => { const col = hex(regCanvas(b.register)); for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.28); });
-      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.055));
+      (art.bridges || []).forEach((b) => { const col = hex(regCanvas(b.register)); for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.24); });
+      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.05));
 
       // core — nested vector equilibrium (cuboctahedron), gold
       const core = new THREE.Group(); unified.add(core); unified.userData.core = core;
@@ -532,26 +543,52 @@
       const ve = [[1,1,0],[1,-1,0],[-1,1,0],[-1,-1,0],[1,0,1],[1,0,-1],[-1,0,1],[-1,0,-1],[0,1,1],[0,1,-1],[0,-1,1],[0,-1,-1]].map((v) => new THREE.Vector3(v[0], v[1], v[2]));
       const veEdges = []; for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) if (Math.abs(ve[i].distanceTo(ve[j]) - Math.SQRT2) < 0.02) veEdges.push([i, j]);
       goldLines(ve, veEdges, 2.3, 0.7); goldLines(ve, veEdges, 1.42, 0.55); goldLines(ve, veEdges, 0.78, 0.4); // fractal nesting, brighter so it reads as a structure
-      // the E8 mandala — 240 roots in the true Coxeter plane (30-fold symmetric, 8 rings). Kept flat (depth is a
-      // gentle radius-only bowl, so the perfect symmetry is preserved) and set at mid radius.
+      // the E8 ROSETTE — the recognizable 30-fold mandala, and the focal centrepiece. 240 roots in the true
+      // Coxeter plane; its 6720 minimal-distance edges are drawn faint (0.10) in ONE additive buffer so they stay a
+      // whisper alone but bloom into 240 crisp stars where 40-68 chords bundle at each ring-vertex. Color-ramped by
+      // root radius (deep-gold hub → pale rim) so the mid-rings don't blob. Flat on a radius-only bowl (symmetry-safe).
       (function e8mandala() {
-        const roots = e8Roots(); const b = e8Basis();
+        const roots = e8Roots(), b = e8Basis(), edges = e8Edges(roots);
         const raw = roots.map((r) => { let x = 0, y = 0; for (let k = 0; k < 8; k++) { x += r[k] * b[0][k]; y += r[k] * b[1][k]; } return [x, y]; });
-        let mx = 0.001; raw.forEach(([x, y]) => { mx = Math.max(mx, Math.hypot(x, y)); });
-        const s = 5.5 / mx; const pos = [], col = []; const gold = hex('#ffe0a0'), white = hex('#fff6e0');
-        raw.forEach(([x, y], i) => {
-          const X = x * s, Y = y * s, rr = Math.hypot(X, Y);
-          const Z = rr * rr * 0.05 - 1.0; // radius-only bowl → depth without breaking 30-fold symmetry
-          pos.push(X, Y, Z); const c = (i % 2 === 0) ? gold : white; col.push(c.r, c.g, c.b);
+        let mx = 0.001; raw.forEach(([x, y]) => { mx = Math.max(mx, Math.hypot(x, y)); }); // mx ≈ 1.1396
+        const s = 5.5 / mx;                                              // outer ring lands at r = 5.5
+        const P = raw.map(([x, y]) => { const X = x * s, Y = y * s, rr = Math.hypot(X, Y); return new THREE.Vector3(X, Y, rr * rr * 0.05 - 1.0); });
+        const rr8 = raw.map(([x, y]) => Math.hypot(x, y));               // root radius 0.238..1.140
+        // edges — warm-hub → pale-rim ramp by mean root radius (anti-blob), ONE LineSegments
+        const inner = hex('#e8a13c'), midc = hex('#ffc65a'), outer = hex('#fff2c8');
+        const lerp = (a, c, t) => ({ r: a.r + (c.r - a.r) * t, g: a.g + (c.g - a.g) * t, b: a.b + (c.b - a.b) * t });
+        const ramp = (t) => (t < 0.5 ? lerp(inner, midc, t * 2) : lerp(midc, outer, (t - 0.5) * 2));
+        const ep = [], ec = [];
+        edges.forEach(([i, j]) => {
+          const A = P[i], B = P[j], t = Math.min(1, (rr8[i] + rr8[j]) / 2 / mx), c = ramp(t);
+          ep.push(A.x, A.y, A.z, B.x, B.y, B.z); ec.push(c.r, c.g, c.b, c.r, c.g, c.b);
         });
-        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
-        unified.add(new THREE.Points(g, reg('unified', new THREE.PointsMaterial({ size: 0.2, map: glow, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }))));
+        const eg = new THREE.BufferGeometry();
+        eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
+        eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
+        unified.add(new THREE.LineSegments(eg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.10, depthWrite: false, blending: THREE.AdditiveBlending }))));
+        // 8 concentric 30-gon ring-circles — subliminal scaffolding, ONE LineSegments
+        const RINGS = [0.2382, 0.3855, 0.4739, 0.5729, 0.7043, 0.7667, 0.9270, 1.1396];
+        const rp = [], SEGc = 96;
+        RINGS.forEach((rr) => {
+          const R = rr * s, Z = R * R * 0.05 - 1.0;
+          for (let k = 0; k < SEGc; k++) { const a0 = (k / SEGc) * 2 * Math.PI, a1 = ((k + 1) / SEGc) * 2 * Math.PI; rp.push(Math.cos(a0) * R, Math.sin(a0) * R, Z, Math.cos(a1) * R, Math.sin(a1) * R, Z); }
+        });
+        const rg = new THREE.BufferGeometry(); rg.setAttribute('position', new THREE.Float32BufferAttribute(rp, 3));
+        unified.add(new THREE.LineSegments(rg, reg('unified', new THREE.LineBasicMaterial({ color: 0xffe4a0, transparent: true, opacity: 0.08, depthWrite: false, blending: THREE.AdditiveBlending }))));
+        // promoted 240 root points — the lattice stars atop the edge blooms
+        const gp = hex('#ffe0a0'), wp = hex('#fff6e0'), pp = [], pc = [];
+        P.forEach((v, i) => { pp.push(v.x, v.y, v.z); const c = (i % 2 === 0) ? gp : wp; pc.push(c.r, c.g, c.b); });
+        const pg = new THREE.BufferGeometry();
+        pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
+        pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
+        unified.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.30, map: glow, vertexColors: true, transparent: true, opacity: 0.92, depthWrite: false, blending: THREE.AdditiveBlending }))));
       })();
       // a SMALL, soft central glow (was a big white sun that hid the geometry)
       const cpos = [], ccol = []; const g1 = hex('#ffe9b3'), w = hex('#fff3d6');
       for (let i = 0; i < 90; i++) { const r = Math.pow(rng(), 0.7) * 1.25; const th = Math.acos(2 * rng() - 1), ph = 2 * Math.PI * rng(); cpos.push(r * Math.sin(th) * Math.cos(ph), r * Math.cos(th), r * Math.sin(th) * Math.sin(ph)); const c = rng() < 0.5 ? g1 : w; ccol.push(c.r, c.g, c.b); }
       const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cpos, 3)); cg.setAttribute('color', new THREE.Float32BufferAttribute(ccol, 3));
-      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.42, map: glow, opacity: 0.4, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.42, map: glow, opacity: 0.3, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
     })(); } catch (e) { console.error('unified art', e); }
 
     /* — crossfade + loop — */

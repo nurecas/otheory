@@ -29,7 +29,7 @@ in three.js. It is not decoration: every visual choice is tied to a tier, a doma
 > among many at its depth.
 >
 > - **At the center — what is proven or measured (E1, ~23 elements):** exact, crystalline, opaque and dense.
->   The five Platonic solids and the 248 roots of E8, sharp-edged and still; general relativity and the
+>   The five Platonic solids and the 240 roots of E8, sharp-edged and still; general relativity and the
 >   Standard Model as clean confirmed lattices; the second law and the black-hole area law counting entropy
 >   in discrete points of light; Gödel's self-reference folded as an exact closed loop; Bell and
 >   Kochen–Specker as unbreakable knots; Shannon's coding limits, Noether's conserved line, fractal
