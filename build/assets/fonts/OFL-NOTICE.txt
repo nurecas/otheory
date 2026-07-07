@@ -1,3 +1,4 @@
 Fonts (SIL Open Font License 1.1):
-- Instrument Serif — https://github.com/Instrument/instrument-serif
-- Literata — https://github.com/googlefonts/literata
+- Young Serif — https://github.com/noirblancrouge/YoungSerif
+- Newsreader — https://github.com/productiontype/Newsreader
+- Hanken Grotesk — https://github.com/hanken-design/HankenGrotesk

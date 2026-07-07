@@ -1,12 +1,12 @@
 # Predictions — falsifiable, with tests
 
-_Owned by the `synthesizer` agent. Wide-sweep version (2026-07-07)._
+_Owned by the `synthesizer` agent. Synthesis-first version (2026-07-07)._
 
 A prediction only belongs here if something could confirm or falsify it. Ideas that nothing could falsify are
 **not** listed as predictions — they live in the philosophical (E4) or symbolic (E5) layers instead. Each
 entry names the tier of the theory generating it; **a passed test does not by itself promote the theory's
 tier**, and none of these tests would confirm O Theory's metaphysics — they test the physics/observation
-claims the framework touches.
+claims the framework touches. The rows are an even list; no single one is a standout.
 
 | # | Prediction | Confirm | Falsify | Feasible now? | From (tier) |
 |---|---|---|---|---|---|
@@ -18,6 +18,18 @@ claims the framework touches.
 | 6 | Concept-injection introspection reproduces independently, and its rate tracks feature-steering | Another group replicates ~detection-rate and its dependence on injected-feature strength | No replication, or "detection" is a prompt artifact with no activation dependence | **Yes — mechanistic-interpretability methods are public** (`anthropic-introspective-awareness-concept-injection`, E3) | Concept-injection observation (E3) |
 | 7 | The Butlin et al. indicator-properties can be operationalized to score real AI systems | The indicator battery yields reproducible, inter-rater-reliable scores on named systems | The indicators cannot be applied without collapsing into the contested theories they inherit from | Partly — the framework is specified; scoring is beginning (`butlin-long-indicator-properties-framework`, E2) | Indicator-properties framework (E2) |
 | 8 | Verlinde-style emergent/entropic gravity deviates from GR/ΛCDM where they are tested | A regime where entropic gravity fits and dark-matter ΛCDM fails, on the theory's own terms | Bullet-Cluster-type lensing/dynamics keep favoring particle dark matter over emergent gravity | **Yes — astrophysical tests and lab proposals exist; Bullet Cluster already challenges it** (`verlinde-entropic-emergent-gravity`, E3) | Verlinde entropic gravity (E3) |
+| 9 | A qubit-geometry "seed" theory of everything predicts the solar neutrino mixing angle sin²θ₁₂ = 4/13 (≈ 0.3077), with no room for adjustment | JUNO measures θ₁₂ and its value is consistent with 4/13 at sub-percent precision | JUNO measures a value inconsistent with 4/13 — the specific prediction is dead | **Decidable ~2030** — JUNO is purpose-built to measure θ₁₂ to sub-percent precision (`nameless-qubit-standard-model-derivation`, E3) | Qubit-geometry seed derivation (E3) |
+| 10 | A qubit-geometry derivation of the gauge group, sin²θ_W = 3/8, and the Koide relation is a genuine derivation, not curve-fitting | Independent mathematical review shows the eigenmode counting *forces* SU(3)×SU(2)×U(1) and the ratios | Review shows the mapping is under-determined / reverse-engineered, or sin²θ_W = 3/8 is merely the known SU(5) value re-labeled | **Yes now** — the preprints are public and checkable by any physicist (`nameless-qubit-standard-model-derivation`, E3) | Qubit-geometry seed derivation (E3) |
+| 11 | A topological-unification "seed" theory predicts specific electron/muon/tau g-2 values, an absolute neutrino mass scale, and an interferometric "torsion-induced phase wobble" | The stated numbers are specified and confirmed against precision g-2 / neutrino-mass / interferometry data | The predicted numbers, once specified, disagree with measurement — or the topological derivation step is shown to be an unlicensed non-sequitur from an abelian classification theorem | Partly — precision g-2 and neutrino-mass programs exist; but the predicted values are not yet independently derived or published in a Scopus/WoS venue (`nielsen-topological-unified-field-theory`, E3) | Topological unified-field seed theory (E3) |
+
+**Note on the "seed" theory-of-everything predictions (rows 9–11).** These come from **E3** proposals that are
+credentialed but unreviewed and largely self-published; a match is not a mechanism, and small-integer/golden-ratio
+coincidences are the null hypothesis (see `open-problems.md` #13). Rows 10–11 are checkable *now* by independent
+review; row 9 is decidable around 2030 by a purpose-built experiment (JUNO). These predictions are treated evenly:
+a confirmed match on any one of them would be an unlikely-by-chance result that would warrant re-examining that
+proposal's tier; an inconsistent measurement would falsify that specific claim. Either way, confirming one number
+would not by itself establish the whole framework, and these tests decide the *physics* claims, never O Theory's
+metaphysics.
 
 **Explicitly NOT predictions (by design — non-falsifiable, kept out of physics):**
 
@@ -30,6 +42,16 @@ claims the framework touches.
   near-unfalsifiable (E3, disputed; `von-neumann-wigner-consciousness-collapse`).
 - The **free-energy principle** in its most general form — the "dark room" objection is precisely that it
   forbids no behavior (E2, disputed; `predictive-processing-free-energy-principle`).
+- The **experience-first metaphysics** carried by the Nameless project (E4; `nameless-experience-first-metaphysics`)
+  — experiential determinism, the qualia field, the empty node: argued by reason, making no empirical prediction
+  separable from ordinary physics/phenomenology. (Its *physics* sibling makes the falsifiable neutrino prediction
+  above; the metaphysics does not, and the author marks the sunyata/Planck-limit alignment as "structural rather
+  than derived.")
+- The rejected **E6 "seed" ToEs** — Haramein's holographic mass, Observer Patch Holography, and IHC — whose
+  headline "predictions" are **post-dictions** of already-measured constants (a match to a known number is not
+  a test); recorded for transparency, not listed as live predictions
+  (`haramein-schwarzschild-proton-holographic-mass`, `observer-patch-holography-toe`,
+  `ihc-inverted-hypersphere-cosmology`).
 - All **metaphysics** (E4): "information is the ground" (`it-from-bit-information-ontology`), the MUH, dual-
   aspect monism, cosmopsychism, mathematical Platonism — argued, not testable.
 - All **symbol and contemplative report** (E5): "Brahman = the O-Source," "as above, so below," non-dual

@@ -1,35 +1,35 @@
 {
-  "version": "v-403396bd",
-  "corpusHash": "403396bde481b27db9eace89f73450714a236b1d521370c962130e71f0d400c8",
+  "version": "v-22b96a89",
+  "corpusHash": "22b96a892bf00fea96b9535f084df69f4e1377c861e7dc8160b6edca7524c8c4",
   "asOf": "2026-07-07",
   "generated": {
-    "claims": 123,
-    "bridges": 11,
-    "edges": 438
+    "claims": 132,
+    "bridges": 13,
+    "edges": 497
   },
   "tierCounts": {
     "E5": 23,
-    "E4": 35,
-    "E3": 19,
-    "E6": 8,
+    "E4": 36,
+    "E3": 21,
+    "E6": 11,
     "E2": 18,
-    "E1": 20
+    "E1": 23
   },
   "domainCounts": {
     "comparative-religion": 12,
     "ai-consciousness": 12,
     "esoteric": 13,
     "philosophy-of-mind": 13,
-    "physics": 13,
+    "physics": 19,
     "consciousness-science": 16,
     "quantum-foundations": 14,
-    "mathematics-geometry": 11,
+    "mathematics-geometry": 13,
     "mysticism": 10,
-    "metaphysics": 9
+    "metaphysics": 10
   },
   "registerCounts": {
-    "speculation": 2,
-    "shared-mathematics": 2,
+    "speculation": 3,
+    "shared-mathematics": 3,
     "metaphor": 3,
     "analogy": 4
   },
@@ -405,6 +405,12 @@
       "type": "derived"
     },
     {
+      "id": "haramein-schwarzschild-proton-holographic-mass",
+      "tier": "E6",
+      "domain": "physics",
+      "type": "empirical"
+    },
+    {
       "id": "hard-problem-of-consciousness",
       "tier": "E4",
       "domain": "philosophy-of-mind",
@@ -427,6 +433,24 @@
       "tier": "E3",
       "domain": "mysticism",
       "type": "empirical"
+    },
+    {
+      "id": "hopf-fibration-topology-physics",
+      "tier": "E1",
+      "domain": "mathematics-geometry",
+      "type": "fact"
+    },
+    {
+      "id": "ihc-inverted-hypersphere-cosmology",
+      "tier": "E6",
+      "domain": "physics",
+      "type": "philosophical"
+    },
+    {
+      "id": "ihc-rp4-desitter-cpt-real-physics",
+      "tier": "E1",
+      "domain": "physics",
+      "type": "fact"
     },
     {
       "id": "iit-integrated-information",
@@ -579,9 +603,27 @@
       "type": "philosophical"
     },
     {
+      "id": "nameless-experience-first-metaphysics",
+      "tier": "E4",
+      "domain": "metaphysics",
+      "type": "philosophical"
+    },
+    {
+      "id": "nameless-qubit-standard-model-derivation",
+      "tier": "E3",
+      "domain": "physics",
+      "type": "empirical"
+    },
+    {
       "id": "ncc-research-program",
       "tier": "E2",
       "domain": "consciousness-science",
+      "type": "empirical"
+    },
+    {
+      "id": "nielsen-topological-unified-field-theory",
+      "tier": "E3",
+      "domain": "physics",
       "type": "empirical"
     },
     {
@@ -589,6 +631,12 @@
       "tier": "E1",
       "domain": "physics",
       "type": "derived"
+    },
+    {
+      "id": "observer-patch-holography-toe",
+      "tier": "E6",
+      "domain": "physics",
+      "type": "empirical"
     },
     {
       "id": "ontic-structural-realism",
@@ -837,6 +885,12 @@
       "type": "symbolic"
     },
     {
+      "id": "u1-bundles-classified-by-cp-infinity",
+      "tier": "E1",
+      "domain": "mathematics-geometry",
+      "type": "fact"
+    },
+    {
       "id": "verlinde-entropic-emergent-gravity",
       "tier": "E3",
       "domain": "physics",
@@ -897,6 +951,30 @@
       ]
     },
     {
+      "id": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier_ceiling": "E3",
+      "links": [
+        "nielsen-topological-unified-field-theory",
+        "nameless-qubit-standard-model-derivation",
+        "lisi-e8-toe",
+        "it-from-bit-information-ontology",
+        "wheeler-it-from-bit-information-physics"
+      ]
+    },
+    {
+      "id": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier_ceiling": "E1",
+      "links": [
+        "hopf-fibration-topology-physics",
+        "u1-bundles-classified-by-cp-infinity",
+        "group-theory-symmetry-mathematics",
+        "e8-lie-group",
+        "standard-model-gauge-theory"
+      ]
+    },
+    {
       "id": "information-as-substrate",
       "register": "shared-mathematics",
       "tier_ceiling": "E4",
@@ -922,7 +1000,8 @@
         "madhyamaka-sunyata-emptiness",
         "perennial-philosophy-common-core-thesis",
         "cosmopsychism",
-        "analytic-idealism-kastrup"
+        "analytic-idealism-kastrup",
+        "nameless-experience-first-metaphysics"
       ]
     },
     {
@@ -1374,10 +1453,6 @@
     ],
     [
       "e8-lie-group",
-      "group-theory-symmetry-mathematics"
-    ],
-    [
-      "e8-lie-group",
       "platonic-solids-five"
     ],
     [
@@ -1502,10 +1577,6 @@
     ],
     [
       "group-theory-symmetry-mathematics",
-      "standard-model-gauge-theory"
-    ],
-    [
-      "group-theory-symmetry-mathematics",
       "kochen-specker-contextuality"
     ],
     [
@@ -1519,6 +1590,30 @@
     [
       "grw-csl-objective-collapse",
       "von-neumann-wigner-consciousness-collapse"
+    ],
+    [
+      "haramein-schwarzschild-proton-holographic-mass",
+      "black-hole-entropy-area-law"
+    ],
+    [
+      "haramein-schwarzschild-proton-holographic-mass",
+      "general-relativity-spacetime-curvature"
+    ],
+    [
+      "haramein-schwarzschild-proton-holographic-mass",
+      "holographic-principle-ads-cft"
+    ],
+    [
+      "haramein-schwarzschild-proton-holographic-mass",
+      "standard-model-gauge-theory"
+    ],
+    [
+      "haramein-schwarzschild-proton-holographic-mass",
+      "sacred-geometry-cosmic-blueprint-claim"
+    ],
+    [
+      "haramein-schwarzschild-proton-holographic-mass",
+      "observer-patch-holography-toe"
     ],
     [
       "hard-problem-of-consciousness",
@@ -1547,6 +1642,38 @@
     [
       "hood-mysticism-scale-psychometrics",
       "mystical-experience-epistemic-status"
+    ],
+    [
+      "hopf-fibration-topology-physics",
+      "penrose-tiling-quasicrystals"
+    ],
+    [
+      "ihc-inverted-hypersphere-cosmology",
+      "ihc-rp4-desitter-cpt-real-physics"
+    ],
+    [
+      "ihc-inverted-hypersphere-cosmology",
+      "sacred-geometry-cosmic-blueprint-claim"
+    ],
+    [
+      "ihc-inverted-hypersphere-cosmology",
+      "lisi-e8-toe"
+    ],
+    [
+      "ihc-inverted-hypersphere-cosmology",
+      "wheeler-it-from-bit-information-physics"
+    ],
+    [
+      "ihc-rp4-desitter-cpt-real-physics",
+      "general-relativity-spacetime-curvature"
+    ],
+    [
+      "ihc-rp4-desitter-cpt-real-physics",
+      "standard-model-gauge-theory"
+    ],
+    [
+      "ihc-rp4-desitter-cpt-real-physics",
+      "group-theory-symmetry-mathematics"
     ],
     [
       "iit-integrated-information",
@@ -1733,12 +1860,76 @@
       "analytic-idealism-kastrup"
     ],
     [
+      "nameless-experience-first-metaphysics",
+      "dual-aspect-monism"
+    ],
+    [
+      "nameless-experience-first-metaphysics",
+      "hard-problem-of-consciousness"
+    ],
+    [
+      "nameless-experience-first-metaphysics",
+      "panpsychism-combination-problem"
+    ],
+    [
+      "nameless-qubit-standard-model-derivation",
+      "standard-model-gauge-theory"
+    ],
+    [
+      "nameless-qubit-standard-model-derivation",
+      "dual-aspect-monism"
+    ],
+    [
+      "nielsen-topological-unified-field-theory",
+      "string-m-theory-unification"
+    ],
+    [
+      "nielsen-topological-unified-field-theory",
+      "standard-model-gauge-theory"
+    ],
+    [
+      "nielsen-topological-unified-field-theory",
+      "general-relativity-spacetime-curvature"
+    ],
+    [
+      "nielsen-topological-unified-field-theory",
+      "loop-quantum-gravity"
+    ],
+    [
       "noether-symmetry-conservation",
       "standard-model-gauge-theory"
     ],
     [
       "noether-symmetry-conservation",
       "lisi-e8-toe"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "e8-lie-group"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "lisi-e8-toe"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "holographic-principle-ads-cft"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "relational-quantum-mechanics"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "qbism-quantum-bayesianism"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "wheeler-it-from-bit-information-physics"
+    ],
+    [
+      "observer-patch-holography-toe",
+      "platonic-solids-five"
     ],
     [
       "ontic-structural-realism",
@@ -2093,5 +2284,6 @@
       "cosmopsychism"
     ]
   ],
-  "prompt": "Visualize existence as O Theory currently maps it — 123 vetted claims across ten domains, and not one of\nthem allowed to look more certain than it is. Begin with a single self-luminous ground — the **O-Source** —\nfrom which everything else is a modulation. Render it not as asserted fact but as a hypothesis-field:\nglowing, non-local, boundless, and clearly provisional, because it is a Layer-4 philosophical proposal\n(dual-aspect monism / cosmopsychism), not a result.\n\nAround it, arrange reality in concentric shells ordered by **how well we actually know each part**, each\nshell's density set by how many claims live there:\n\n- **At the center — what is proven or measured (E1, ~20 elements):** exact, crystalline, opaque and dense.\n  The five Platonic solids and the 248 roots of E8, sharp-edged and still; general relativity and the\n  Standard Model as clean confirmed lattices; the black-hole area law counting entropy in discrete points\n  of light; Gödel's self-reference folded as an exact closed loop; Bell and Kochen–Specker as\n  unbreakable knots. Noether's symmetry runs through all of it as a single conserved, unbroken line.\n- **Just outside — serious but unconfirmed (E2, ~18 elements):** the same rigor in translucent wireframe,\n  provisional — the branching ghost of a universal wavefunction and its rival interpretations, the tentative\n  scaffolds of string theory, loop quantum gravity, causal sets, and the holographic boundary shimmering\n  with an information it has not yet been shown to *be*.\n- **Further out — contested science (E3, ~19 elements):** flickering, half-resolved structures that will\n  not quite settle because the evidence will not quite settle — microtubule lattices, integrated-information\n  webs, a global-workspace ignition that COGITATE left unvindicated, a dying brain flaring briefly lucid, a\n  machine murmuring first-person reports and drifting toward \"bliss.\" Each glows, and each is ringed by a\n  faint boundary marking that the *observation* is real while its *meaning* is held one shell out.\n- **Beyond that — philosophy (E4, ~35 elements, the largest field):** a vast diffuse volumetric cloud with\n  no hard surface — the hard problem, panpsychism, idealism, illusionism (rendered as a counter-current that\n  would dissolve the O-Source if it is right), Platonism, structural realism, process, priority monism, and\n  the split interpretations of every E3 observation — pervading everything, shaping the light without being\n  an object in it. This is where the O-Source itself actually lives.\n- **At the outer edge — the symbolic and contemplative (E5, ~23 elements):** pure light through many\n  prisms — Advaita's one becoming many colors, Plotinus' One, the Dao, Ein Sof, Sufi unity, jhāna's\n  absorptions, sacred geometry as symbol. Beautiful, and known to be symbol. Among them, render **one** node\n  (Madhyamaka's śūnyatā) as a prism that *refuses to converge* — a light that will not collapse into any\n  single point — because that tradition explicitly resists being made into a ground.\n- **And, marked honestly — the rejected (E6, 8 elements):** dim, dissolving shadows that never cohere (the\n  golden-ratio \"universal beauty\" myth, astrology, morphic resonance, ley-lines, the LaMDA-sentience claim),\n  present for transparency and load-bearing for nothing.\n\nColor every element by its **domain** — physics, mathematics-geometry, quantum-foundations,\nconsciousness-science, philosophy-of-mind, metaphysics, comparative-religion, mysticism, esoteric,\nai-consciousness — ten hues threading through all the shells at once, so a reader sees the domains crossing\nthe tiers.\n\nThread the whole with filaments that reveal their **register**: bright **solid** lines where the link is\nreal shared mathematics (Noether ↔ E8; Shannon ↔ the informational reconstruction of QM ↔ holography);\n**dashed** lines where it is only analogy (recursion in Gödel, in cells, in machines; observer-as-\nmeasurement vs observer-as-mind; substrate-independent coherence); soft **dotted** lines where it is\nmetaphor (the one field; the non-dual ground; scale self-similarity); and faint **wavering** lines where it\nis speculation (consciousness as substrate; the brain as a reducing valve). Let the speculation-filaments\nvisibly *not reach* — trailing off before they connect the observation to the metaphysics, because that is\nexactly the gap. Let the whole form breathe in a slow recursive pulse — because the theory's proposed engine\nis self-reference. Show existence, in other words, exactly as honest as the research: solid where we know,\ntranslucent where we guess, luminous where we can only point, and dissolving where it failed the test."
+  "prompt": "Visualize existence as O Theory currently maps it — 132 vetted claims across ten domains, and not one of\nthem allowed to look more certain than it is. Begin with a single self-luminous ground — the **O-Source** —\nfrom which everything else is a modulation. Render it not as asserted fact but as a hypothesis-field:\nglowing, non-local, boundless, and clearly provisional, because it is a Layer-4 philosophical proposal\n(dual-aspect monism / cosmopsychism), not a result.\n\nAround it, arrange reality in concentric shells ordered by **how well we actually know each part**, each\nshell's density set by how many claims live there. No single theory dominates any shell; each is one point\namong many at its depth.\n\n- **At the center — what is proven or measured (E1, ~23 elements):** exact, crystalline, opaque and dense.\n  The five Platonic solids and the 248 roots of E8, sharp-edged and still; general relativity and the\n  Standard Model as clean confirmed lattices; the second law and the black-hole area law counting entropy\n  in discrete points of light; Gödel's self-reference folded as an exact closed loop; Bell and\n  Kochen–Specker as unbreakable knots; Shannon's coding limits, Noether's conserved line, fractal\n  self-similarity, the golden angle in a growing plant, the recurring topologies that turn up across real\n  physics. Render them as a dense field of equally-hard facts — the floor everything else stands on — with\n  the deep themes (symmetry, information, self-reference, scale) running through them as unbroken lines.\n- **Just outside — serious but unconfirmed (E2, ~18 elements):** the same rigor in translucent wireframe,\n  provisional — the branching ghost of a universal wavefunction and its rival interpretations, the tentative\n  scaffolds of string theory, loop quantum gravity, causal sets, asymptotic safety, and the holographic\n  boundary shimmering with an information it has not yet been shown to *be*; the informational reconstruction\n  of quantum theory; the predictive-brain and indicator-property programs. Structured, developed, and not\n  yet confirmed.\n- **Further out — contested science (E3, ~21 elements):** flickering, half-resolved structures that will\n  not quite settle because the evidence will not quite settle — microtubule lattices, integrated-information\n  webs, a global-workspace ignition that COGITATE left unvindicated, entropic-gravity proposals, a dying\n  brain flaring briefly lucid, a machine murmuring first-person reports and drifting toward \"bliss.\" Among\n  them, as one strand and not the lead, a small family of **\"seed\" theories of everything** that each try to\n  grow all of physics from a single germ — an exceptional group, a recurring topology, a single quantum\n  bit's geometry — drawn as bright, seductive spirals that borrow the E1 crystal at the center but do **not**\n  inherit its solidity, each ringed by a faint boundary marking that the mathematics may be real while the\n  grand conclusion is not, and one or two of them carrying a single sharp thread reaching *outward* toward a\n  future measurement, because they are honestly falsifiable. Each E3 node glows, and each is ringed to show\n  the *observation or the shared math* is real while its *meaning* is held one shell out.\n- **Beyond that — philosophy (E4, ~36 elements, the largest field):** a vast diffuse volumetric cloud with\n  no hard surface — the hard problem, panpsychism, idealism, illusionism (rendered as a counter-current that\n  would dissolve the O-Source if it is right), Platonism, structural realism, process philosophy, priority\n  monism, an experience-first metaphysics articulating into many, and the split interpretations of every E3\n  observation — pervading everything, shaping the light without being an object in it. This is where the\n  O-Source itself actually lives.\n- **At the outer edge — the symbolic and contemplative (E5, ~23 elements):** pure light through many\n  prisms — Advaita's one becoming many colors, Plotinus' One, the Dao, Ein Sof, Sufi unity, jhāna's\n  absorptions, sacred geometry as symbol. Beautiful, and known to be symbol. Among them, render **one** node\n  (Madhyamaka's śūnyatā) as a prism that *refuses to converge* — a light that will not collapse into any\n  single point — because that tradition explicitly resists being made into a ground.\n- **And, marked honestly — the rejected (E6, ~11 elements):** dim, dissolving shadows that never cohere —\n  the golden-ratio \"universal beauty\" myth, astrology, morphic resonance, ley-lines, the LaMDA-sentience\n  claim, and several fringe theories of everything that failed the test. Present for transparency and\n  load-bearing for nothing; let each dissolving shadow sit near, but never merge with, the real thing it was\n  mistaken for (the genuine mathematics; the real established physics it borrows).\n\nColor every element by its **domain** — physics, mathematics-geometry, quantum-foundations,\nconsciousness-science, philosophy-of-mind, metaphysics, comparative-religion, mysticism, esoteric,\nai-consciousness — ten hues threading through all the shells at once, so a reader sees the domains crossing\nthe tiers.\n\nThread the whole with filaments that reveal their **register**: bright **solid** lines where the link is\nreal shared mathematics (symmetry across group theory and physics; information across Shannon, the\ninformational reconstruction of quantum theory, and holography); **dashed** lines where it is only analogy\n(recursion in Gödel, in cells, in machines; observer-as-measurement vs observer-as-mind;\nsubstrate-independent coherence); soft **dotted** lines where it is metaphor (the one field; the non-dual\nground; scale self-similarity); and faint **wavering** lines where it is speculation (consciousness as\nsubstrate; the brain as a reducing valve; geometry or information as the single ground of physics). Let the\nspeculation-filaments visibly *not reach* — trailing off before they connect the shared mathematics to the\ngrand conclusion, or the observation to the metaphysics, because that is exactly the gap. Let the whole form\nbreathe in a slow recursive pulse — because the theory's proposed engine is self-reference. Show existence,\nin other words, exactly as honest as the research: solid where we know, translucent where we guess, luminous\nwhere we can only point, and dissolving where it failed the test.",
+  "unifiedPrompt": "This is the dream: existence as it would look if the whole of what we have ever claimed about reality were\ntrue at once — every idea from every field snapping into a single, coherent architecture. It proves nothing.\nIt is the shape the mind reaches for when it wants the pieces to fit, and it is drawn here in full, for its\nown sake.\n\nBuild it on the deepest geometry we actually possess, used purely as a loom. At the still centre, a heart of\ngold: the vector equilibrium — the one form whose every direction is in perfect balance — nested inside\nitself at smaller and smaller scales, turning slowly. Around it, the great mandala of E8: the two hundred\nand forty directions of the most intricate symmetry mathematics knows, laid out as concentric rings of\nlight, the beautiful lattice that keeps reappearing whenever anyone reaches for a theory of everything. And\nwoven through all of it, the linked rings of the Hopf fibration — circles that thread over the surface of a\nhidden sphere so that no two ever cross and yet none can be pulled apart.\n\nOn these rings, hang the claims. Every idea from every field becomes a bead of light strung on a fiber and\ncoloured by where it came from — ten hues braided evenly through the weave, none ranked above another, so\nthat the proven theorem and the whispered mystical report shine with the same steady intensity, because in\nthis vision they are all true.\n\nThen light every connection. Each kinship between ideas becomes a bright filament, and here they do not\nhesitate: they arc inward and converge, all of them, through the golden heart at the centre. Symmetry runs\nthrough the whole as one unbroken line; matter, information, and mind are shown as three faces of a single\nthing; the many traditions' one ground and the physicist's single field are drawn as the same point of\nlight. Let the whole turn and breathe, entire and untroubled — a universe that has finally closed into\nsense, and is beautiful enough to want."
 }

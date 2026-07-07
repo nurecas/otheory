@@ -585,6 +585,20 @@
       "confidence": "medium"
     },
     {
+      "id": "haramein-schwarzschild-proton-holographic-mass",
+      "label": "Haramein's Schwarzschild Proton / hologr…",
+      "title": "Haramein's Schwarzschild Proton / holographic-mass 'unified physics'",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "esoteric"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
       "id": "hard-problem-of-consciousness",
       "label": "The \"hard problem\"",
       "title": "The \"hard problem\" — why physical processing is accompanied by subjective experience at all",
@@ -636,6 +650,51 @@
       "tier": "E3",
       "status": "vetted",
       "confidence": "medium"
+    },
+    {
+      "id": "hopf-fibration-topology-physics",
+      "label": "The Hopf fibration is genuine topology a…",
+      "title": "The Hopf fibration is genuine topology and recurs across real physics",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry",
+        "physics",
+        "quantum-foundations"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "ihc-inverted-hypersphere-cosmology",
+      "label": "Inverted Hypersphere Cosmology",
+      "title": "Inverted Hypersphere Cosmology (IHC): deriving physics from a single metaphysical axiom",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "metaphysics",
+        "quantum-foundations"
+      ],
+      "type": "philosophical",
+      "tier": "E6",
+      "status": "rejected",
+      "confidence": "high"
+    },
+    {
+      "id": "ihc-rp4-desitter-cpt-real-physics",
+      "label": "The genuine ingredients IHC invokes",
+      "title": "The genuine ingredients IHC invokes (de Sitter space, RP4 / cosmic topology, CPT) are real physics — but appearing in a fringe model does not validate the model",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "mathematics-geometry",
+        "quantum-foundations"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
     },
     {
       "id": "iit-integrated-information",
@@ -977,6 +1036,38 @@
       "confidence": "medium"
     },
     {
+      "id": "nameless-experience-first-metaphysics",
+      "label": "Nameless: an experience-first metaphysics",
+      "title": "Nameless: an experience-first metaphysics (nothing-to-everything, experiential determinism, qualia field, empty node, two truths)",
+      "domain": "metaphysics",
+      "domains": [
+        "metaphysics",
+        "philosophy-of-mind",
+        "consciousness-science",
+        "mysticism",
+        "comparative-religion"
+      ],
+      "type": "philosophical",
+      "tier": "E4",
+      "status": "vetted",
+      "confidence": "medium"
+    },
+    {
+      "id": "nameless-qubit-standard-model-derivation",
+      "label": "Nameless: deriving the Standard Model an…",
+      "title": "Nameless: deriving the Standard Model and physical constants from a single qubit's geometry",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "quantum-foundations",
+        "mathematics-geometry"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
       "id": "ncc-research-program",
       "label": "The neural-correlates-of-consciousness",
       "title": "The neural-correlates-of-consciousness (NCC) research program has identified reproducible neural markers that track conscious perception, most consistently in posterior cortex",
@@ -990,6 +1081,21 @@
       "confidence": "medium"
     },
     {
+      "id": "nielsen-topological-unified-field-theory",
+      "label": "Nielsen's Topological Unified Field Theo…",
+      "title": "Nielsen's Topological Unified Field Theory: the complex Hopf fibration as canonical space for gauge–gravity unification",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "mathematics-geometry",
+        "metaphysics"
+      ],
+      "type": "empirical",
+      "tier": "E3",
+      "status": "disputed",
+      "confidence": "low"
+    },
+    {
       "id": "noether-symmetry-conservation",
       "label": "Noether's theorem",
       "title": "Noether's theorem — every differentiable symmetry of the action yields a conservation law",
@@ -1001,6 +1107,21 @@
       "type": "derived",
       "tier": "E1",
       "status": "vetted",
+      "confidence": "high"
+    },
+    {
+      "id": "observer-patch-holography-toe",
+      "label": "Observer Patch Holography",
+      "title": "Observer Patch Holography (FloatingPragma) — observer-consensus 'theory of everything'",
+      "domain": "physics",
+      "domains": [
+        "physics",
+        "philosophy-of-mind",
+        "quantum-foundations"
+      ],
+      "type": "empirical",
+      "tier": "E6",
+      "status": "rejected",
       "confidence": "high"
     },
     {
@@ -1559,6 +1680,20 @@
       "confidence": "medium"
     },
     {
+      "id": "u1-bundles-classified-by-cp-infinity",
+      "label": "U(1) principal bundles are classified by…",
+      "title": "U(1) principal bundles are classified by the infinite complex projective space CP^∞",
+      "domain": "mathematics-geometry",
+      "domains": [
+        "mathematics-geometry",
+        "physics"
+      ],
+      "type": "fact",
+      "tier": "E1",
+      "status": "vetted",
+      "confidence": "high"
+    },
+    {
       "id": "verlinde-entropic-emergent-gravity",
       "label": "Verlinde's entropic/emergent gravity pro…",
       "title": "Verlinde's entropic/emergent gravity proposes gravity is not a fundamental force but an emergent entropic effect arising from information associated with matter positions, potentially eliminating the need for dark matter",
@@ -1970,6 +2105,27 @@
       "tier": "E4"
     },
     {
+      "source": "nameless-experience-first-metaphysics",
+      "target": "nameless-qubit-standard-model-derivation",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E4"
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "hopf-fibration-topology-physics",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "u1-bundles-classified-by-cp-infinity",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E3"
+    },
+    {
       "source": "orch-or-microtubules",
       "target": "hard-problem-of-consciousness",
       "kind": "derivation",
@@ -2166,6 +2322,13 @@
       "tier": "E4"
     },
     {
+      "source": "u1-bundles-classified-by-cp-infinity",
+      "target": "hopf-fibration-topology-physics",
+      "kind": "derivation",
+      "register": null,
+      "tier": "E1"
+    },
+    {
       "source": "verlinde-entropic-emergent-gravity",
       "target": "black-hole-entropy-area-law",
       "kind": "derivation",
@@ -2217,6 +2380,158 @@
       "tier": "E4"
     },
     {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "nameless-qubit-standard-model-derivation",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "lisi-e8-toe",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "it-from-bit-information-ontology",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "nameless-qubit-standard-model-derivation",
+      "target": "lisi-e8-toe",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "nameless-qubit-standard-model-derivation",
+      "target": "it-from-bit-information-ontology",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "nameless-qubit-standard-model-derivation",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "lisi-e8-toe",
+      "target": "it-from-bit-information-ontology",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "lisi-e8-toe",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "it-from-bit-information-ontology",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "bridge",
+      "bridge": "geometry-or-information-as-ground",
+      "register": "speculation",
+      "tier": "E3"
+    },
+    {
+      "source": "hopf-fibration-topology-physics",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "hopf-fibration-topology-physics",
+      "target": "e8-lie-group",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "hopf-fibration-topology-physics",
+      "target": "standard-model-gauge-theory",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "u1-bundles-classified-by-cp-infinity",
+      "target": "group-theory-symmetry-mathematics",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "u1-bundles-classified-by-cp-infinity",
+      "target": "e8-lie-group",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "u1-bundles-classified-by-cp-infinity",
+      "target": "standard-model-gauge-theory",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "group-theory-symmetry-mathematics",
+      "target": "e8-lie-group",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "group-theory-symmetry-mathematics",
+      "target": "standard-model-gauge-theory",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
+      "source": "e8-lie-group",
+      "target": "standard-model-gauge-theory",
+      "kind": "bridge",
+      "bridge": "hopf-fibration-shared-mathematics",
+      "register": "shared-mathematics",
+      "tier": "E1"
+    },
+    {
       "source": "shannon-information-entropy",
       "target": "wheeler-it-from-bit-information-physics",
       "kind": "bridge",
@@ -2259,14 +2574,6 @@
     {
       "source": "wheeler-it-from-bit-information-physics",
       "target": "holographic-principle-ads-cft",
-      "kind": "bridge",
-      "bridge": "information-as-substrate",
-      "register": "shared-mathematics",
-      "tier": "E4"
-    },
-    {
-      "source": "wheeler-it-from-bit-information-physics",
-      "target": "it-from-bit-information-ontology",
       "kind": "bridge",
       "bridge": "information-as-substrate",
       "register": "shared-mathematics",
@@ -2385,6 +2692,14 @@
       "tier": "E5"
     },
     {
+      "source": "advaita-nonduality",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
       "source": "plotinus-the-one-emanation",
       "target": "daoism-dao-ineffable-source",
       "kind": "bridge",
@@ -2433,6 +2748,14 @@
       "tier": "E5"
     },
     {
+      "source": "plotinus-the-one-emanation",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
       "source": "daoism-dao-ineffable-source",
       "target": "kabbalah-ein-sof-sefirot",
       "kind": "bridge",
@@ -2473,6 +2796,14 @@
       "tier": "E5"
     },
     {
+      "source": "daoism-dao-ineffable-source",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
       "source": "kabbalah-ein-sof-sefirot",
       "target": "sufism-wahdat-al-wujud",
       "kind": "bridge",
@@ -2505,6 +2836,14 @@
       "tier": "E5"
     },
     {
+      "source": "kabbalah-ein-sof-sefirot",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
       "source": "sufism-wahdat-al-wujud",
       "target": "madhyamaka-sunyata-emptiness",
       "kind": "bridge",
@@ -2529,6 +2868,14 @@
       "tier": "E5"
     },
     {
+      "source": "sufism-wahdat-al-wujud",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
       "source": "madhyamaka-sunyata-emptiness",
       "target": "cosmopsychism",
       "kind": "bridge",
@@ -2545,6 +2892,14 @@
       "tier": "E5"
     },
     {
+      "source": "madhyamaka-sunyata-emptiness",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
       "source": "perennial-philosophy-common-core-thesis",
       "target": "cosmopsychism",
       "kind": "bridge",
@@ -2555,6 +2910,30 @@
     {
       "source": "perennial-philosophy-common-core-thesis",
       "target": "analytic-idealism-kastrup",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "perennial-philosophy-common-core-thesis",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "cosmopsychism",
+      "target": "nameless-experience-first-metaphysics",
+      "kind": "bridge",
+      "bridge": "non-dual-ground",
+      "register": "metaphor",
+      "tier": "E5"
+    },
+    {
+      "source": "analytic-idealism-kastrup",
+      "target": "nameless-experience-first-metaphysics",
       "kind": "bridge",
       "bridge": "non-dual-ground",
       "register": "metaphor",
@@ -3569,13 +3948,6 @@
     },
     {
       "source": "e8-lie-group",
-      "target": "group-theory-symmetry-mathematics",
-      "kind": "relation",
-      "register": null,
-      "tier": null
-    },
-    {
-      "source": "e8-lie-group",
       "target": "platonic-solids-five",
       "kind": "relation",
       "register": null,
@@ -3793,13 +4165,6 @@
     },
     {
       "source": "group-theory-symmetry-mathematics",
-      "target": "standard-model-gauge-theory",
-      "kind": "relation",
-      "register": null,
-      "tier": null
-    },
-    {
-      "source": "group-theory-symmetry-mathematics",
       "target": "kochen-specker-contextuality",
       "kind": "relation",
       "register": null,
@@ -3822,6 +4187,48 @@
     {
       "source": "grw-csl-objective-collapse",
       "target": "von-neumann-wigner-consciousness-collapse",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "haramein-schwarzschild-proton-holographic-mass",
+      "target": "black-hole-entropy-area-law",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "haramein-schwarzschild-proton-holographic-mass",
+      "target": "general-relativity-spacetime-curvature",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "haramein-schwarzschild-proton-holographic-mass",
+      "target": "holographic-principle-ads-cft",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "haramein-schwarzschild-proton-holographic-mass",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "haramein-schwarzschild-proton-holographic-mass",
+      "target": "sacred-geometry-cosmic-blueprint-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "haramein-schwarzschild-proton-holographic-mass",
+      "target": "observer-patch-holography-toe",
       "kind": "relation",
       "register": null,
       "tier": null
@@ -3871,6 +4278,62 @@
     {
       "source": "hood-mysticism-scale-psychometrics",
       "target": "mystical-experience-epistemic-status",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "hopf-fibration-topology-physics",
+      "target": "penrose-tiling-quasicrystals",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-inverted-hypersphere-cosmology",
+      "target": "ihc-rp4-desitter-cpt-real-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-inverted-hypersphere-cosmology",
+      "target": "sacred-geometry-cosmic-blueprint-claim",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-inverted-hypersphere-cosmology",
+      "target": "lisi-e8-toe",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-inverted-hypersphere-cosmology",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-rp4-desitter-cpt-real-physics",
+      "target": "general-relativity-spacetime-curvature",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-rp4-desitter-cpt-real-physics",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "ihc-rp4-desitter-cpt-real-physics",
+      "target": "group-theory-symmetry-mathematics",
       "kind": "relation",
       "register": null,
       "tier": null
@@ -4198,6 +4661,69 @@
       "tier": null
     },
     {
+      "source": "nameless-experience-first-metaphysics",
+      "target": "dual-aspect-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nameless-experience-first-metaphysics",
+      "target": "hard-problem-of-consciousness",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nameless-experience-first-metaphysics",
+      "target": "panpsychism-combination-problem",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nameless-qubit-standard-model-derivation",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nameless-qubit-standard-model-derivation",
+      "target": "dual-aspect-monism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "string-m-theory-unification",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "standard-model-gauge-theory",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "general-relativity-spacetime-curvature",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "nielsen-topological-unified-field-theory",
+      "target": "loop-quantum-gravity",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
       "source": "noether-symmetry-conservation",
       "target": "standard-model-gauge-theory",
       "kind": "relation",
@@ -4207,6 +4733,55 @@
     {
       "source": "noether-symmetry-conservation",
       "target": "lisi-e8-toe",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "e8-lie-group",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "lisi-e8-toe",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "holographic-principle-ads-cft",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "relational-quantum-mechanics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "qbism-quantum-bayesianism",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "wheeler-it-from-bit-information-physics",
+      "kind": "relation",
+      "register": null,
+      "tier": null
+    },
+    {
+      "source": "observer-patch-holography-toe",
+      "target": "platonic-solids-five",
       "kind": "relation",
       "register": null,
       "tier": null

@@ -9,7 +9,7 @@
   <meta property="og:description" content="A layered synthesis where every claim carries an evidence tier (E1–E6). Facts as facts; interpretation clearly fenced.">
   <meta property="og:type" content="website">
   <title>O Theory — an honest map of everything</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v={{ASSET_V}}">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -30,25 +30,39 @@
           <div id="portrait-canvas" role="img" aria-label="Generative portrait of existence, derived from the knowledge base"></div>
           <div class="art-bar">
             <div class="art-toggle" role="tablist" aria-label="Portrait mode">
-              <button class="art-mode is-on" data-mode="honest" role="tab" aria-selected="true">As evidenced</button>
-              <button class="art-mode" data-mode="unified" role="tab" aria-selected="false">As if all were true</button>
+              <button class="art-mode is-on" data-mode="unified" role="tab" aria-selected="true">As if all were true</button>
+              <button class="art-mode" data-mode="honest" role="tab" aria-selected="false">As evidenced</button>
             </div>
-            <p class="art-caption" id="art-caption">Solid where we know, translucent where we guess, luminous where we can only point.</p>
+            <p class="art-caption" id="art-caption">Every claim rendered as true — one radiant, counterfactual whole. The evidence lives one toggle away.</p>
+            <p class="art-note">The artwork is the synthesis made visible — every point of light is one claim. <a href="#/map">How it's derived →</a></p>
+            <details class="art-prompt-drawer" id="art-prompt-drawer">
+              <summary><span class="apd-label">The prompt behind this artwork</span><span class="apd-hint">expand ↓</span></summary>
+              <div class="art-prompt prose" data-mode="unified">{{UNIFIED_PROMPT}}</div>
+              <div class="art-prompt prose" data-mode="honest" hidden>{{EXISTENCE_PROMPT}}</div>
+            </details>
             <p class="art-stamp">version <strong>{{BUILD_VERSION}}</strong> · {{N_CLAIMS}} claims · {{N_BRIDGES}} bridges · as of {{BUILD_ASOF}}</p>
           </div>
         </div>
         <div class="landing-text">
-          <p class="kicker">A living synthesis · {{N_CLAIMS}} vetted claims · {{N_DOMAINS}} domains</p>
-          <h1 id="ch-synthesis-h" class="landing-title">{{OVERVIEW_TITLE}}</h1>
-          <div class="overview prose prose-serif">{{OVERVIEW}}</div>
-          <div class="key-fold">
-            <h3 class="key-h">How to read the evidence</h3>
-            {{EVIDENCE_KEY_MINI}}
+          <p class="kicker">A synthesis of the theories of everything</p>
+          <h1 id="ch-synthesis-h" class="landing-title">O&nbsp;Theory</h1>
+          <p class="landing-tagline">A synthesis of humanity's theories of what reality is — built into a single
+            honest proposal for what it all amounts to.</p>
+          <div class="intro-lead prose prose-serif">
+            <p><strong>O&nbsp;Theory</strong> is a <strong>synthesis</strong>. It gathers humanity's serious
+              attempts to explain what reality fundamentally is — physics, mathematics, the study of the mind,
+              philosophy, and the contemplative traditions — and weaves them into a single proposed theory of
+              everything: one account, built from the parts, of what they might together amount to. What follows,
+              just below, is that theory.</p>
+            <p>It is built in the open. The synthesis is candid about how much weight each source was given — from
+              the proven core it may never contradict, through the frontier theories it treats as leads, to the
+              traditions it hears as testimony — and about where the joins between the fields genuinely hold. It is
+              offered as a proposal, not a proof. The honest apparatus beneath it, and the map of every idea it
+              draws on, follow in the section after.</p>
           </div>
-          <details class="prompt-details">
-            <summary>The artwork's generated prompt — it evolves with every research run</summary>
-            <div class="prompt prose">{{EXISTENCE_PROMPT}}</div>
-          </details>
+          <p class="synthesis-marker">The synthesis</p>
+          <h2 class="essay-title">{{OVERVIEW_TITLE}}</h2>
+          <div class="overview prose prose-serif">{{OVERVIEW}}</div>
           {{NEXT_SYNTHESIS}}
         </div>
       </div>
@@ -57,11 +71,40 @@
     <!-- ══ 02 · THE MAP ══ -->
     <section class="chapter" data-chapter="map" aria-labelledby="ch-map-h" hidden>
       <div class="chapter-head">
-        <p class="kicker">02 · The Map</p>
-        <h2 id="ch-map-h">Every claim, and what actually connects it</h2>
-        <p class="section-sub">Nodes are claims, colored by domain, badged by tier. <strong>Solid arrows</strong> are derivations;
-          <strong>thin lines</strong> are conceptual relations (rivals, lineage, same debate); <strong>dashed, dotted and
-          wavering strands</strong> are interpretive bridges, styled by register. Click any node to read the claim.</p>
+        <p class="kicker">02 · Method &amp; Map</p>
+        <h2 id="ch-map-h">How the synthesis was made</h2>
+      </div>
+      <div class="method-prose prose prose-serif">
+        <p>The synthesis is not written by hand and it is not an opinion. It is drawn from a knowledge base built
+          by a disciplined process. Each field is surveyed for its serious theories. Every theory becomes a single,
+          self-contained claim with at least one real, checkable source. An independent reviewer then re-checks that
+          source and assigns the claim a tier — a plain statement of how much the claim has actually earned. A final
+          reviewer tries to break the result, catching any place where a weaker idea has been dressed up as a
+          stronger one. Only then does the claim enter the map.</p>
+        <p>The tiers are the heart of the method. They are the reason a proven theorem and a contemplative report can
+          sit in the same synthesis without being confused for one another.</p>
+        <p><strong>The artwork is that same synthesis, made visible.</strong> Nothing in it is drawn by hand; it is
+          computed straight from the knowledge base. Every claim becomes a point of light, coloured by its field.
+          In the honest view, each point sits at a depth set by how well we know it — the proven core gathered
+          tight at the centre, the symbolic drifting to the edge — so the picture's very shape is the shape of our
+          certainty. In the unified view, those same points are re-woven into one balanced form — the vector
+          equilibrium at its heart, the E8 lattice around it, the whole laced with rings of light — the way the
+          synthesis proposes they might finally fit. The threads between the points are the real connections between
+          ideas. Because it is a function of the research, the moment the research changes, the artwork changes with
+          it.</p>
+      </div>
+      <div class="key-block">
+        <h3>How to read the evidence — the six tiers</h3>
+        {{EVIDENCE_KEY_FULL}}
+      </div>
+
+      <div class="map-intro">
+        <h3 id="the-map">The map itself</h3>
+        <p class="section-sub">Every claim the synthesis draws on, laid out at once — all {{N_CLAIMS}} ideas and the
+          links between them. Each dot is a claim, colored by its field and rimmed by how well we know it (its tier).
+          <strong>Solid arrows</strong> are derivations, where one idea is proven from another; <strong>faint lines</strong>
+          are conceptual relations, such as rivals in the same debate; <strong>dashed, dotted and wavering strands</strong>
+          are the interpretive bridges. Hovering a dot shows its name; clicking opens the claim in full.</p>
       </div>
       <div class="graph-controls" role="group" aria-label="Graph filters">
         <label class="ctl">Domain
@@ -79,9 +122,17 @@
         </label>
         <label class="ctl switch"><input type="checkbox" id="toggle-bridges" checked><span>Interpretive bridges</span></label>
         <label class="ctl switch"><input type="checkbox" id="toggle-relations" checked><span>Relations</span></label>
+        <label class="ctl grow">Find a claim
+          <input id="graph-search" type="search" placeholder="type a name…" autocomplete="off" spellcheck="false">
+        </label>
         <button id="graph-reset" class="ctl-btn">Reset</button>
       </div>
-      <div class="graph-wrap"><div id="cy" role="img" aria-label="Force-directed graph of claims and their connections"></div></div>
+      <div class="graph-wrap">
+        <div id="cy" role="img" aria-label="Force-directed graph of claims and their connections"></div>
+        <div class="graph-legend" id="graph-legend" aria-label="Map legend">{{GRAPH_LEGEND}}</div>
+        <div class="graph-tip" id="graph-tip" hidden></div>
+        <p class="graph-stats">{{N_CLAIMS}} claims · {{N_EDGES}} connections · <span class="gs-hint">hover a dot for its name · click to open · scroll to zoom · drag to explore</span></p>
+      </div>
       <footer class="chapter-foot">{{NEXT_MAP}}</footer>
     </section>
 
@@ -89,9 +140,10 @@
     <section class="chapter" data-chapter="evidence" aria-labelledby="ch-evidence-h" hidden>
       <div class="chapter-head">
         <p class="kicker">03 · The Evidence</p>
-        <h2 id="ch-evidence-h">The rigorous core</h2>
-        <p class="section-sub">Facts, derivations, and empirical claims — stated plainly, each with its tier and full
-          provenance. Contested (E3) and rejected (E6) empirical claims are here too, clearly badged. Choose a domain.</p>
+        <h2 id="ch-evidence-h">The ground the map stands on</h2>
+        <p class="section-sub">Beneath every interpretation are the claims we can actually stand on — facts, derivations,
+          and empirical results, stated plainly with their tier and full sources. Contested (E3) and even rejected (E6)
+          empirical claims sit here too, clearly badged. Pick a field to explore.</p>
       </div>
       {{EVIDENCE_CHAPTER}}
       <div class="landscape-block">
@@ -106,28 +158,39 @@
     <section class="chapter chapter-interp" data-chapter="interpretations" aria-labelledby="ch-interp-h" hidden>
       <div class="chapter-head">
         <p class="kicker interp-kicker">04 · The Interpretations — clearly marked</p>
-        <h2 id="ch-interp-h">The pattern-matching layer</h2>
-        <p class="section-sub">Cross-domain connections, philosophical positions, and symbolic traditions — allowed to be
-          speculative and beautiful <em>because</em> every one is labeled: its register, its ceiling, its strongest objection.
-          Nothing here restates a lower-tier claim as higher.</p>
+        <h2 id="ch-interp-h">What we build on top of the ground</h2>
+        <p class="section-sub">On top of that solid ground, the map lets itself reach — the cross-domain connections, the
+          philosophies, and the symbolic traditions. Allowed to be speculative and beautiful <em>because</em> each one is
+          labeled: the kind of link it is, the ceiling it may not exceed, and its strongest objection. Nothing here is
+          dressed up as more certain than the ground below it.</p>
+      </div>
+
+      <div class="registers-key-block">
+        <h3>Four kinds of connection</h3>
+        <p class="section-sub">First, how to read a connection. Every link between fields is exactly one of these —
+          and may never imply more certainty than its kind allows.</p>
+        {{REGISTERS_KEY}}
+      </div>
+
+      <div class="chord-block">
+        <h3>Which fields touch</h3>
+        <p class="section-sub">The whole web at a glance — the ten fields around the circle, each ribbon a bridge,
+          drawn in its register's own line.</p>
+        <div id="chord" role="img" aria-label="Chord diagram of cross-domain bridges"></div>
       </div>
 
       <div class="bridges-block">
-        <h3>The bridges, by register</h3>
+        <h3>The bridges, one by one</h3>
+        <p class="section-sub">The actual connections across the map, grouped by kind. Each names the claims it joins
+          and the tier it may never exceed. Click a claim to read it in full.</p>
         {{BRIDGES_BY_REGISTER}}
       </div>
 
-      <div class="two-col">
-        <div class="chord-block">
-          <h3>The bridge chord</h3>
-          <p class="section-sub">Domains around the circle; ribbons are bridges, styled by register.</p>
-          <div id="chord" role="img" aria-label="Chord diagram of cross-domain bridges"></div>
-        </div>
-        <div class="layer-block">
-          <h3>The layer stack</h3>
-          <p class="section-sub">From proven core to symbol — every claim in its honest layer.</p>
-          <div class="layer-stack">{{LAYER_STACK}}</div>
-        </div>
+      <div class="layer-block">
+        <h3>The layer stack</h3>
+        <p class="section-sub">The same claims sorted top to bottom by how well we know them — proven core down to pure
+          symbol. Click any to open it.</p>
+        <div class="layer-stack">{{LAYER_STACK}}</div>
       </div>
 
       <div class="geo-block">
@@ -157,37 +220,14 @@
     <section class="chapter" data-chapter="questions" aria-labelledby="ch-questions-h" hidden>
       <div class="chapter-head">
         <p class="kicker">05 · Open Questions</p>
-        <h2 id="ch-questions-h">The honest ledger</h2>
-        <p class="section-sub">Where the map has gaps, contradictions, and tensions — and what would move each. The gaps
-          are on the page on purpose.</p>
+        <h2 id="ch-questions-h">Where the map runs out</h2>
+        <p class="section-sub">And this is where honesty demands we stop — the gaps, contradictions, and unanswered
+          questions, each with a note on what it would take to move it. The holes in the map are drawn in too, on purpose.</p>
       </div>
       <div class="prose prose-serif questions-prose">{{OPEN_PROBLEMS}}</div>
       <div class="predictions-block">
         <h3>Falsifiable predictions</h3>
         <div class="prose">{{PREDICTIONS}}</div>
-      </div>
-      <footer class="chapter-foot">{{NEXT_QUESTIONS}}</footer>
-    </section>
-
-    <!-- ══ 06 · THE METHOD ══ -->
-    <section class="chapter" data-chapter="method" aria-labelledby="ch-method-h" hidden>
-      <div class="chapter-head">
-        <p class="kicker">06 · The Method</p>
-        <h2 id="ch-method-h">How this map is made</h2>
-      </div>
-      <div class="prose prose-serif">{{ABSTRACT}}</div>
-      <div class="key-block">
-        <h3>The Evidence Key, in full</h3>
-        {{EVIDENCE_KEY_FULL}}
-      </div>
-      <div class="video-block">
-        <h3>The film</h3>
-        <div class="video-frame">
-          <video controls loop muted playsinline preload="metadata">
-            <source src="videos/ovideo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
       </div>
       <footer class="site-foot">
         <p>O Theory · a layered, tier-honest synthesis. Build <code>{{BUILD_HASH}}</code> · {{N_CLAIMS}} claims ·
@@ -195,7 +235,7 @@
         <p class="foot-note">Every claim resolves to a real, cited source. The site is a deterministic function of a
           vetted knowledge base; the theory's full history lives in version control.</p>
       </footer>
-      <footer class="chapter-foot">{{NEXT_METHOD}}</footer>
+      <footer class="chapter-foot">{{NEXT_QUESTIONS}}</footer>
     </section>
   </main>
 
@@ -209,6 +249,6 @@
   <script src="assets/vendor/cytoscape.min.js" defer></script>
   <script src="assets/vendor/three.min.js" defer></script>
   <script src="assets/vendor/OrbitControls.js" defer></script>
-  <script src="assets/app.js" defer></script>
+  <script src="assets/app.js?v={{ASSET_V}}" defer></script>
 </body>
 </html>

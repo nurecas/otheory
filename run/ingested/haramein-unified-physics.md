@@ -1,0 +1,1 @@
+Source: Nassim Haramein 'unified physics' / holofractographic model / Schwarzschild proton / 'Quantum Gravity and the Holographic Mass' (Resonance Science Foundation). VERIFY against mainstream-physicist critiques; represent accurately and tier honestly per CLAUDE.md (likely E6 — presents as science but fails vetting).

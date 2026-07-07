@@ -1,6 +1,12 @@
 {
   "version": 1,
-  "inbox": {},
+  "inbox": {
+    "haramein-unified-physics.md": "sha256:b08e4f0d54d35321",
+    "hopf-toe-cluster.md": "sha256:9a9a47fe3317ef2f",
+    "inverted-hypersphere-cosmology.md": "sha256:384248639a25006a",
+    "nameless-project.md": "sha256:c82ad85dc6e9ed80",
+    "observer-patch-holography.md": "sha256:4f97f881d3c4c63b"
+  },
   "sourcesHash": "sha256:925dac27760ced3e",
   "lastRun": "2026-07-07"
 }

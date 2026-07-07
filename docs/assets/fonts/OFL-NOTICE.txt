@@ -1,2 +1,4 @@
-Fonts: Fraunces & Newsreader — SIL Open Font License 1.1.
-Sources: https://github.com/undercasetype/Fraunces  https://github.com/productiontype/Newsreader
+Fonts (SIL Open Font License 1.1):
+- Young Serif — https://github.com/noirblancrouge/YoungSerif
+- Newsreader — https://github.com/productiontype/Newsreader
+- Hanken Grotesk — https://github.com/hanken-design/HankenGrotesk

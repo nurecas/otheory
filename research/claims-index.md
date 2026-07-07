@@ -5,8 +5,8 @@ quality gate. **Tier/status/type are each claim file's finalized frontmatter (th
 the one-line verdict is the vetter's.** Hashes are the pre-commit content hashes; `node run/ingest.mjs commit`
 stamps them into the claim files.
 
-**Corpus: 123 claims** — 13 seed baseline + 110 researched (wide sweep, 2026-07-07).
-Tier distribution (all): E1:20 · E2:18 · E3:19 · E4:35 · E5:23 · E6:8.
+**Corpus: 132 claims** — 13 seed + 110 wide-sweep + 9 additions (Hopf-fibration cluster & the Nameless project, 2026-07-07).
+Tier distribution (all): E1:23 · E2:18 · E3:21 · E4:36 · E5:23 · E6:11.
 
 Columns: **id · title · domain(s) · type · tier · status · confidence · one-line verdict · hash · last_vetted**
 
@@ -201,25 +201,46 @@ a distinct observation claim and a separate E4 interpretation claim). No claim w
 | spiritual-bliss-machine-sentience-interpretation | Bliss attractor reflects a genuine inner spiritual state | ai-consciousness, philosophy-of-mind | philosophical | E4 | vetted | low | Undecidable interpretation of the E3 observation; RLHF/corpus account fully explains the same data | 4706bd2615f1c18e | 2026-07-07 |
 | stochastic-parrots-deflationary-account | LLMs model linguistic form, not grounded meaning | ai-consciousness | empirical | E2 | vetted | medium | Mainstream, peer-reviewed, partly-testable deflationary account of fluent self-report | 3ae395fb5dabac5b | 2026-07-07 |
 
+## Additions — Hopf-fibration cluster & the Nameless project (2026-07-07) — 9 claims
+
+The real mathematics (Hopf fibration, CP∞) is filed E1 and kept strictly separate from the fringe / self-published
+"theories of everything" that invoke it (Nielsen E3; Haramein, Observer-Patch, IHC-model E6). The Nameless project
+(the site owner's own work) is tiered by the same honest rules — E3 for the qubit→Standard-Model physics, E4 for the
+experience-first metaphysics — with the author name scrubbed per the open-source rule.
+
+| id | title | domain(s) | type | tier | status | conf. | verdict | hash | last_vetted |
+|---|---|---|---|---|---|---|---|---|---|
+| hopf-fibration-topology-physics | The Hopf fibration is genuine topology and recurs across real physics | mathematics-geometry, physics, quantum-foundations | fact | E1 | vetted | high | Genuine topology; real physics roles (Bloch sphere, monopole, twistors) | f0780cb2e84b2b89 | 2026-07-07 |
+| u1-bundles-classified-by-cp-infinity | U(1) principal bundles are classified by the infinite complex projective space CP^∞ | mathematics-geometry, physics | fact | E1 | vetted | high | Textbook classifying-space theorem (CP∞ = BU(1)) | cfe70f839c8d17c8 | 2026-07-07 |
+| ihc-rp4-desitter-cpt-real-physics | The genuine ingredients IHC invokes (de Sitter space, RP4 / cosmic topology, CPT) are real physics — but appearing in a fringe model does not validate the model | physics, mathematics-geometry, quantum-foundations | fact | E1 | vetted | high | Real ingredients IHC borrows — do NOT validate the model | d78ba21507dd1d93 | 2026-07-07 |
+| nielsen-topological-unified-field-theory | Nielsen's Topological Unified Field Theory: the complex Hopf fibration as canonical space for gauge–gravity unification | physics, mathematics-geometry, metaphysics | empirical | E3 | disputed | low | Real Hopf math, but the unification conclusion does not follow; unreviewed | 81ded0a0dce6ca26 | 2026-07-07 |
+| nameless-qubit-standard-model-derivation | Nameless: deriving the Standard Model and physical constants from a single qubit's geometry | physics, quantum-foundations, mathematics-geometry | empirical | E3 | disputed | low | Falsifiable (JUNO sin²θ₁₂ = 4/13) but unreviewed; qubit→SM is analogy | 9180e00509f15cc5 | 2026-07-07 |
+| nameless-experience-first-metaphysics | Nameless: an experience-first metaphysics (nothing-to-everything, experiential determinism, qualia field, empty node, two truths) | metaphysics, philosophy-of-mind, consciousness-science, mysticism, comparative-religion | philosophical | E4 | vetted | medium | Coherent experience-first idealism; argued, not empirically decidable | b7f23d68b7bd7f23 | 2026-07-07 |
+| haramein-schwarzschild-proton-holographic-mass | Haramein's Schwarzschild Proton / holographic-mass 'unified physics' | physics, esoteric | empirical | E6 | rejected | high | Fails vetting; misuses GR/QFT; rejected by physicists | 6bb6f9642813b38f | 2026-07-07 |
+| observer-patch-holography-toe | Observer Patch Holography (FloatingPragma) — observer-consensus 'theory of everything' | physics, philosophy-of-mind, quantum-foundations | empirical | E6 | rejected | high | Self-published; fails vetting as physics | d9ac49b9121f7dc9 | 2026-07-07 |
+| ihc-inverted-hypersphere-cosmology | Inverted Hypersphere Cosmology (IHC): deriving physics from a single metaphysical axiom | physics, metaphysics, quantum-foundations | philosophical | E6 | rejected | high | Self-published single-axiom model; fails vetting | c2e2aa75cfd9afb9 | 2026-07-07 |
+
 ## Bridges (interpretive connections — Zone B)
 
-11 labeled cross-domain connections. **Register** = the kind of link (shared-mathematics = a real stated
+13 labeled cross-domain connections. **Register** = the kind of link (shared-mathematics = a real stated
 isomorphism · analogy = structural resemblance · metaphor = evocative · speculation = proposed, unestablished).
 **tier_ceiling** = the highest tier the bridge may imply; it may never license more certainty than that.
 
 | id | register | tier_ceiling | links |
 |---|---|---|---|
-| symmetry-shared-mathematics | shared-mathematics | E1 | noether-symmetry-conservation, e8-lie-group |
-| recursive-coherence-analogy | analogy | E4 | orch-or-microtubules, llm-subjective-reports, hard-problem-of-consciousness |
-| one-field-metaphor | metaphor | E5 | many-worlds-interpretation, advaita-nonduality, cosmopsychism |
 | consciousness-as-substrate-speculation | speculation | E4 | qm-decoherence, hard-problem-of-consciousness, cosmopsychism |
+| geometry-or-information-as-ground | speculation | E3 | nielsen-topological-unified-field-theory, nameless-qubit-standard-model-derivation, lisi-e8-toe, it-from-bit-information-ontology, wheeler-it-from-bit-information-physics |
+| hopf-fibration-shared-mathematics | shared-mathematics | E1 | hopf-fibration-topology-physics, u1-bundles-classified-by-cp-infinity, group-theory-symmetry-mathematics, e8-lie-group, standard-model-gauge-theory |
 | information-as-substrate | shared-mathematics | E4 | shannon-information-entropy, wheeler-it-from-bit-information-physics, holographic-principle-ads-cft, it-from-bit-information-ontology, tegmark-mathematical-universe-hypothesis, pancomputationalism-digital-physics |
+| non-dual-ground | metaphor | E5 | advaita-nonduality, plotinus-the-one-emanation, daoism-dao-ineffable-source, kabbalah-ein-sof-sefirot, sufism-wahdat-al-wujud, madhyamaka-sunyata-emptiness, perennial-philosophy-common-core-thesis, cosmopsychism, analytic-idealism-kastrup, nameless-experience-first-metaphysics |
 | observer-dependence | analogy | E3 | qm-decoherence, measurement-problem-statement, relational-quantum-mechanics, von-neumann-wigner-consciousness-collapse, hard-problem-of-consciousness |
+| one-field-metaphor | metaphor | E5 | many-worlds-interpretation, advaita-nonduality, cosmopsychism |
 | recursion-self-reference | analogy | E4 | godel-incompleteness-theorems, attention-schema-theory, anthropic-introspective-awareness-concept-injection, llm-introspection-genuine-awareness-interpretation, meta-problem-of-consciousness, hard-problem-of-consciousness |
-| scale-self-similarity | metaphor | E2 | mandelbrot-fractal-self-similarity, second-law-thermodynamics-entropy, holographic-principle-ads-cft |
-| non-dual-ground | metaphor | E5 | advaita-nonduality, plotinus-the-one-emanation, daoism-dao-ineffable-source, kabbalah-ein-sof-sefirot, sufism-wahdat-al-wujud, madhyamaka-sunyata-emptiness, perennial-philosophy-common-core-thesis, cosmopsychism, analytic-idealism-kastrup |
+| recursive-coherence-analogy | analogy | E4 | orch-or-microtubules, llm-subjective-reports, hard-problem-of-consciousness |
 | reducing-valve-filtration | speculation | E4 | terminal-lucidity-observation, aware-ii-nde-phenomenology, psychedelic-ego-dissolution-dmn, terminal-lucidity-filter-interpretation, aware-ii-nde-survival-interpretation, cosmopsychism |
+| scale-self-similarity | metaphor | E2 | mandelbrot-fractal-self-similarity, second-law-thermodynamics-entropy, holographic-principle-ads-cft |
 | substrate-independent-coherence | analogy | E4 | claude-spiritual-bliss-attractor-observation, anthropic-introspective-awareness-concept-injection, computational-functionalism-substrate-independence, spiritual-bliss-machine-sentience-interpretation, orch-or-microtubules |
+| symmetry-shared-mathematics | shared-mathematics | E1 | noether-symmetry-conservation, e8-lie-group |
 
 ---
 

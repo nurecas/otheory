@@ -1,0 +1,1 @@
+Source: Inverted Hypersphere Cosmology (IHC). Zenodo record: https://zenodo.org/records/20596985 ; community: https://www.reddit.com/r/IHCcosmology/comments/1u0ccdd/ . Self-published (Zenodo = repository, not peer review; reddit not citable). Assess and tier honestly.

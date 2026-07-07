@@ -22,16 +22,22 @@ Produce, in research/synthesis/:
 4. predictions.md - any falsifiable predictions, with the test.
 5. abstract.md - a strong, honest intro for the page: what O Theory attempts and how to read the evidence
    tiers. Compelling but never over-claiming.
-6. overview.md - the LANDING ESSAY: one flowing, tier-honest account (~800-1100 words) of what the whole
-   corpus says together, written to be read beside the generative artwork. Front-matter: id, owner,
-   version, purpose. Keep it self-contained (no page mechanics), cadenced, and never over-claiming.
-7. existence-prompt.md - a generative art prompt titled "A Portrait of Existence," rewritten from the
-   vetted corpus so it EVOLVES every run. It must be tier-honest by construction: describe existence solid
-   where E1-proven, translucent where E2/E3-speculative, a diffuse field where E4-philosophical, light
-   where E5-symbolic, and a dissolving shadow for E6-rejected; describe cross-domain filaments by register.
-   Keep the existing "Render contract" section (the three.js encoding /build depends on) intact and
-   accurate; only refresh the prose prompt and the version stamp. This is an addition beyond the original
-   spec, requested to drive a data-driven three.js artwork on the page.
+6. overview.md - the LANDING ESSAY: one flowing account of what the whole corpus says together, written to
+   be read beside the generative artwork. CRITICAL: it must be understandable by a GENERAL, NON-TECHNICAL
+   audience. Explain every complex idea in plain language, with everyday analogies and almost no jargon (if
+   a technical term is unavoidable, define it in the same breath). ~800-1100 words, cadenced and beautiful,
+   yet every sentence stays tier-honest per CLAUDE.md — plain language must never become over-claiming.
+   Front-matter: id, owner, version, purpose. Self-contained (no page mechanics).
+7. existence-prompt.md - the "AS EVIDENCED" art prompt (tier-honest): describe existence solid where
+   E1-proven, translucent where E2/E3-speculative, a diffuse field where E4-philosophical, light where
+   E5-symbolic, a dissolving shadow for E6-rejected; cross-domain filaments by register (speculation
+   filaments trail off, not connecting). Rewritten every run so it EVOLVES.
+8. unified-prompt.md - the DEFAULT "AS IF ALL WERE TRUE" combined art prompt: existence as one radiant
+   coherent whole where every claim is taken as true and every connection converges through a single
+   luminous O-Source core — explicitly the counterfactual dream, framed as such, not evidence.
+   For BOTH prompt files: keep the existing "Render contract" section (the three.js encoding /build depends
+   on) intact and accurate; refresh only the prose blockquote and the version stamp. These drive a
+   data-driven three.js artwork and are additions beyond the original spec.
 
 A reader must never be misled about what is proven, evidenced, argued, or symbolic.
 Return: a summary of the framework's spine and its biggest unresolved tensions.

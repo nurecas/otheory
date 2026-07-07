@@ -22,13 +22,13 @@
 
   /* ═══════════ theme ═══════════ */
   (function theme() {
-    const saved = localStorage.getItem('otheory-theme');
+    const saved = localStorage.getItem('otheory-theme-v2');
     if (saved) document.documentElement.setAttribute('data-theme', saved);
     $('#theme-toggle') && $('#theme-toggle').addEventListener('click', () => {
       const next = isLight() ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('otheory-theme', next);
-      window.dispatchEvent(new CustomEvent('otheory-theme', { detail: next }));
+      localStorage.setItem('otheory-theme-v2', next);
+      window.dispatchEvent(new CustomEvent('otheory-theme-v2', { detail: next }));
     });
   })();
 
@@ -144,20 +144,27 @@
   function graphStyle() {
     return [
       { selector: 'node', style: {
-        'background-color': 'data(dcolor)', 'border-color': 'data(tcolor)', 'border-width': 3,
-        'width': 'mapData(deg, 0, 10, 16, 52)', 'height': 'mapData(deg, 0, 10, 16, 52)',
-        'label': 'data(label)', 'color': '#c9cede', 'font-size': 8, 'font-family': 'system-ui, sans-serif',
-        'text-valign': 'bottom', 'text-margin-y': 3, 'text-wrap': 'wrap', 'text-max-width': 88,
-        'text-outline-color': '#0b0d14', 'text-outline-width': 2, 'min-zoomed-font-size': 7 } },
-      { selector: 'edge', style: { 'width': 1.8, 'curve-style': 'haystack', 'haystack-radius': 0.3, 'line-color': 'data(ecolor)', 'opacity': 0.6 } },
-      { selector: 'edge.derivation', style: { 'curve-style': 'bezier', 'target-arrow-shape': 'triangle', 'target-arrow-color': 'data(ecolor)', 'arrow-scale': 0.7, 'width': 2.2, 'opacity': 0.85 } },
-      { selector: 'edge.relation', style: { 'width': 1, 'opacity': 0.35 } },
-      { selector: 'edge.bridge', style: { 'curve-style': 'bezier', 'line-style': 'dashed', 'width': 2.2, 'opacity': 0.9 } },
-      { selector: 'edge.reg-shared-mathematics', style: { 'line-style': 'solid', 'width': 3 } },
+        'background-color': 'data(dcolor)',
+        'background-fill': 'radial-gradient',
+        'background-gradient-stop-colors': 'data(grad)',
+        'background-gradient-stop-positions': '0 52 100',
+        'border-color': 'data(tcolor)', 'border-width': 1.3, 'border-opacity': 0.85,
+        'width': 'mapData(deg, 0, 10, 7, 26)', 'height': 'mapData(deg, 0, 10, 7, 26)',
+        'label': 'data(label)', 'color': '#dfe4f0', 'font-size': 8, 'font-family': 'system-ui, sans-serif', 'font-weight': 500,
+        'text-valign': 'bottom', 'text-margin-y': 2, 'text-wrap': 'wrap', 'text-max-width': 78,
+        'text-outline-color': '#080a10', 'text-outline-width': 2.5, 'text-opacity': 0, 'min-zoomed-font-size': 6,
+        'transition-property': 'text-opacity, border-width', 'transition-duration': '0.15s' } },
+      { selector: 'edge', style: { 'width': 1.6, 'curve-style': 'haystack', 'haystack-radius': 0.4, 'line-color': 'data(ecolor)', 'opacity': 0.5 } },
+      { selector: 'edge.derivation', style: { 'curve-style': 'bezier', 'target-arrow-shape': 'triangle', 'target-arrow-color': 'data(ecolor)', 'arrow-scale': 0.6, 'width': 1.8, 'opacity': 0.8 } },
+      { selector: 'edge.relation', style: { 'width': 0.8, 'opacity': 0.22 } },
+      { selector: 'edge.bridge', style: { 'curve-style': 'bezier', 'line-style': 'dashed', 'width': 2, 'opacity': 0.85 } },
+      { selector: 'edge.reg-shared-mathematics', style: { 'line-style': 'solid', 'width': 2.6 } },
       { selector: 'edge.reg-metaphor', style: { 'line-style': 'dotted' } },
       { selector: 'edge.reg-speculation', style: { 'line-dash-pattern': [2, 6] } },
-      { selector: '.faded', style: { 'opacity': 0.05, 'text-opacity': 0 } },
-      { selector: 'node.sel', style: { 'border-color': '#ffd479', 'border-width': 5 } },
+      { selector: 'node.hub', style: { 'text-opacity': 0.9 } },
+      { selector: 'node.hover', style: { 'text-opacity': 1, 'border-width': 2.4, 'border-opacity': 1, 'z-index': 30 } },
+      { selector: 'node.sel', style: { 'text-opacity': 1, 'border-color': '#e0a92e', 'border-width': 3, 'border-opacity': 1, 'z-index': 40 } },
+      { selector: '.faded', style: { 'opacity': 0.045, 'text-opacity': 0 } },
       { selector: 'edge.hidden', style: { 'display': 'none' } },
     ];
   }
@@ -166,35 +173,67 @@
     if (!host || typeof cytoscape === 'undefined' || !graph.nodes.length) return;
     const elements = [];
     graph.nodes.forEach((n) => elements.push({ data: {
-      id: n.id, label: n.label, domain: n.domain, tier: n.tier,
-      dcolor: domCanvas(n.domain), tcolor: tierCanvas(n.tier) } }));
+      id: n.id, label: n.label, title: n.title || n.label, domain: n.domain, tier: n.tier,
+      dcolor: domCanvas(n.domain), tcolor: tierCanvas(n.tier),
+      grad: '#ffffff ' + domCanvas(n.domain) + ' ' + domCanvas(n.domain) } }));
     graph.edges.forEach((e, i) => elements.push({
       data: { id: 'e' + i, source: e.source, target: e.target, kind: e.kind,
         ecolor: e.kind === 'bridge' ? regCanvas(e.register) : e.kind === 'relation' ? 'rgba(150,158,175,0.5)' : 'rgba(170,178,196,0.55)' },
       classes: e.kind === 'bridge' ? ('bridge reg-' + e.register) : e.kind }));
     cy = cytoscape({ container: host, elements, style: graphStyle(),
-      layout: { name: 'cose', animate: false, idealEdgeLength: 90, nodeRepulsion: 12000, padding: 30, nodeOverlap: 10, gravity: 1.2, numIter: 1600 },
-      minZoom: 0.22, maxZoom: 3, wheelSensitivity: 0.2, pixelRatio: Math.min(devicePixelRatio, 2) });
+      layout: { name: 'cose', animate: false, idealEdgeLength: 115, nodeRepulsion: 20000, padding: 34, nodeOverlap: 18, gravity: 0.8, componentSpacing: 90, numIter: 2200 },
+      minZoom: 0.18, maxZoom: 3, wheelSensitivity: 0.2, pixelRatio: Math.min(devicePixelRatio, 2) });
     cy.nodes().forEach((n) => n.data('deg', Math.min(n.degree(), 10)));
+    cy.nodes().toArray().sort((a, b) => b.degree() - a.degree()).slice(0, 16).forEach((n) => n.addClass('hub')); // keep only the ~16 busiest labels on by default
+    const tip = $('#graph-tip');
+    cy.on('mouseover', 'node', (ev) => {
+      const n = ev.target; n.addClass('hover');
+      if (tip) {
+        const t = TIERS[n.data('tier')] || {};
+        tip.innerHTML = `<span class="tip-title">${esc(n.data('title'))}</span>`
+          + `<span class="tip-meta"><span class="tip-tier" style="--tc:${tierCanvas(n.data('tier'))}">${n.data('tier')} · ${esc(t.label || '')}</span>`
+          + `<span class="tip-dom" style="--dc:${domCanvas(n.data('domain'))}">${n.data('domain').replace(/-/g, ' ')}</span>`
+          + `<span class="tip-deg">${n.degree()} links</span></span>`;
+        tip.hidden = false;
+      }
+    });
+    cy.on('mouseout', 'node', (ev) => { ev.target.removeClass('hover'); if (tip) tip.hidden = true; });
+    cy.on('mousemove', (ev) => {
+      if (tip && !tip.hidden) {
+        const p = ev.renderedPosition || { x: 0, y: 0 };
+        const w = host.clientWidth;
+        tip.style.left = Math.min(p.x + 14, w - 220) + 'px'; tip.style.top = (p.y + 14) + 'px';
+      }
+    });
     cy.on('tap', 'node', (ev) => { cy.nodes().removeClass('sel'); ev.target.addClass('sel'); openClaim(ev.target.id()); });
 
     const dsel = $('#filter-domain'), tsel = $('#filter-tier'), btog = $('#toggle-bridges'), rtog = $('#toggle-relations');
     if (dsel) Object.keys(DOMS).filter((d) => graph.nodes.some((n) => n.domain === d))
       .forEach((d) => { const o = document.createElement('option'); o.value = d; o.textContent = d.replace(/-/g, ' '); dsel.appendChild(o); });
+    const search = $('#graph-search');
     const apply = () => {
       const dom = dsel ? dsel.value : ''; const maxRank = tsel && tsel.value ? tierRank(tsel.value) : 99;
       const showB = !btog || btog.checked, showR = !rtog || rtog.checked;
+      const q = search ? search.value.trim().toLowerCase() : '';
+      const matches = [];
       cy.batch(() => {
-        cy.nodes().forEach((n) => n.toggleClass('faded', !((!dom || n.data('domain') === dom) && tierRank(n.data('tier')) <= maxRank)));
+        cy.nodes().forEach((n) => {
+          const ok = (!dom || n.data('domain') === dom) && tierRank(n.data('tier')) <= maxRank
+            && (!q || (n.data('title') + ' ' + n.id()).toLowerCase().includes(q));
+          n.toggleClass('faded', !ok);
+          if (ok && q) matches.push(n);
+        });
         cy.edges().forEach((e) => {
           e.toggleClass('faded', e.source().hasClass('faded') || e.target().hasClass('faded'));
           e.toggleClass('hidden', (e.hasClass('bridge') && !showB) || (e.hasClass('relation') && !showR));
         });
       });
+      if (q && matches.length && matches.length <= 5) cy.animate({ fit: { eles: cy.collection(matches), padding: 90 } }, { duration: reduceMotion ? 0 : 420 });
     };
     [dsel, tsel, btog, rtog].forEach((el) => el && el.addEventListener('change', apply));
+    search && search.addEventListener('input', apply);
     $('#graph-reset') && $('#graph-reset').addEventListener('click', () => {
-      if (dsel) dsel.value = ''; if (tsel) tsel.value = ''; if (btog) btog.checked = true; if (rtog) rtog.checked = true;
+      if (dsel) dsel.value = ''; if (tsel) tsel.value = ''; if (btog) btog.checked = true; if (rtog) rtog.checked = true; if (search) search.value = '';
       apply(); cy.animate({ fit: { padding: 30 } }, { duration: reduceMotion ? 0 : 450 });
     });
   }
@@ -238,7 +277,7 @@
     });
     host.innerHTML = `<svg viewBox="0 0 ${S} ${S}" role="img">${ribbons}${hubs}</svg>`;
   }
-  window.addEventListener('otheory-theme', drawChord);
+  window.addEventListener('otheory-theme-v2', drawChord);
 
   /* ═══════════ THREE shared ═══════════ */
   const hasWebGL = (() => { try { const c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); } catch (e) { return false; } })();
@@ -417,69 +456,99 @@
       honest.add(new THREE.Points(dg, reg('honest', new THREE.PointsMaterial({ size: 0.09, map: glow, opacity: 0.5, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
     })();
 
-    /* — mode B: as if all were true (one radiant whole) — */
-    (function buildUnified() {
+    /* — mode B: "as if all were true" — the dream, woven from Hopf-fibration rings around a
+       an E8 mandala + nested vector-equilibrium core. Aesthetics, not a claim. — */
+    try { (function buildUnified() {
       const rng = mulberry32(seed ^ 0x5f5f5f);
       const nodes = art.nodes || [];
-      const N = nodes.length || 1;
-      const GA = Math.PI * (3 - Math.sqrt(5)); // golden angle
+      const N = Math.max(nodes.length, 1);
       const anchors = {};
-      const positions = [], colors = [];
-      nodes.forEach((n, i) => {
-        // Fibonacci sphere: every claim an equal petal of one form
-        const y = 1 - (i / (N - 1)) * 2;
-        const rr = Math.sqrt(Math.max(0, 1 - y * y));
-        const th = GA * i;
-        const R0 = 9.5;
-        const p = new THREE.Vector3(Math.cos(th) * rr * R0, y * R0 * 0.78, Math.sin(th) * rr * R0);
-        anchors[n.id] = p;
-        const col = hex(domCanvas(n.domain));
-        positions.push(p.x, p.y, p.z); colors.push(col.r, col.g, col.b);
-      });
-      const pg = new THREE.BufferGeometry();
-      pg.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
-      pg.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
-      unified.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.85, map: glow, opacity: 0.95, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
-      // halo ring of finer dust along the same spiral
-      const halo = [], hcol = [];
-      nodes.forEach((n, i) => {
-        const base = anchors[n.id]; const col = hex(domCanvas(n.domain));
-        for (let k = 0; k < 6; k++) {
-          halo.push(base.x + (rng() - 0.5) * 1.3, base.y + (rng() - 0.5) * 1.3, base.z + (rng() - 0.5) * 1.3);
-          hcol.push(col.r, col.g, col.b);
+      const GA = Math.PI * (3 - Math.sqrt(5));
+      const SEG = 96; // higher segment count → smooth, non-angular fiber circles
+
+      // Hopf fiber: base point (theta,phi) on S^2 -> a circle in S^3, stereographically projected to R^3.
+      // Nearby base points give linked rings (nested tori) — the classic Hopf image.
+      const fiber = (theta, phi) => {
+        const a = Math.cos(theta / 2), b = Math.sin(theta / 2);
+        const ring = [];
+        for (let k = 0; k <= SEG; k++) {
+          const psi = (k / SEG) * 2 * Math.PI;
+          const x1 = a * Math.cos(psi), y1 = a * Math.sin(psi);
+          const x2 = b * Math.cos(psi + phi), y2 = b * Math.sin(psi + phi);
+          let d = 1 - y2; if (d < 0.16) d = 0.16;            // clamp the projection singularity
+          ring.push(new THREE.Vector3(x1 / d, y1 / d, x2 / d));
         }
+        return ring;
+      };
+      // first pass — raw rings + max extent for scaling
+      const raw = []; let maxLen = 0.001;
+      nodes.forEach((n, i) => {
+        const theta = 0.24 * Math.PI + 0.52 * Math.PI * ((i + 0.5) / N);
+        const r = fiber(theta, GA * i);
+        r.forEach((p) => { maxLen = Math.max(maxLen, p.length()); });
+        raw.push(r);
       });
-      const hg = new THREE.BufferGeometry();
-      hg.setAttribute('position', new THREE.Float32BufferAttribute(halo, 3));
-      hg.setAttribute('color', new THREE.Float32BufferAttribute(hcol, 3));
-      unified.add(new THREE.Points(hg, reg('unified', new THREE.PointsMaterial({ size: 0.22, map: glow, opacity: 0.5, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
-      // every connection — bridge pairs AND relations — as bright convergent filaments through the core
+      const scale = 9.6 / maxLen;
+      // second pass — one LineSegments for all fibers (vertex-colored) + bright claim points
+      const lpos = [], lcol = [], ppos = [], pcol = [];
+      nodes.forEach((n, i) => {
+        const col = hex(domCanvas(n.domain)); const r = raw[i];
+        for (let k = 0; k < r.length - 1; k++) {
+          const p = r[k], q = r[k + 1];
+          lpos.push(p.x * scale, p.y * scale, p.z * scale, q.x * scale, q.y * scale, q.z * scale);
+          lcol.push(col.r, col.g, col.b, col.r, col.g, col.b);
+        }
+        const anc = r[Math.floor(rng() * r.length)].clone().multiplyScalar(scale);
+        anchors[n.id] = anc; ppos.push(anc.x, anc.y, anc.z); pcol.push(col.r, col.g, col.b);
+      });
+      const lg = new THREE.BufferGeometry();
+      lg.setAttribute('position', new THREE.Float32BufferAttribute(lpos, 3));
+      lg.setAttribute('color', new THREE.Float32BufferAttribute(lcol, 3));
+      unified.add(new THREE.LineSegments(lg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.3, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      const pg = new THREE.BufferGeometry();
+      pg.setAttribute('position', new THREE.Float32BufferAttribute(ppos, 3));
+      pg.setAttribute('color', new THREE.Float32BufferAttribute(pcol, 3));
+      unified.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.7, map: glow, opacity: 0.95, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
+
+      // connections — bridges + relations — as filaments converging through the core
       const drawFil = (a, b, color, op) => {
         const A = anchors[a], B = anchors[b]; if (!A || !B) return;
-        const mid = A.clone().add(B).multiplyScalar(0.5).setLength(2.2 + rng() * 1.6);
-        const pts = new THREE.QuadraticBezierCurve3(A, mid, B).getPoints(28);
-        const g = new THREE.BufferGeometry().setFromPoints(pts);
-        unified.add(new THREE.Line(g, reg('unified', new THREE.LineBasicMaterial({ color, opacity: op }))));
+        const mid = A.clone().add(B).multiplyScalar(0.5).setLength(2.4 + rng() * 2);
+        const pts = new THREE.QuadraticBezierCurve3(A, mid, B).getPoints(26);
+        unified.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), reg('unified', new THREE.LineBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false, blending: THREE.AdditiveBlending }))));
       };
-      (art.bridges || []).forEach((b) => {
-        const col = hex(regCanvas(b.register));
-        for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.55);
-      });
-      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.16));
-      // the O-Source at full radiance
-      unified.add(new THREE.Mesh(new THREE.IcosahedronGeometry(2.1, 2), reg('unified', new THREE.MeshBasicMaterial({ color: 0xfff3d0, opacity: 0.16, wireframe: true }))));
-      const cpos = [], ccol = []; const gold = hex('#ffe9b3'), white = hex('#ffffff');
-      for (let i = 0; i < 420; i++) {
-        const r = Math.pow(rng(), 0.6) * 2.4; const th = Math.acos(2 * rng() - 1), ph = 2 * Math.PI * rng();
-        cpos.push(r * Math.sin(th) * Math.cos(ph), r * Math.cos(th), r * Math.sin(th) * Math.sin(ph));
-        const c = rng() < 0.5 ? gold : white; ccol.push(c.r, c.g, c.b);
-      }
+      (art.bridges || []).forEach((b) => { const col = hex(regCanvas(b.register)); for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.5); });
+      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.14));
+
+      // core — nested vector equilibrium (cuboctahedron), gold
+      const core = new THREE.Group(); unified.add(core); unified.userData.core = core;
+      const goldLines = (verts, edges, s, op) => {
+        const pos = []; edges.forEach(([i, j]) => { pos.push(verts[i].x * s, verts[i].y * s, verts[i].z * s, verts[j].x * s, verts[j].y * s, verts[j].z * s); });
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+        core.add(new THREE.LineSegments(g, reg('unified', new THREE.LineBasicMaterial({ color: 0xffe4a0, transparent: true, opacity: op, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      };
+      const ve = [[1,1,0],[1,-1,0],[-1,1,0],[-1,-1,0],[1,0,1],[1,0,-1],[-1,0,1],[-1,0,-1],[0,1,1],[0,1,-1],[0,-1,1],[0,-1,-1]].map((v) => new THREE.Vector3(v[0], v[1], v[2]));
+      const veEdges = []; for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) if (Math.abs(ve[i].distanceTo(ve[j]) - Math.SQRT2) < 0.02) veEdges.push([i, j]);
+      goldLines(ve, veEdges, 1.9, 0.55); goldLines(ve, veEdges, 1.15, 0.4); goldLines(ve, veEdges, 0.62, 0.3); // fractal nesting
+      // the E8 mandala — 240 roots projected, retained as the beautiful lattice at mid radius
+      (function e8mandala() {
+        const roots = e8Roots(); const b = e8Basis();
+        const v3 = (() => { const a = []; for (let k = 0; k < 8; k++) a.push(Math.cos((4 * Math.PI * k) / 8 + 0.9)); const n = Math.hypot(...a); return a.map((x) => x / n); })();
+        const pos = [], col = []; const gold = hex('#ffe6a8'), white = hex('#fff6e0'); let mx = 0.001;
+        const raw = roots.map((r) => { let x = 0, y = 0, z = 0; for (let k = 0; k < 8; k++) { x += r[k] * b[0][k]; y += r[k] * b[1][k]; z += r[k] * v3[k]; } mx = Math.max(mx, Math.hypot(x, y)); return [x, y, z]; });
+        const s = 5.7 / mx;
+        raw.forEach((p, i) => { pos.push(p[0] * s, p[1] * s, p[2] * s * 0.32); const c = (i % 3 === 0) ? gold : white; col.push(c.r, c.g, c.b); });
+        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
+        unified.add(new THREE.Points(g, reg('unified', new THREE.PointsMaterial({ size: 0.17, map: glow, vertexColors: true, transparent: true, opacity: 0.72, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      })();
+      const cpos = [], ccol = []; const g1 = hex('#ffe9b3'), w = hex('#ffffff');
+      for (let i = 0; i < 320; i++) { const r = Math.pow(rng(), 0.6) * 2.1; const th = Math.acos(2 * rng() - 1), ph = 2 * Math.PI * rng(); cpos.push(r * Math.sin(th) * Math.cos(ph), r * Math.cos(th), r * Math.sin(th) * Math.sin(ph)); const c = rng() < 0.5 ? g1 : w; ccol.push(c.r, c.g, c.b); }
       const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cpos, 3)); cg.setAttribute('color', new THREE.Float32BufferAttribute(ccol, 3));
-      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.6, map: glow, opacity: 0.85, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
-    })();
+      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.55, map: glow, opacity: 0.85, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
+    })(); } catch (e) { console.error('unified art', e); }
 
     /* — crossfade + loop — */
-    let mix = 0, target = 0; // 0 = honest, 1 = unified
+    let mix = 1, target = 1; // 0 = honest, 1 = unified (DEFAULT: the combined "as if all were true" view)
     const applyMix = () => {
       registry.honest.forEach((m) => { m.opacity = m.userData.baseOp * (1 - mix); });
       registry.unified.forEach((m) => { m.opacity = m.userData.baseOp * mix; });
@@ -494,6 +563,7 @@
       $$('.art-mode').forEach((x) => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', String(x === b)); });
       target = b.dataset.mode === 'unified' ? 1 : 0;
       const cap = $('#art-caption'); if (cap) cap.textContent = captions[b.dataset.mode];
+      $$('.art-prompt').forEach((p) => { p.hidden = p.dataset.mode !== b.dataset.mode; }); // swap the drawer's prompt to match
       if (reduceMotion) { mix = target; applyMix(); renderer.render(scene, camera); }
     }));
     onResize(host, renderer, camera);
@@ -511,6 +581,7 @@
       if (Math.abs(target - mix) > 0.001) applyMix();
       honest.rotation.y += 0.0016;
       unified.rotation.y += 0.0011;
+      if (unified.userData.core) { unified.userData.core.rotation.y -= 0.005; unified.userData.core.rotation.x += 0.0025; }
       const b = 1 + Math.sin(t) * 0.02;
       honest.scale.setScalar(b);
       unified.scale.setScalar(1 + Math.sin(t * 0.8) * 0.03);

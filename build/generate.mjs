@@ -63,11 +63,10 @@ const domainLabel = (d) => d.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUppe
 
 const CHAPTERS = [
   { slug: 'synthesis', num: '01', title: 'The Synthesis' },
-  { slug: 'map', num: '02', title: 'The Map' },
+  { slug: 'map', num: '02', title: 'Method & Map' },
   { slug: 'evidence', num: '03', title: 'The Evidence' },
   { slug: 'interpretations', num: '04', title: 'The Interpretations' },
   { slug: 'questions', num: '05', title: 'Open Questions' },
-  { slug: 'method', num: '06', title: 'The Method' },
 ];
 
 // ---------------------------------------------------------------------------
@@ -350,8 +349,9 @@ function buildArt(claims, bridges, graph) {
   });
   const corpusHash = createHash('sha256').update(sig).digest('hex');
   const asOf = claims.map((c) => c.last_vetted).filter(Boolean).sort().pop() || '';
-  const { body: epBody } = splitFrontMatter(readSynth('existence-prompt.md'));
-  const promptText = (epBody.match(/^>.*$/gm) || []).map((l) => l.replace(/^>\s?/, '')).join('\n').trim();
+  const blockquote = (name) => { const { body } = splitFrontMatter(readSynth(name)); return (body.match(/^>.*$/gm) || []).map((l) => l.replace(/^>\s?/, '')).join('\n').trim(); };
+  const promptText = blockquote('existence-prompt.md');
+  const unifiedText = blockquote('unified-prompt.md');
   const relationPairs = graph.edges.filter((e) => e.kind === 'relation').map((e) => [e.source, e.target]);
   return {
     version: 'v-' + corpusHash.slice(0, 8),
@@ -364,6 +364,7 @@ function buildArt(claims, bridges, graph) {
     bridges: bridges.map((b) => ({ id: b.id, register: b.register, tier_ceiling: b.tier_ceiling, links: b.links })),
     relationPairs,
     prompt: promptText,
+    unifiedPrompt: unifiedText,
   };
 }
 
@@ -441,24 +442,44 @@ function interpretiveGroups(claims) {
     </details>`).join('');
 }
 
+function graphLegend() {
+  const doms = Object.keys(DOMAINS).map((d) => `<span class="lg-item"><span class="lg-dot" style="--c:${domainColor(d)}"></span>${domainLabel(d)}</span>`).join('');
+  const tiers = Object.entries(TIERS).map(([t, v]) => `<span class="lg-item" title="${esc(v.label)}"><span class="lg-rim" style="--c:${v.color}"></span>${t}</span>`).join('');
+  const edges = `<span class="lg-item"><span class="lg-line solid"></span>derivation</span>`
+    + `<span class="lg-item"><span class="lg-line thin"></span>relation</span>`
+    + `<span class="lg-item"><span class="lg-line dashed"></span>bridge</span>`;
+  return `<div class="legend-group"><h4>Field</h4><div class="lg-items">${doms}</div></div>`
+    + `<div class="legend-group"><h4>Certainty (rim)</h4><div class="lg-items">${tiers}</div></div>`
+    + `<div class="legend-group"><h4>Link</h4><div class="lg-items">${edges}</div></div>`;
+}
+function registersKey() {
+  return '<ul class="rk-list rk-key">' + Object.entries(REGISTERS).map(([k, v]) =>
+    `<li class="rk" style="--rc:${v.color}"><span class="rk-swatch reg-${v.style}"></span><span><strong>${v.label}.</strong> ${esc(v.blurb)}.</span></li>`).join('') + '</ul>';
+}
 function bridgesByRegister(bridges, claimsById) {
   const order = ['shared-mathematics', 'analogy', 'metaphor', 'speculation'];
   return order.filter((r) => bridges.some((b) => b.register === r)).map((r) => {
     const reg = REGISTERS[r];
-    const cards = bridges.filter((b) => b.register === r).map((b) => {
+    const inReg = bridges.filter((b) => b.register === r);
+    const entries = inReg.map((b) => {
       const links = b.links.map((l) => {
         const c = claimsById[l];
         return c ? `<button class="chip claim-chip" data-claim="${l}">${esc(shortLabel(c.title))} <span class="mini-tier" style="--tc:${TIERS[c.tier]?.color}">${c.tier}</span></button>` : '';
       }).join('');
-      return `<article class="bridge" style="--rc:${reg.color}">
-        <header><h4>${esc(b.title)}</h4><span class="ceiling">ceiling ${b.tier_ceiling}</span></header>
-        <p>${inline(b.narrative || '')}</p>
-        <div class="bridge-links">${links}</div>
+      return `<article class="bridge-entry">
+        <p class="be-ceiling">implies no more than <strong>${b.tier_ceiling}</strong></p>
+        <h4 class="be-title">${esc(b.title)}</h4>
+        <p class="be-narrative">${inline(b.narrative || '')}</p>
+        <div class="be-links"><span class="be-links-label">Connects</span>${links}</div>
       </article>`;
     }).join('');
-    return `<section class="register-group" style="--rc:${reg.color}">
-      <h3 class="register-h"><span class="rk-swatch reg-${reg.style}"></span>${reg.label}<span class="register-note">${esc(reg.blurb)}</span></h3>
-      <div class="bridge-grid">${cards}</div>
+    return `<section class="register-block" style="--rc:${reg.color}">
+      <header class="register-header">
+        <span class="register-swatch reg-${reg.style}"></span>
+        <div class="register-head-text"><h3 class="register-name">${reg.label}</h3><p class="register-blurb">${esc(reg.blurb)}</p></div>
+        <span class="register-count">${inReg.length}</span>
+      </header>
+      <div class="bridge-entries">${entries}</div>
     </section>`;
   }).join('');
 }
@@ -520,14 +541,21 @@ function nextLink(slug) {
 function assemble({ claims, bridges, graph, art }) {
   const claimsById = Object.fromEntries(claims.map((c) => [c.id, c]));
   const template = readFileSync(R('build', 'templates', 'index.template.html'), 'utf8');
+  // content-hash of the mutable assets → cache-busting query so browsers never serve a stale app.js/style.css
+  const assetHash = createHash('sha256').update(readFileSync(R('build', 'assets', 'app.js'))).update(readFileSync(R('build', 'assets', 'style.css'))).digest('hex').slice(0, 10);
 
   const overviewRaw = readSynth('overview.md');
   const ov = overviewRaw ? titleAndBody(overviewRaw) : { title: 'The Synthesis', body: stripAuthoring(readSynth('abstract.md')) };
-  const abstract = renderMarkdown(truncateBefore(stripAuthoring(readSynth('abstract.md')), '## How to read the evidence'));
+  // Split the abstract's "what O Theory is" narrative: lead (→ landing intro) + rest (→ method framing).
+  const absClean = truncateBefore(stripAuthoring(readSynth('abstract.md')), '## How to read the evidence');
+  const absBlocks = absClean.split(/\n\s*\n/).filter((b) => b.trim());
+  const intro = renderMarkdown(absBlocks.slice(0, 2).join('\n\n'));
+  const methodFraming = renderMarkdown(absBlocks.slice(2).join('\n\n'));
   const framework = renderMarkdown(stripAuthoring(readSynth('framework.md')));
   const openProblems = renderMarkdown(stripAuthoring(readSynth('open-problems.md')));
   const predictions = renderMarkdown(stripAuthoring(readSynth('predictions.md')));
   const promptHtml = art.prompt ? renderMarkdown(art.prompt) : '';
+  const unifiedPromptHtml = art.unifiedPrompt ? renderMarkdown(art.unifiedPrompt) : '';
 
   const repl = {
     BUILD_VERSION: art.version,
@@ -536,6 +564,9 @@ function assemble({ claims, bridges, graph, art }) {
     N_CLAIMS: String(art.generated.claims),
     N_BRIDGES: String(art.generated.bridges),
     N_DOMAINS: String(Object.keys(art.domainCounts).length),
+    N_EDGES: String(graph.edges.length),
+    ASSET_V: assetHash,
+    GRAPH_LEGEND: graphLegend(),
     CHAPTER_NAV: chapterNav(),
     OVERVIEW_TITLE: esc(ov.title || 'The Synthesis'),
     OVERVIEW: renderMarkdown(ov.body),
@@ -545,18 +576,18 @@ function assemble({ claims, bridges, graph, art }) {
     LANDSCAPE: landscape(claims),
     INTERP_GROUPS: interpretiveGroups(claims),
     BRIDGES_BY_REGISTER: bridgesByRegister(bridges, claimsById),
+    REGISTERS_KEY: registersKey(),
     LAYER_STACK: layerStack(claims),
-    ABSTRACT: abstract,
     FRAMEWORK: framework,
     OPEN_PROBLEMS: openProblems,
     PREDICTIONS: predictions,
     EXISTENCE_PROMPT: promptHtml,
+    UNIFIED_PROMPT: unifiedPromptHtml,
     NEXT_SYNTHESIS: nextLink('synthesis'),
     NEXT_MAP: nextLink('map'),
     NEXT_EVIDENCE: nextLink('evidence'),
     NEXT_INTERPRETATIONS: nextLink('interpretations'),
     NEXT_QUESTIONS: nextLink('questions'),
-    NEXT_METHOD: nextLink('method'),
     GRAPH_JSON: JSON.stringify(graph).replace(/</g, '\\u003c'),
     ART_JSON: JSON.stringify(art).replace(/</g, '\\u003c'),
     CLAIMS_JSON: JSON.stringify(buildClaimsJson(claims)).replace(/</g, '\\u003c'),
