@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>O Theory · Lab — McKay: Γ ⊂ SU(2) as lattice & Hopf fibration</title>
+<title>O Theory · Lab — E8 chirality experiments</title>
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -16,9 +16,15 @@
     text-transform: uppercase; color: #ffcf6a; font-weight: 700; }
   .badge a { color: #8fa0c0; text-decoration: none; font-weight: 500; margin-left: 10px; }
   .badge a:hover { color: #e8ecf6; }
-  .panel { position: fixed; left: 16px; bottom: 16px; z-index: 5; max-width: min(440px, 92vw);
-    background: rgba(12,14,22,0.72); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.09);
-    border-radius: 14px; padding: 14px 16px; }
+  .verbar { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); z-index: 6;
+    display: inline-flex; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 100px; padding: 3px; gap: 2px; }
+  .verbar button { border: 0; background: transparent; color: #aab4c8; font: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 6px 14px; border-radius: 100px; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+  .verbar button.on { background: #ffcf6a; color: #14161f; }
+  .panel { position: fixed; left: 16px; bottom: 16px; z-index: 5; max-width: min(460px, 92vw);
+    background: rgba(12,14,22,0.74); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 14px; padding: 14px 16px; max-height: 78vh; overflow-y: auto; }
   h1 { font-size: 15px; font-weight: 650; margin-bottom: 4px; }
   h1 span { color: #ffcf6a; }
   .sub { font-size: 12.5px; line-height: 1.5; color: #aab4c8; }
@@ -30,8 +36,12 @@
   .toggles { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: #aab4c8; }
   .toggles label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; user-select: none; }
   .toggles input { accent-color: #ffcf6a; }
-  #cap { margin-top: 10px; font-size: 12px; line-height: 1.5; color: #cbd4e6; min-height: 2.6em; }
-  #cap b { color: #ffcf6a; }
+  .cap { margin-top: 10px; font-size: 12px; line-height: 1.5; color: #cbd4e6; }
+  .cap b { color: #ffcf6a; }
+  .caveats { margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,0.09);
+    font-size: 11px; line-height: 1.5; color: #8b97ae; }
+  .caveats b { color: #b6c0d4; font-weight: 600; }
+  .hidden { display: none; }
   .panel-hide { position: absolute; top: 10px; right: 12px; width: 24px; height: 24px; border: 0; cursor: pointer;
     background: rgba(255,255,255,0.06); color: #aab4c8; border-radius: 7px; font-size: 15px; line-height: 1;
     display: flex; align-items: center; justify-content: center; transition: 0.2s; }
@@ -51,26 +61,56 @@
   <div id="stage"></div>
   <div class="badge">Experimental · O Theory Lab <a href="../">← back to the site</a></div>
 
+  <div class="verbar" id="verbar">
+    <button data-v="v1">v1 · McKay</button>
+    <button data-v="v2" class="on">v2 · ℍ² chiral</button>
+  </div>
+
   <div class="panel">
     <button class="panel-hide" id="panel-hide" aria-label="Hide panel" title="Hide">×</button>
-    <h1>McKay's bridge — one group <span>Γ ⊂ SU(2)</span>, two faces</h1>
-    <p class="sub">The <b>affine ADE ↔ binary-polyhedral</b> dictionary: <b>Ê₆ ↔ 2T</b>, <b>Ê₇ ↔ 2O</b>,
-      <b>Ê₈ ↔ 2I</b>. The exceptional root lattice and the Hopf fibration are the same finite subgroup
-      <b>Γ ⊂ S³</b> seen two ways: as a <b>lattice</b> (its elements + nearest-neighbour graph) and as a
-      <b>Hopf fibration</b> (left cosets of a cyclic S¹ ⊂ Γ — genuine great-circle fibres).</p>
-    <div class="seg" id="pick">
-      <button data-g="2T">2T · Ê₆</button>
-      <button data-g="2O">2O · Ê₇</button>
-      <button data-g="2I" class="on">2I · Ê₈</button>
+
+    <!-- ── v1 ── -->
+    <div id="content-v1" class="hidden">
+      <h1>McKay's bridge — one group <span>Γ ⊂ SU(2)</span>, two faces</h1>
+      <p class="sub">The <b>affine ADE ↔ binary-polyhedral</b> dictionary: <b>Ê₆ ↔ 2T</b>, <b>Ê₇ ↔ 2O</b>,
+        <b>Ê₈ ↔ 2I</b>. The exceptional root lattice and the Hopf fibration are the same finite subgroup
+        <b>Γ ⊂ S³</b> seen two ways: as a <b>lattice</b> (its elements + nearest-neighbour graph) and as a
+        <b>Hopf fibration</b> (left cosets of a cyclic S¹ ⊂ Γ — genuine great-circle fibres).</p>
+      <div class="seg" id="pick">
+        <button data-g="2T">2T · Ê₆</button>
+        <button data-g="2O">2O · Ê₇</button>
+        <button data-g="2I" class="on">2I · Ê₈</button>
+      </div>
+      <div class="toggles">
+        <label><input type="checkbox" id="t-fibers" checked> Hopf fibres</label>
+        <label><input type="checkbox" id="t-lattice" checked> lattice edges</label>
+        <label><input type="checkbox" id="t-points" checked> group elements</label>
+        <label><input type="checkbox" id="t-base" checked> base S² (quotient)</label>
+        <label><input type="checkbox" id="t-spin" checked> spin</label>
+      </div>
+      <p class="cap" id="cap1"></p>
     </div>
-    <div class="toggles">
-      <label><input type="checkbox" id="t-fibers" checked> Hopf fibres</label>
-      <label><input type="checkbox" id="t-lattice" checked> lattice edges</label>
-      <label><input type="checkbox" id="t-points" checked> group elements</label>
-      <label><input type="checkbox" id="t-base" checked> base S² (quotient)</label>
-      <label><input type="checkbox" id="t-spin" checked> spin</label>
+
+    <!-- ── v2 ── -->
+    <div id="content-v2">
+      <h1>The <span>ℍ² chiral node lattice</span> — E8-native</h1>
+      <p class="sub">Fix <b>ℝ⁸ = ℍ ⊕ ℍ</b> (a D₄⊕D₄ frame). The two Hopf maps on S⁷,
+        <b>h_R = (|a|²−|b|², 2bā)</b> and <b>h_L = (|a|²−|b|², 2āb)</b>, send all 240 roots onto the <b>same</b>
+        10 points of S⁴ — the 5-orthoplex {0, ∞} ∪ Q₈. The joint map (h_L, h_R) then <b>partitions</b> the roots.
+        No folding, no φ-scaling, no rank drop.</p>
+      <div class="toggles">
+        <label><input type="checkbox" id="v2-diag" checked> diagonal · 4×24 = 96</label>
+        <label><input type="checkbox" id="v2-grid" checked> grid · 36×4 = 144</label>
+        <label><input type="checkbox" id="v2-base" checked> base octahedra</label>
+        <label><input type="checkbox" id="v2-spin" checked> spin</label>
+      </div>
+      <p class="cap" id="cap2"></p>
+      <p class="caveats">
+        <b>It is a partition, not a subsystem split</b> — 96 and 144 aren't rank-8 root-subsystem sizes; don't read
+        them as Lie subalgebras. &nbsp;<b>Canonical only up to W(E8)</b> — the labelling depends on the D₄⊕D₄ choice
+        (all conjugate); the structure is invariant, the labels aren't. &nbsp;<b>No group lift</b> —
+        W(H₄)×W(H₄) ⊄ W(E8); this is geometry, not a chiral Weyl factorization.</p>
     </div>
-    <p id="cap"></p>
   </div>
   <button class="reopen" id="panel-show">ⓘ info</button>
   <div class="hint">drag to orbit · scroll to zoom</div>
@@ -90,91 +130,25 @@
       p[0]*q[2] - p[1]*q[3] + p[2]*q[0] + p[3]*q[1],
       p[0]*q[3] + p[1]*q[2] - p[2]*q[1] + p[3]*q[0],
     ];
+    const conj = (a) => [a[0], -a[1], -a[2], -a[3]];
+    const dot4 = (a, b) => a[0]*b[0] + a[1]*b[1] + a[2]*b[2] + a[3]*b[3];
     const ID = [1, 0, 0, 0];
     const isId = (q) => Math.abs(q[0] - 1) < 1e-6 && Math.abs(q[1]) < 1e-6 && Math.abs(q[2]) < 1e-6 && Math.abs(q[3]) < 1e-6;
     const qpow = (q, m) => { let r = ID.slice(); for (let k = 0; k < m; k++) r = mul(r, q); return r; };
     const order = (q) => { for (let m = 1; m <= 60; m++) if (isId(qpow(q, m))) return m; return 0; };
     const key = (q) => q.map((x) => Math.round(x * 1e4)).join(',');
-
-    /* ————— the three binary polyhedral groups ————— */
     const phi = (1 + Math.sqrt(5)) / 2, inv = 1 / phi, r2 = 1 / Math.sqrt(2);
     function dedupe(list) { const m = new Map(); list.forEach((q) => { const k = key(q); if (!m.has(k)) m.set(k, q); }); return [...m.values()]; }
-    // 2T = 24 Hurwitz units = 24-cell vertices
-    function group2T() {
-      const out = [];
-      for (let i = 0; i < 4; i++) for (const s of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = s; out.push(v); }
-      for (let m = 0; m < 16; m++) out.push([0, 1, 2, 3].map((k) => ((m >> k) & 1 ? -0.5 : 0.5)));
-      return dedupe(out);
-    }
-    // 2O = 2T ∪ permutations of (±1/√2, ±1/√2, 0, 0)  → 48
-    function group2O() {
-      const out = group2T();
-      for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) for (const si of [1, -1]) for (const sj of [1, -1]) {
-        const v = [0, 0, 0, 0]; v[i] = si * r2; v[j] = sj * r2; out.push(v);
-      }
-      return dedupe(out);
-    }
-    // 2I = 120 icosians = 600-cell vertices
-    function group2I() {
-      const out = [];
-      for (let i = 0; i < 4; i++) for (const s of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = s; out.push(v); }
-      for (let m = 0; m < 16; m++) out.push([0, 1, 2, 3].map((k) => ((m >> k) & 1 ? -0.5 : 0.5)));
-      const base = [phi / 2, 0.5, inv / 2, 0];
-      const perms = []; (function gen(rem, acc) { if (!rem.length) { perms.push(acc); return; } for (let i = 0; i < rem.length; i++) gen(rem.slice(0, i).concat(rem.slice(i + 1)), acc.concat(rem[i])); })([0, 1, 2, 3], []);
-      perms.forEach((p) => { let iv = 0; for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) if (p[i] > p[j]) iv++; if (iv % 2) return; const v0 = p.map((k) => base[k]); for (let sg = 0; sg < 16; sg++) out.push(v0.map((x, k) => ((sg >> k) & 1 ? -x : x))); });
-      return dedupe(out);
-    }
 
-    const GROUPS = {
-      '2T': { make: group2T, cyc: 6,  fibers: 4,  solid: 'tetrahedron',  affine: 'Ê₆', poly: '24-cell', baseOrb: 'S²(2,3,3)' },
-      '2O': { make: group2O, cyc: 8,  fibers: 6,  solid: 'octahedron',   affine: 'Ê₇', poly: 'runcinated 24-cell', baseOrb: 'S²(2,3,4)' },
-      '2I': { make: group2I, cyc: 10, fibers: 12, solid: 'icosahedron',  affine: 'Ê₈', poly: '600-cell', baseOrb: 'S²(2,3,5)' },
-    };
-
-    /* ————— Hopf decomposition: left cosets of a cyclic S¹ ⊂ Γ ————— */
-    function decompose(G, cycOrder) {
-      let gen = null;
-      for (const q of G) if (order(q) === cycOrder) { gen = q; break; }
-      if (!gen) gen = G.find((q) => order(q) === cycOrder / 2) || G[1]; // fallback (never hit for our groups)
-      const nlen = Math.hypot(gen[1], gen[2], gen[3]) || 1;
-      const axis = [gen[1] / nlen, gen[2] / nlen, gen[3] / nlen];        // pure-imaginary S¹ axis
-      const C = []; for (let k = 0; k < cycOrder; k++) C.push(qpow(gen, k));
-      const seen = new Set(), cosets = [];
-      for (const e of G) {
-        if (seen.has(key(e))) continue;
-        const members = C.map((c) => mul(e, c));
-        members.forEach((m) => seen.add(key(m)));
-        cosets.push({ rep: e, axis });                                    // fibre = e · exp(t·axis)
-      }
-      return { axis, cosets };
-    }
-
-    /* ————— 4D → 3D projection (fixed generic 4-rotation, then perspective from the real axis) ————— */
-    const L = normQ([0.83, 0.22, -0.34, 0.38]), R = normQ([0.79, -0.31, 0.28, -0.42]);
-    function normQ(q) { const n = Math.hypot(...q); return q.map((x) => x / n); }
-    const F = 3.6;   // gentle perspective — large enough that fibres near the projection axis don't stretch to spikes
-    function project(q, s) {
-      const t = mul(mul(L, q), R);                                        // generic SO(4) rotation → real 3D look
-      const sc = F / (F - t[0]);
-      return new THREE.Vector3(t[1] * sc * s, t[2] * sc * s, t[3] * sc * s);
-    }
-    // base point of a fibre on S² (invariant of right-mult by the S¹): b = rep · axis · conj(rep)
-    function basePoint(rep, axis) {
-      const a = [0, axis[0], axis[1], axis[2]];
-      const b = mul(mul(rep, a), [rep[0], -rep[1], -rep[2], -rep[3]]);
-      return new THREE.Vector3(b[1], b[2], b[3]);
-    }
-
-    /* ————— scene ————— */
+    /* ————— shared scene ————— */
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.1, 200);
-    camera.position.set(0, 1.5, 19);
+    const camera = new THREE.PerspectiveCamera(52, innerWidth / innerHeight, 0.1, 400);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     renderer.setSize(innerWidth, innerHeight);
     host.appendChild(renderer.domElement);
     const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true; controls.enablePan = false; controls.minDistance = 8; controls.maxDistance = 46;
+    controls.enableDamping = true; controls.enablePan = false;
 
     function glowTex() {
       const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
@@ -183,9 +157,16 @@
       g.fillStyle = grd; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c);
     }
     const GLOW = glowTex();
-
-    // thin merged tube for a set of segments/edges (returns a Mesh)
-    function edgeTubes(pairs, radius, colorFn, opacity) {
+    function pointsCloud(vecs, color, size, opacity) {
+      const pv = [], pc = [], c = (color instanceof THREE.Color) ? color : new THREE.Color(color);
+      vecs.forEach((v) => { pv.push(v.x, v.y, v.z); const cc = v.__c || c; pc.push(cc.r, cc.g, cc.b); });
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(pv, 3));
+      g.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
+      return new THREE.Points(g, new THREE.PointsMaterial({ size, map: GLOW, vertexColors: true, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending }));
+    }
+    // merged thin tube for straight segments [ [A,B,color], ... ]
+    function edgeTubes(pairs, radius, opacity) {
       const pos = [], col = [], SIDES = 5;
       const AX = new THREE.Vector3(), U = new THREE.Vector3(), W = new THREE.Vector3(), DIR = new THREE.Vector3();
       pairs.forEach(([A, B, c]) => {
@@ -207,105 +188,234 @@
     }
 
     let root = new THREE.Group(); scene.add(root);
-    const parts = {};
-    function clear() { scene.remove(root); root.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }); root = new THREE.Group(); scene.add(root); }
+    function clearRoot() { scene.remove(root); root.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }); root = new THREE.Group(); scene.add(root); }
 
-    function build(gname) {
-      clear();
-      const cfg = GROUPS[gname];
-      const G = cfg.make();
-      const { cosets } = decompose(G, cfg.cyc);
-
-      // scale so the projected group fits a ~6.2 radius
+    /* ═══════════════════ v1 — McKay ═══════════════════ */
+    function group2T() {
+      const out = [];
+      for (let i = 0; i < 4; i++) for (const s of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = s; out.push(v); }
+      for (let m = 0; m < 16; m++) out.push([0, 1, 2, 3].map((k) => ((m >> k) & 1 ? -0.5 : 0.5)));
+      return dedupe(out);
+    }
+    function group2O() {
+      const out = group2T();
+      for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) for (const si of [1, -1]) for (const sj of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = si * r2; v[j] = sj * r2; out.push(v); }
+      return dedupe(out);
+    }
+    function group2I() {
+      const out = [];
+      for (let i = 0; i < 4; i++) for (const s of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = s; out.push(v); }
+      for (let m = 0; m < 16; m++) out.push([0, 1, 2, 3].map((k) => ((m >> k) & 1 ? -0.5 : 0.5)));
+      const base = [phi / 2, 0.5, inv / 2, 0];
+      const perms = []; (function gen(rem, acc) { if (!rem.length) { perms.push(acc); return; } for (let i = 0; i < rem.length; i++) gen(rem.slice(0, i).concat(rem.slice(i + 1)), acc.concat(rem[i])); })([0, 1, 2, 3], []);
+      perms.forEach((p) => { let iv = 0; for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) if (p[i] > p[j]) iv++; if (iv % 2) return; const v0 = p.map((k) => base[k]); for (let sg = 0; sg < 16; sg++) out.push(v0.map((x, k) => ((sg >> k) & 1 ? -x : x))); });
+      return dedupe(out);
+    }
+    const GROUPS = {
+      '2T': { make: group2T, cyc: 6,  affine: 'Ê₆', poly: '24-cell', solid: 'tetrahedron', baseOrb: 'S²(2,3,3)' },
+      '2O': { make: group2O, cyc: 8,  affine: 'Ê₇', poly: 'runcinated 24-cell', solid: 'octahedron', baseOrb: 'S²(2,3,4)' },
+      '2I': { make: group2I, cyc: 10, affine: 'Ê₈', poly: '600-cell', solid: 'icosahedron', baseOrb: 'S²(2,3,5)' },
+    };
+    const Lq = normQ([0.83, 0.22, -0.34, 0.38]), Rq = normQ([0.79, -0.31, 0.28, -0.42]);
+    function normQ(q) { const n = Math.hypot(...q); return q.map((x) => x / n); }
+    const PF = 3.6;
+    function project(q, s) { const t = mul(mul(Lq, q), Rq); const sc = PF / (PF - t[0]); return new THREE.Vector3(t[1] * sc * s, t[2] * sc * s, t[3] * sc * s); }
+    function basePoint(rep, axis) { const a = [0, axis[0], axis[1], axis[2]]; const b = mul(mul(rep, a), conj(rep)); return new THREE.Vector3(b[1], b[2], b[3]); }
+    function decompose(G, cycOrder) {
+      let gen = null; for (const q of G) if (order(q) === cycOrder) { gen = q; break; }
+      const nlen = Math.hypot(gen[1], gen[2], gen[3]) || 1;
+      const axis = [gen[1] / nlen, gen[2] / nlen, gen[3] / nlen];
+      const C = []; for (let k = 0; k < cycOrder; k++) C.push(qpow(gen, k));
+      const seen = new Set(), cosets = [];
+      for (const e of G) { if (seen.has(key(e))) continue; C.forEach((c) => seen.add(key(mul(e, c)))); cosets.push({ rep: e, axis }); }
+      return cosets;
+    }
+    const v1parts = {};
+    function buildV1(gname) {
+      clearRoot();
+      const cfg = GROUPS[gname]; const G = cfg.make(); const cosets = decompose(G, cfg.cyc);
       let mx = 0.001; G.forEach((q) => { mx = Math.max(mx, project(q, 1).length()); });
       const s = 6.2 / mx;
-
-      // group vertices (the "roots")
       const P = G.map((q) => project(q, s));
-      const pv = [], pc = []; const star = new THREE.Color('#fff2cf');
-      P.forEach((v) => { pv.push(v.x, v.y, v.z); pc.push(star.r, star.g, star.b); });
-      const pg = new THREE.BufferGeometry();
-      pg.setAttribute('position', new THREE.Float32BufferAttribute(pv, 3));
-      pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
-      parts.points = new THREE.Points(pg, new THREE.PointsMaterial({ size: 0.34, map: GLOW, vertexColors: true, transparent: true, opacity: 0.95, depthWrite: false, blending: THREE.AdditiveBlending }));
-      root.add(parts.points);
-
-      // lattice edges = nearest-neighbour graph of Γ (the exceptional-lattice face)
+      v1parts.points = pointsCloud(P, '#fff2cf', 0.34, 0.95); root.add(v1parts.points);
       let dmin = Infinity;
-      for (let i = 0; i < G.length; i++) for (let j = i + 1; j < G.length; j++) { let d = 0; for (let k = 0; k < 4; k++) { const t = G[i][k] - G[j][k]; d += t * t; } if (d > 1e-6) dmin = Math.min(dmin, d); }
-      const latPairs = []; const latCol = new THREE.Color('#7fa0e8');
-      for (let i = 0; i < G.length; i++) for (let j = i + 1; j < G.length; j++) { let d = 0; for (let k = 0; k < 4; k++) { const t = G[i][k] - G[j][k]; d += t * t; } if (Math.abs(d - dmin) < 1e-3) latPairs.push([P[i], P[j], latCol]); }
-      parts.lattice = edgeTubes(latPairs, 0.016, null, 0.34);
-      root.add(parts.lattice);
-
-      // Hopf fibres = left cosets of the cyclic S¹, drawn as real great circles (thick tubes), one hue each
-      parts.fibers = new THREE.Group();
-      const SEGN = 168;
+      for (let i = 0; i < G.length; i++) for (let j = i + 1; j < G.length; j++) { const d = dist2(G[i], G[j]); if (d > 1e-6) dmin = Math.min(dmin, d); }
+      const latCol = new THREE.Color('#7fa0e8'), latPairs = [];
+      for (let i = 0; i < G.length; i++) for (let j = i + 1; j < G.length; j++) if (Math.abs(dist2(G[i], G[j]) - dmin) < 1e-3) latPairs.push([P[i], P[j], latCol]);
+      v1parts.lattice = edgeTubes(latPairs, 0.016, 0.34); root.add(v1parts.lattice);
+      v1parts.fibers = new THREE.Group(); const SEGN = 168;
       cosets.forEach((cs, fi) => {
-        const hue = (fi / cosets.length + 0.02) % 1;
-        const col = new THREE.Color().setHSL(hue, 0.62, 0.6);
+        const col = new THREE.Color().setHSL((fi / cosets.length + 0.02) % 1, 0.62, 0.6);
         const pts = [];
-        for (let k = 0; k < SEGN; k++) {
-          const t = (k / SEGN) * 2 * Math.PI;
-          const e = mul(cs.rep, [Math.cos(t), Math.sin(t) * cs.axis[0], Math.sin(t) * cs.axis[1], Math.sin(t) * cs.axis[2]]);
-          pts.push(project(e, s));
-        }
-        const curve = new THREE.CatmullRomCurve3(pts, true);
-        const geo = new THREE.TubeGeometry(curve, SEGN, 0.06, 7, true);
+        for (let k = 0; k < SEGN; k++) { const t = (k / SEGN) * 2 * Math.PI; pts.push(project(mul(cs.rep, [Math.cos(t), Math.sin(t) * cs.axis[0], Math.sin(t) * cs.axis[1], Math.sin(t) * cs.axis[2]]), s)); }
+        const geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), SEGN, 0.06, 7, true);
         const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3);
         for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
         geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
-        parts.fibers.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.46, depthWrite: false, blending: THREE.AdditiveBlending })));
+        v1parts.fibers.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.46, depthWrite: false, blending: THREE.AdditiveBlending })));
       });
-      root.add(parts.fibers);
-
-      // base S² : the fibres project to the vertices of the Platonic solid (the Hopf quotient over the orbifold)
-      parts.base = new THREE.Group();
-      const B = cosets.map((cs) => basePoint(cs.rep, cs.axis).multiplyScalar(1.7));
-      const bv = [], bc = []; const bcol = new THREE.Color('#ffd27a');
-      B.forEach((v) => { bv.push(v.x, v.y, v.z); bc.push(bcol.r, bcol.g, bcol.b); });
-      const bg = new THREE.BufferGeometry();
-      bg.setAttribute('position', new THREE.Float32BufferAttribute(bv, 3));
-      bg.setAttribute('color', new THREE.Float32BufferAttribute(bc, 3));
-      parts.base.add(new THREE.Points(bg, new THREE.PointsMaterial({ size: 0.5, map: GLOW, vertexColors: true, transparent: true, opacity: 1, depthWrite: false, blending: THREE.AdditiveBlending })));
-      // base solid edges (nearest neighbour among base points)
-      let bmin = Infinity;
-      for (let i = 0; i < B.length; i++) for (let j = i + 1; j < B.length; j++) bmin = Math.min(bmin, B[i].distanceTo(B[j]));
-      const bpairs = [];
-      for (let i = 0; i < B.length; i++) for (let j = i + 1; j < B.length; j++) if (B[i].distanceTo(B[j]) < bmin * 1.08) bpairs.push([B[i], B[j], bcol]);
-      parts.base.add(edgeTubes(bpairs, 0.03, null, 0.7));
-      root.add(parts.base);
-
-      applyToggles();
-      document.getElementById('cap').innerHTML =
-        `<b>${gname}</b> (order ${G.length}) — McKay affine <b>${cfg.affine}</b>. Lattice face: the <b>${cfg.poly}</b>, `
-        + `${latPairs.length} edges. Hopf face: <b>${cosets.length} great-circle fibres</b> (cosets of a cyclic `
-        + `order-${cfg.cyc} subgroup), projecting to the <b>${cfg.solid}</b>'s ${cosets.length} vertices on the base `
-        + `<b>${cfg.baseOrb}</b>. Same Γ, both faces at once.`;
+      root.add(v1parts.fibers);
+      v1parts.base = new THREE.Group();
+      const B = cosets.map((cs) => basePoint(cs.rep, cs.axis).multiplyScalar(1.7)); const bcol = new THREE.Color('#ffd27a');
+      v1parts.base.add(pointsCloud(B, bcol, 0.5, 1));
+      let bmin = Infinity; for (let i = 0; i < B.length; i++) for (let j = i + 1; j < B.length; j++) bmin = Math.min(bmin, B[i].distanceTo(B[j]));
+      const bpairs = []; for (let i = 0; i < B.length; i++) for (let j = i + 1; j < B.length; j++) if (B[i].distanceTo(B[j]) < bmin * 1.08) bpairs.push([B[i], B[j], bcol]);
+      v1parts.base.add(edgeTubes(bpairs, 0.03, 0.7)); root.add(v1parts.base);
+      applyV1();
+      document.getElementById('cap1').innerHTML =
+        `<b>${gname}</b> (order ${G.length}) — McKay affine <b>${cfg.affine}</b>. Lattice: the <b>${cfg.poly}</b>, ${latPairs.length} edges. `
+        + `Hopf: <b>${cosets.length} great-circle fibres</b> (order-${cfg.cyc} cosets) → the <b>${cfg.solid}</b> on base <b>${cfg.baseOrb}</b>.`;
+    }
+    function dist2(a, b) { let d = 0; for (let k = 0; k < a.length; k++) { const t = a[k] - b[k]; d += t * t; } return d; }
+    function applyV1() {
+      if (!v1parts.points) return;
+      v1parts.fibers.visible = document.getElementById('t-fibers').checked;
+      v1parts.lattice.visible = document.getElementById('t-lattice').checked;
+      v1parts.points.visible = document.getElementById('t-points').checked;
+      v1parts.base.visible = document.getElementById('t-base').checked;
     }
 
-    function applyToggles() {
-      if (parts.fibers) parts.fibers.visible = document.getElementById('t-fibers').checked;
-      if (parts.lattice) parts.lattice.visible = document.getElementById('t-lattice').checked;
-      if (parts.points) parts.points.visible = document.getElementById('t-points').checked;
-      if (parts.base) parts.base.visible = document.getElementById('t-base').checked;
+    /* ═══════════════════ v2 — ℍ² chiral node lattice ═══════════════════ */
+    function e8roots() {
+      const R = [];
+      for (let i = 0; i < 8; i++) for (let j = i + 1; j < 8; j++) for (const si of [1, -1]) for (const sj of [1, -1]) { const v = new Array(8).fill(0); v[i] = si; v[j] = sj; R.push(v); }
+      for (let m = 0; m < 256; m++) { let neg = 0; const v = new Array(8); for (let k = 0; k < 8; k++) { const bit = (m >> k) & 1; v[k] = bit ? -0.5 : 0.5; if (bit) neg++; } if (neg % 2 === 0) R.push(v); }
+      return R;
+    }
+    const Q8 = { '+1': [1,0,0,0], '-1': [-1,0,0,0], '+i': [0,1,0,0], '-i': [0,-1,0,0], '+j': [0,0,1,0], '-j': [0,0,-1,0], '+k': [0,0,0,1], '-k': [0,0,0,-1] };
+    function baseLabel(t, quat) {
+      if (Math.abs(t - 1) < 1e-5) return 'INF';
+      if (Math.abs(t + 1) < 1e-5) return 'ZERO';
+      let best = null, bd = 1e9;
+      for (const k in Q8) { const v = Q8[k]; const d = (quat[0]-v[0])**2 + (quat[1]-v[1])**2 + (quat[2]-v[2])**2 + (quat[3]-v[3])**2; if (d < bd) { bd = d; best = k; } }
+      return best;
+    }
+    // octahedron direction in R^3 for a Q8 imaginary label
+    const OCT = { '+i': [1,0,0], '-i': [-1,0,0], '+j': [0,1,0], '-j': [0,-1,0], '+k': [0,0,1], '-k': [0,0,-1] };
+    const OCTKEYS = ['+i','-i','+j','-j','+k','-k'];
+    const AXY = { 'INF': 8.0, '+1': 2.5, '-1': -2.5, 'ZERO': -8.0 };     // vertical spot for each diagonal 24-cell
+    const AXLABEL = { 'INF': '∞', '+1': '+1', '-1': '−1', 'ZERO': '0' };
+
+    const v2parts = {};
+    function make24(center, sc, colHub, colRim) {                        // a projected 24-cell rosette (D₄ root system)
+      const V = group2T().map((q) => project(q, sc).add(center));
+      const grp = new THREE.Group();
+      const cols = V.map((v) => { const t = Math.min(1, v.distanceTo(center) / (sc * 1.5)); return new THREE.Color(colHub).lerp(new THREE.Color(colRim), t); });
+      V.forEach((v, i) => { v.__c = cols[i]; });
+      grp.add(pointsCloud(V, colRim, 0.22, 0.95));
+      let dmin = Infinity; const g2 = group2T();
+      for (let i = 0; i < g2.length; i++) for (let j = i + 1; j < g2.length; j++) { const d = dist2(g2[i], g2[j]); if (d > 1e-6) dmin = Math.min(dmin, d); }
+      const pairs = [];
+      for (let i = 0; i < g2.length; i++) for (let j = i + 1; j < g2.length; j++) if (Math.abs(dist2(g2[i], g2[j]) - dmin) < 1e-3) pairs.push([V[i], V[j], cols[i]]);
+      grp.add(edgeTubes(pairs, 0.02, 0.32));
+      return grp;
+    }
+    function buildV2() {
+      clearRoot();
+      const R = e8roots();
+      // label & bin every root
+      const cells = {};
+      for (const r of R) {
+        const a = [r[0], r[1], r[2], r[3]], b = [r[4], r[5], r[6], r[7]];
+        const p = dot4(a, a), q = dot4(b, b), t = (p - q) / 2;
+        const ll = baseLabel(t, mul(conj(a), b)), rl = baseLabel(t, mul(b, conj(a)));
+        const kk = ll + '|' + rl; (cells[kk] = cells[kk] || { l: ll, r: rl, n: 0 }).n++;
+      }
+      const LEFTC = new THREE.Vector3(-8.4, 0, 0), RIGHTC = new THREE.Vector3(8.4, 0, 0), RADO = 3.0;
+
+      // ── base octahedra (the two S⁴ imaginary sextets) ──
+      v2parts.base = new THREE.Group();
+      [['left', LEFTC, '#ffcf6a'], ['right', RIGHTC, '#6ad6ff']].forEach(([side, C, hex]) => {
+        const verts = OCTKEYS.map((k) => new THREE.Vector3(...OCT[k]).multiplyScalar(RADO).add(C));
+        v2parts.base.add(pointsCloud(verts, hex, 0.5, 0.95));
+        const col = new THREE.Color(hex), ep = [];
+        for (let i = 0; i < verts.length; i++) for (let j = i + 1; j < verts.length; j++) if (verts[i].distanceTo(verts[j]) < RADO * 1.5) ep.push([verts[i], verts[j], col]);
+        v2parts.base.add(edgeTubes(ep, 0.02, 0.3));
+      });
+      root.add(v2parts.base);
+
+      // ── grid: 36 cells over {±i,±j,±k}², complete & uniform (each = 4 roots) ──
+      v2parts.grid = new THREE.Group();
+      let gi = 0;
+      for (let li = 0; li < 6; li++) for (let ri = 0; ri < 6; ri++, gi++) {
+        const lk = OCTKEYS[li], rk = OCTKEYS[ri];
+        const A = new THREE.Vector3(...OCT[lk]).multiplyScalar(RADO).add(LEFTC);
+        const B = new THREE.Vector3(...OCT[rk]).multiplyScalar(RADO).add(RIGHTC);
+        const col = new THREE.Color().setHSL((gi / 36) % 1, 0.6, 0.6);
+        // swirl each tube's bow around a ring → the 36 tubes sweep a clean hollow hyperboloid (vortex) between
+        // the two base octahedra, leaving the centre clear for the diagonal 24-cells to nest inside.
+        const ang = gi * (2 * Math.PI / 36) * 5, bow = 4.4;
+        const mid = A.clone().add(B).multiplyScalar(0.5);
+        mid.y += Math.cos(ang) * bow; mid.z += Math.sin(ang) * bow;
+        const curve = new THREE.QuadraticBezierCurve3(A, mid, B);
+        const geo = new THREE.TubeGeometry(curve, 44, 0.03, 5, false);
+        const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3);
+        for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
+        geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
+        v2parts.grid.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.34, depthWrite: false, blending: THREE.AdditiveBlending })));
+        // 4 root-beads riding the cell
+        const beads = [0.28, 0.44, 0.56, 0.72].map((u) => { const v = curve.getPoint(u); v.__c = col; return v; });
+        v2parts.grid.add(pointsCloud(beads, col, 0.3, 0.95));
+      }
+      root.add(v2parts.grid);
+
+      // ── diagonal: 4 axis 24-cells (the 96), stacked on the real axis ──
+      v2parts.diag = new THREE.Group();
+      const axisPts = [];
+      ['INF', '+1', '-1', 'ZERO'].forEach((lab) => {
+        const c = new THREE.Vector3(0, AXY[lab], 0);
+        axisPts.push(c.clone());
+        v2parts.diag.add(make24(c, 1.35, '#e8a13c', '#fff0c8'));
+      });
+      // faint gold thread linking them (the real / diagonal axis)
+      const thread = [];
+      for (let i = 0; i < axisPts.length - 1; i++) thread.push([axisPts[i], axisPts[i + 1], new THREE.Color('#7a6636')]);
+      v2parts.diag.add(edgeTubes(thread, 0.012, 0.5));
+      root.add(v2parts.diag);
+
+      applyV2();
+      const nCells = Object.keys(cells).length;
+      document.getElementById('cap2').innerHTML =
+        `240 roots → <b>${nCells} cells</b>. <b>Diagonal:</b> 4 axis points {0, ∞, ±1}, each a full 24-cell (D₄) → <b>4×24 = 96</b>. `
+        + `<b>Grid:</b> the complete 6×6 over {±i,±j,±k}, every cell = {±v,±w}, v⊥w → <b>36×4 = 144</b>. Verified 96 + 144 = 240.`;
+    }
+    function applyV2() {
+      if (!v2parts.diag) return;
+      v2parts.diag.visible = document.getElementById('v2-diag').checked;
+      v2parts.grid.visible = document.getElementById('v2-grid').checked;
+      v2parts.base.visible = document.getElementById('v2-base').checked;
+    }
+
+    /* ═══════════════════ version routing ═══════════════════ */
+    let version = 'v2';
+    const camZ = { v1: 19, v2: 30 };
+    function setVersion(v) {
+      version = v;
+      document.querySelectorAll('#verbar button').forEach((b) => b.classList.toggle('on', b.dataset.v === v));
+      document.getElementById('content-v1').classList.toggle('hidden', v !== 'v1');
+      document.getElementById('content-v2').classList.toggle('hidden', v !== 'v2');
+      controls.minDistance = v === 'v1' ? 8 : 12; controls.maxDistance = v === 'v1' ? 46 : 90;
+      camera.position.set(0, v === 'v1' ? 1.5 : 7.5, camZ[v]); controls.target.set(0, 0, 0); controls.update();
+      if (v === 'v1') buildV1('2I'); else buildV2();
+      root.rotation.y = v === 'v2' ? 0.5 : 0;                 // start at an angle so the vortex reads as 3D
     }
 
     // wiring
+    document.querySelectorAll('#verbar button').forEach((b) => b.addEventListener('click', () => setVersion(b.dataset.v)));
     document.querySelectorAll('#pick button').forEach((b) => b.addEventListener('click', () => {
-      document.querySelectorAll('#pick button').forEach((x) => x.classList.toggle('on', x === b));
-      build(b.dataset.g);
+      document.querySelectorAll('#pick button').forEach((x) => x.classList.toggle('on', x === b)); buildV1(b.dataset.g);
     }));
-    ['t-fibers', 't-lattice', 't-points', 't-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyToggles));
+    ['t-fibers', 't-lattice', 't-points', 't-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV1));
+    ['v2-diag', 'v2-grid', 'v2-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV2));
     document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
     document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
-
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
 
-    build('2I');
+    setVersion('v2');
     (function loop() {
       requestAnimationFrame(loop);
-      if (document.getElementById('t-spin').checked) { root.rotation.y += 0.0022; root.rotation.x = 0.16; }
+      const spin = document.getElementById(version === 'v1' ? 't-spin' : 'v2-spin');
+      if (spin && spin.checked) { root.rotation.y += 0.0022; root.rotation.x = version === 'v1' ? 0.16 : 0.12; }
       controls.update();
       renderer.render(scene, camera);
     })();
