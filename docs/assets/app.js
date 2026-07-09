@@ -471,134 +471,70 @@
       honest.add(new THREE.Points(dg, reg('honest', new THREE.PointsMaterial({ size: 0.09, map: glow, opacity: 0.5, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
     })();
 
-    /* — mode B: "as if all were true" — the dream, pared to three shapes that share one centre and axis:
-       the 3D E8 (two 600-cells), the Hopf-fibration veil (thick tubes), and the cuboctahedron heart.
-       Aesthetics, not a claim. — */
+    /* — mode B: "as if all were true" — the dream drawn as one exceptional symmetry: the 240 roots of E8
+       (the Gosset polytope 4_21) threaded by the Hopf fibration. Settled mathematics used purely as a loom —
+       NOT a claim that E8 is the particle content of the universe (that reading is contested; see the prompt). — */
     try { (function buildUnified() {
-      const GA = Math.PI * (3 - Math.sqrt(5));                 // golden angle — the fibre twist
-      // The veil is NOT one-fibre-per-claim (that count is arbitrary). It is a fixed, self-consistent number set
-      // by the geometry itself: COUNT = 144 = Fibonacci F(12) = 12². Under golden-angle phyllotaxis a Fibonacci
-      // count is exactly where the spiral arms (parastichies) close cleanly, and 12 is the cuboctahedron's vertex
-      // count and the 600-cell's vertex degree — so the veil resonates with the two solids it wraps.
-      const COUNT = 144;
-      const GR = 0.6180339887498949;                          // 1/φ — golden-ratio hue step (max-distinct colours)
-      // Hopf fiber: base point (theta,phi) on S^2 -> a circle in S^3, stereographically projected to R^3.
-      // NO clamp — theta is restricted to a band (0.17π..0.47π) where d=1-y2 stays >= 0.328, so every fiber is a
-      // complete SMOOTH Villarceau circle: no singularity walls (the old "rounded-square" look), no far-flung spikes.
-      // A d<CULL guard splits the strip as belt-and-suspenders; verified to fire on 0 segments in-band.
-      const SEG = 220, CULL = 0.28, TLO = 0.17, THI = 0.47;
-      const fiber = (theta, phi) => {                        // array of {v, d}
-        const a = Math.cos(theta / 2), b = Math.sin(theta / 2), out = [];
-        for (let k = 0; k <= SEG; k++) {
-          const psi = (k / SEG) * 2 * Math.PI;
-          const x1 = a * Math.cos(psi), y1 = a * Math.sin(psi);
-          const x2 = b * Math.cos(psi + phi), y2 = b * Math.sin(psi + phi);
-          const d = 1 - y2;
-          out.push({ v: new THREE.Vector3(x1 / d, y1 / d, x2 / d), d });
-        }
-        return out;
-      };
-      // first pass — raw rings + max extent (from kept samples only) for scaling
-      const raw = []; let maxLen = 0.001;
-      for (let i = 0; i < COUNT; i++) {
-        const theta = TLO * Math.PI + (THI - TLO) * Math.PI * ((i + 0.5) / COUNT);
-        const ring = fiber(theta, GA * i);
-        ring.forEach((s) => { if (s.d >= CULL) maxLen = Math.max(maxLen, s.v.length()); });
-        raw.push(ring);
-      }
-      const scale = 9.6 / maxLen;                            // veil halo at ~9.6, nearly 2× the rosette (5.5)
-      // second pass — each fiber as a THICK tube (a Villarceau circle swept into a solid ring). Colour is set by a
-      // golden-ratio walk of the hue wheel (h = frac(i/φ)): every theory blended into one full spectrum, no domain
-      // buckets, adjacent fibres maximally distinct. Tubes (not 1px lines) because WebGL line width is unreliable.
-      const TUBE_R = 0.06;
-      const fiberMat = reg('unified', new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.28, depthWrite: false, blending: THREE.AdditiveBlending }));
-      for (let i = 0; i < COUNT; i++) {
-        const col = new THREE.Color().setHSL((i * GR) % 1, 0.58, 0.62);
-        const pts = [];
-        for (let k = 0; k < SEG; k++) { const s = raw[i][k]; if (s.d < CULL) continue; pts.push(s.v.clone().multiplyScalar(scale)); }
-        if (pts.length < 6) continue;                        // degenerate ring — skip (never happens in-band)
-        const curve = new THREE.CatmullRomCurve3(pts, true); // closed loop, no duplicate endpoint
-        const geo = new THREE.TubeGeometry(curve, Math.min(pts.length, 132), TUBE_R, 6, true);
-        const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3);
-        for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
-        geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
-        unified.add(new THREE.Mesh(geo, fiberMat));
-      }
+      const roots = e8Roots(), basis = e8Basis();
+      const dot8 = (a, b) => { let s = 0; for (let k = 0; k < 8; k++) s += a[k] * b[k]; return s; };
+      const seedZ = [0.31, -0.59, 0.2, -0.47, 0.52, -0.14, 0.44, -0.24];
+      let z = seedZ.map((s, k) => s - dot8(seedZ, basis[0]) * basis[0][k] - dot8(seedZ, basis[1]) * basis[1][k]);
+      const zn = Math.hypot.apply(null, z); z = z.map((x) => x / zn);
+      const rawP = roots.map((r) => new THREE.Vector3(dot8(r, basis[0]), dot8(r, basis[1]), dot8(r, z)));
+      let mx = 0.001; rawP.forEach((v) => { mx = Math.max(mx, v.length()); });
+      const S = 9.4 / mx, P = rawP.map((v) => v.clone().multiplyScalar(S));
+      const proj8 = (r) => new THREE.Vector3(dot8(r, basis[0]), dot8(r, basis[1]), dot8(r, z)).multiplyScalar(S);
+      const GOLD = hex('#f3d05e');                              // the Hopf gold — same family as the amber E8, subtly cooler
+      const qm = (p, q) => [p[0]*q[0]-p[1]*q[1]-p[2]*q[2]-p[3]*q[3], p[0]*q[1]+p[1]*q[0]+p[2]*q[3]-p[3]*q[2], p[0]*q[2]-p[1]*q[3]+p[2]*q[0]+p[3]*q[1], p[0]*q[3]+p[1]*q[2]-p[2]*q[1]+p[3]*q[0]];
+      const act = (r, u) => { const a = qm([r[0],r[1],r[2],r[3]], u), b = qm([r[4],r[5],r[6],r[7]], u); return [a[0],a[1],a[2],a[3],b[0],b[1],b[2],b[3]]; };
+      const AX = [1, 0, 0], UQ = [0, 1, 0, 0];                  // order-4 S^1 Hopf action (right-mult by i): 60 circles of 4
 
-      // core — nested vector equilibrium (cuboctahedron), gold
-      const core = new THREE.Group(); unified.add(core); unified.userData.core = core;
-      const goldLines = (verts, edges, s, op) => {
-        const pos = []; edges.forEach(([i, j]) => { pos.push(verts[i].x * s, verts[i].y * s, verts[i].z * s, verts[j].x * s, verts[j].y * s, verts[j].z * s); });
-        const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-        core.add(new THREE.LineSegments(g, reg('unified', new THREE.LineBasicMaterial({ color: 0xffe4a0, transparent: true, opacity: op, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      // ── 6720 minimal edges: the faint golden web (the Gosset 4_21) ──
+      (function edges() {
+        const E = e8Edges(roots), inner = hex('#d8901f'), outer = hex('#fff0c8'), pos = [], col = [];
+        E.forEach((e) => { const i = e[0], j = e[1], t = Math.min(1, (P[i].length() + P[j].length()) / 2 / 9.4);
+          const r = inner.r + (outer.r-inner.r)*t, g = inner.g + (outer.g-inner.g)*t, bl = inner.b + (outer.b-inner.b)*t;
+          pos.push(P[i].x,P[i].y,P[i].z,P[j].x,P[j].y,P[j].z); col.push(r,g,bl,r,g,bl); });
+        const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(pos,3)); gg.setAttribute('color', new THREE.Float32BufferAttribute(col,3));
+        unified.add(new THREE.LineSegments(gg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.1, depthWrite: false, blending: THREE.AdditiveBlending }))));
+      })();
+
+      // ── merged golden tubes for a set of circles (each circle = array of Vector3) ──
+      const circleTubes = (circles, radius, sides, opacity) => {
+        const pos = [], AXv = new THREE.Vector3(), U = new THREE.Vector3(), W = new THREE.Vector3(), DIR = new THREE.Vector3();
+        circles.forEach((pts) => { for (let k = 0; k < pts.length; k++) {
+          const Aa = pts[k], Bb = pts[(k+1)%pts.length]; DIR.subVectors(Bb, Aa); const L = DIR.length(); if (L < 1e-6) continue; DIR.multiplyScalar(1/L);
+          AXv.set(Math.abs(DIR.x)<0.9?1:0, Math.abs(DIR.x)<0.9?0:1, 0); U.crossVectors(DIR, AXv).normalize(); W.crossVectors(DIR, U);
+          for (let s = 0; s < sides; s++) { const a0 = s/sides*2*Math.PI, a1 = (s+1)/sides*2*Math.PI;
+            const o0 = U.clone().multiplyScalar(Math.cos(a0)*radius).addScaledVector(W, Math.sin(a0)*radius);
+            const o1 = U.clone().multiplyScalar(Math.cos(a1)*radius).addScaledVector(W, Math.sin(a1)*radius);
+            [Aa.clone().add(o0), Bb.clone().add(o0), Bb.clone().add(o1), Aa.clone().add(o0), Bb.clone().add(o1), Aa.clone().add(o1)].forEach((v) => pos.push(v.x,v.y,v.z)); } } });
+        const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(pos,3));
+        unified.add(new THREE.Mesh(gg, reg('unified', new THREE.MeshBasicMaterial({ color: GOLD, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending }))));
       };
-      const ve = [[1,1,0],[1,-1,0],[-1,1,0],[-1,-1,0],[1,0,1],[1,0,-1],[-1,0,1],[-1,0,-1],[0,1,1],[0,1,-1],[0,-1,1],[0,-1,-1]].map((v) => new THREE.Vector3(v[0], v[1], v[2]));
-      const veEdges = []; for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) if (Math.abs(ve[i].distanceTo(ve[j]) - Math.SQRT2) < 0.02) veEdges.push([i, j]);
-      goldLines(ve, veEdges, 2.3, 0.7); goldLines(ve, veEdges, 1.42, 0.55); goldLines(ve, veEdges, 0.78, 0.4); // fractal nesting, brighter so it reads as a structure
-      // the E8 CENTREPIECE — now genuinely THREE-DIMENSIONAL, so it belongs inside the Hopf weave instead of
-      // hanging as a flat disc. E8 folds exactly onto the H4 Coxeter group: its 240 roots split into two
-      // concentric 600-cells (the icosians) whose circumradii sit in the golden ratio 1 : φ. The 600-cell is the
-      // discrete Hopf fibration of S³ — 120 unit quaternions — so its 4D→3D shadow is literally a nest of Hopf
-      // rings, sharing geometry with the Villarceau fibres woven around it. Settled mathematics (e8-lie-group,
-      // E1). Never asserted as physics.
-      (function e8Polytope() {
-        const phi = (1 + Math.sqrt(5)) / 2, inv = 1 / phi;
-        // 120 icosians = vertices of the unit 600-cell (circumradius 1)
-        const cell = (() => {
-          const map = new Map(); const key = (a) => a.map((x) => Math.round(x * 1e4)).join(',');
-          const add = (a) => { const k = key(a); if (!map.has(k)) map.set(k, a); };
-          for (let i = 0; i < 4; i++) for (const sgn of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = sgn; add(v); } // (±1,0,0,0)
-          for (let m = 0; m < 16; m++) add([0, 1, 2, 3].map((k) => ((m >> k) & 1 ? -0.5 : 0.5)));               // (±½,±½,±½,±½)
-          const base = [phi / 2, 0.5, inv / 2, 0];                                                             // even perms of ½(φ,1,1/φ,0)
-          const perms = []; (function gen(rem, acc) { if (!rem.length) { perms.push(acc); return; } for (let i = 0; i < rem.length; i++) gen(rem.slice(0, i).concat(rem.slice(i + 1)), acc.concat(rem[i])); })([0, 1, 2, 3], []);
-          perms.forEach((p) => { let iv = 0; for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) if (p[i] > p[j]) iv++; if (iv % 2) return; const v0 = p.map((k) => base[k]); for (let sg = 0; sg < 16; sg++) add(v0.map((x, k) => ((sg >> k) & 1 ? -x : x))); });
-          return [...map.values()];                                                                            // exactly 120
-        })();
-        // 600-cell edges: the nearest-neighbour pairs (720 of them at circumradius 1)
-        let dmin = Infinity;
-        const d2 = (a, b) => { let s = 0; for (let k = 0; k < 4; k++) { const t = a[k] - b[k]; s += t * t; } return s; };
-        for (let i = 0; i < cell.length; i++) for (let j = i + 1; j < cell.length; j++) dmin = Math.min(dmin, d2(cell[i], cell[j]));
-        const edges = [];
-        for (let i = 0; i < cell.length; i++) for (let j = i + 1; j < cell.length; j++) if (Math.abs(d2(cell[i], cell[j]) - dmin) < 1e-3) edges.push([i, j]);
-        // 4D→3D perspective shadow from a viewpoint on the w-axis (F beyond the outer shell so it stays bounded)
-        const F = phi + 1.3;
-        const proj = (q, R) => { const sc = F / (F - q[3] * R); return new THREE.Vector3(q[0] * R * sc, q[1] * R * sc, q[2] * R * sc); };
-        const shells = [{ R: 1, hub: hex('#e8a13c'), rim: hex('#ffe0a0') }, { R: phi, hub: hex('#ffc65a'), rim: hex('#fff2c8') }];
-        let mx = 0.001; shells.forEach(({ R }) => cell.forEach((q) => { mx = Math.max(mx, proj(q, R).length()); }));
-        const s = 5.7 / mx;                                             // outer shell lands near the veil's inner reach
-        const e8grp = new THREE.Group(); unified.add(e8grp); unified.userData.e8 = e8grp;
-        const lerp = (a, c, t) => ({ r: a.r + (c.r - a.r) * t, g: a.g + (c.g - a.g) * t, b: a.b + (c.b - a.b) * t });
-        // draw each shell's 720 edges as thin MERGED tubes (not 1px lines), so the lattice reads as solid and
-        // matches the Hopf veil's thickness. One BufferGeometry per shell → one draw call.
-        const EDGE_R = 0.032, SIDES = 5;
-        const AX = new THREE.Vector3(), U = new THREE.Vector3(), W = new THREE.Vector3(), DIR = new THREE.Vector3();
-        shells.forEach(({ R, hub, rim }) => {
-          const V = cell.map((q) => proj(q, R).multiplyScalar(s));
-          const tp = [], tc = [];
-          edges.forEach(([i, j]) => {
-            const A = V[i], B = V[j], t = Math.min(1, (A.length() + B.length()) / 2 / 5.7), c = lerp(hub, rim, t);
-            DIR.subVectors(B, A); const L = DIR.length(); if (L < 1e-6) return; DIR.multiplyScalar(1 / L);
-            AX.set(Math.abs(DIR.x) < 0.9 ? 1 : 0, Math.abs(DIR.x) < 0.9 ? 0 : 1, 0);
-            U.crossVectors(DIR, AX).normalize(); W.crossVectors(DIR, U);
-            for (let sIdx = 0; sIdx < SIDES; sIdx++) {
-              const a0 = (sIdx / SIDES) * 2 * Math.PI, a1 = ((sIdx + 1) / SIDES) * 2 * Math.PI;
-              const o0 = U.clone().multiplyScalar(Math.cos(a0) * EDGE_R).addScaledVector(W, Math.sin(a0) * EDGE_R);
-              const o1 = U.clone().multiplyScalar(Math.cos(a1) * EDGE_R).addScaledVector(W, Math.sin(a1) * EDGE_R);
-              const p = [A.clone().add(o0), B.clone().add(o0), B.clone().add(o1), A.clone().add(o0), B.clone().add(o1), A.clone().add(o1)];
-              p.forEach((v) => { tp.push(v.x, v.y, v.z); tc.push(c.r, c.g, c.b); });
-            }
-          });
-          const eg = new THREE.BufferGeometry();
-          eg.setAttribute('position', new THREE.Float32BufferAttribute(tp, 3));
-          eg.setAttribute('color', new THREE.Float32BufferAttribute(tc, 3));
-          e8grp.add(new THREE.Mesh(eg, reg('unified', new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.2, depthWrite: false, blending: THREE.AdditiveBlending }))));
-          const pp = [], pc = [];
-          V.forEach((v) => { pp.push(v.x, v.y, v.z); pc.push(rim.r, rim.g, rim.b); });
-          const pg = new THREE.BufferGeometry();
-          pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
-          pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
-          e8grp.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.3, map: glow, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }))));
-        });
+
+      // ── the Hopf FIELD: hundreds more fibres of the same S^1 fibration (faint) ──
+      (function field() {
+        let a = 0x9e3779b9; const rng = () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+        const N = 247, SN = 34, circles = [];
+        for (let s = 0; s < N; s++) { const v = []; let nn = 0; for (let k = 0; k < 8; k++) { let g = 0; for (let i = 0; i < 4; i++) g += rng() - 0.5; v.push(g); nn += g*g; } const f = Math.sqrt(nn) / Math.SQRT2, seed = v.map((x) => x / f);
+          const pts = []; for (let k = 0; k < SN; k++) { const th = k/SN*2*Math.PI, q = [Math.cos(th), Math.sin(th)*AX[0], Math.sin(th)*AX[1], Math.sin(th)*AX[2]]; pts.push(proj8(act(seed, q))); } circles.push(pts); }
+        circleTubes(circles, 0.025, 3, 0.12);
+      })();
+
+      // ── the highlighted Hopf circles: the 60 (of 4) that thread the E8 roots ──
+      (function highlighted() {
+        const key = (r) => r.map((x) => Math.round(x*1e4)).join(','), seen = new Set(), circles = [], SN = 42;
+        roots.forEach((r0) => { if (seen.has(key(r0))) return; let cur = r0.slice(); for (let k = 0; k < 4; k++) { seen.add(key(cur)); cur = act(cur, UQ); }
+          const pts = []; for (let s = 0; s < SN; s++) { const th = s/SN*2*Math.PI, q = [Math.cos(th), Math.sin(th)*AX[0], Math.sin(th)*AX[1], Math.sin(th)*AX[2]]; pts.push(proj8(act(r0, q))); } circles.push(pts); });
+        circleTubes(circles, 0.033, 5, 0.24);
+      })();
+
+      // ── the 240 roots ──
+      (function pts() {
+        const pos = [], col = [], c = hex('#fff2cf'); P.forEach((v) => { pos.push(v.x,v.y,v.z); col.push(c.r,c.g,c.b); });
+        const gg = new THREE.BufferGeometry(); gg.setAttribute('position', new THREE.Float32BufferAttribute(pos,3)); gg.setAttribute('color', new THREE.Float32BufferAttribute(col,3));
+        unified.add(new THREE.Points(gg, reg('unified', new THREE.PointsMaterial({ size: 0.3, map: glow, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }))));
       })();
     })(); } catch (e) { console.error('unified art', e); }
 
@@ -612,7 +548,7 @@
     applyMix();
     const captions = {
       honest: 'Solid where we know, translucent where we guess, luminous where we can only point.',
-      unified: 'Every claim rendered as true — one radiant, counterfactual whole. This is the dream, drawn as art; the evidence lives one toggle away.',
+      unified: 'Existence drawn as one exceptional symmetry — the E8 root system threaded by its Hopf fibration. The dream as pure structure; the evidence lives one toggle away.',
     };
     $$('.art-mode').forEach((b) => b.addEventListener('click', () => {
       $$('.art-mode').forEach((x) => { x.classList.toggle('is-on', x === b); x.setAttribute('aria-selected', String(x === b)); });
