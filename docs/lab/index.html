@@ -227,7 +227,7 @@
     <!-- ── shared style controls (E8·3D + icosahedral) ── -->
     <div id="style-block" class="ctl-block hidden">
       <div class="seg2" id="hopf-order"><button data-o="6" class="on">40 × 6</button><button data-o="4">60 × 4</button></div>
-      <div class="seg2" id="hopf-color"><button data-c="single" class="on">gold-complement</button><button data-c="fibre">by fibre</button></div>
+      <div class="seg2" id="hopf-color"><button data-c="single" class="on">golden</button><button data-c="fibre">by fibre</button></div>
       <div class="slider"><span>E8 glow</span><input type="range" id="s-ebright" min="0" max="100" value="28"></div>
       <div class="slider"><span>E8 width</span><input type="range" id="s-ewidth" min="0" max="100" value="12"></div>
       <div class="slider"><span>Hopf glow</span><input type="range" id="s-hbright" min="0" max="100" value="62"></div>
@@ -324,7 +324,7 @@
 
     // ── shared style state for the two E8 views (E8·3D + icosahedral) ──
     let hopfOrder = 6, hopfColor = 'single', styleTarget = null;
-    const HOPF_SINGLE = '#46cfe0';                                       // luminous cyan — complement to the amber-gold
+    const HOPF_SINGLE = '#f3d05e';                                       // a cooler, more yellow gold — same family as the amber E8, subtly distinct
     const sVal = (id, lo, hi) => { const e = document.getElementById(id); return e ? lo + (hi - lo) * (+e.value) / 100 : lo; };
     const hopfZeta = () => hopfOrder === 6 ? { q: [0.5, 0.5, 0.5, 0.5], ax: [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)], n: 6 } : { q: [0, 1, 0, 0], ax: [1, 0, 0], n: 4 };
     function disposeObj(o) { if (!o) return; root.remove(o); o.traverse && o.traverse((c) => { if (c.geometry) c.geometry.dispose(); if (c.material) c.material.dispose(); }); if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }
