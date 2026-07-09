@@ -327,7 +327,7 @@
     // octahedron direction in R^3 for a Q8 imaginary label
     const OCT = { '+i': [1,0,0], '-i': [-1,0,0], '+j': [0,1,0], '-j': [0,-1,0], '+k': [0,0,1], '-k': [0,0,-1] };
     const OCTKEYS = ['+i','-i','+j','-j','+k','-k'];
-    const AXY = { 'INF': 8.0, '+1': 2.5, '-1': -2.5, 'ZERO': -8.0 };     // vertical spot for each diagonal 24-cell
+    const AXY = { 'INF': 4.0, '+1': 1.4, '-1': -1.4, 'ZERO': -4.0 };     // v2: seat the 24-cells in the vortex mouth, not floating above it
     const AXLABEL = { 'INF': '∞', '+1': '+1', '-1': '−1', 'ZERO': '0' };
 
     const v2parts = {};
@@ -467,12 +467,14 @@
       }
       root.add(v3parts.grid);
 
-      // ── the centre of ℍ (conjugation-fixed): the 4 real/pole 24-cells, stacked on the real axis ──
+      // ── the centre of ℍ (conjugation-fixed): the 4 real/pole 24-cells. They are the EXCEPTIONAL fibres of the
+      // same fibration, over the 4 central base points — so seat them on the real axis threaded through the base:
+      // ∞ and 0 rest on the shell (radius Rs), ±1 inside, the axis a body-diagonal so it clears the octahedron. ──
       v3parts.diag = new THREE.Group();
-      const axisPts = [];
-      ['INF', '+1', '-1', 'ZERO'].forEach((lab) => { const c = new THREE.Vector3(0, AXY[lab], 0); axisPts.push(c.clone()); v3parts.diag.add(make24(c, 1.35, '#e8a13c', '#fff0c8')); });
-      const thread = []; for (let i = 0; i < axisPts.length - 1; i++) thread.push([axisPts[i], axisPts[i + 1], new THREE.Color('#7a6636')]);
-      v3parts.diag.add(edgeTubes(thread, 0.012, 0.5)); root.add(v3parts.diag);
+      const dir = new THREE.Vector3(1, 1, 1).normalize(), RD = { 'INF': Rs, '+1': 2.0, '-1': -2.0, 'ZERO': -Rs }, axisPts = [];
+      ['INF', '+1', '-1', 'ZERO'].forEach((lab) => { const c = dir.clone().multiplyScalar(RD[lab]); axisPts.push(c.clone()); v3parts.diag.add(make24(c, 1.2, '#e8a13c', '#fff0c8')); });
+      const thread = []; for (let i = 0; i < axisPts.length - 1; i++) thread.push([axisPts[i], axisPts[i + 1], new THREE.Color('#8a7340')]);
+      v3parts.diag.add(edgeTubes(thread, 0.014, 0.6)); root.add(v3parts.diag);
 
       applyV3();
       document.getElementById('cap3').innerHTML =
