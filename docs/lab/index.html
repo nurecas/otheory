@@ -62,10 +62,11 @@
   <div class="badge">Experimental · O Theory Lab <a href="../">← back to the site</a></div>
 
   <div class="verbar" id="verbar">
+    <button data-v="v5" class="on">E8 · 3D</button>
     <button data-v="v1">v1 · McKay</button>
     <button data-v="v2">v2 · ℍ² chiral</button>
     <button data-v="v3">v3 · conjugacy</button>
-    <button data-v="v4" class="on">v4 · E8 ↔ Hopf</button>
+    <button data-v="v4">v4 · E8 ↔ Hopf</button>
   </div>
 
   <div class="panel">
@@ -91,6 +92,21 @@
         <label><input type="checkbox" id="t-spin" checked> spin</label>
       </div>
       <p class="cap" id="cap1"></p>
+    </div>
+
+    <!-- ── v5 · E8 3D ── -->
+    <div id="content-v5">
+      <h1>E8 in three dimensions — <span>the 600-cell shadow</span></h1>
+      <p class="sub">All <b>240 roots of E8</b> as one genuine volumetric arrangement — not a flat plane, not split
+        into pieces. E8 folds exactly onto H4: its roots become <b>two concentric 600-cells</b> (the icosians and
+        their golden copy), radii <b>1 : φ</b>. This is the precise 3D shadow of the Gosset polytope 4₂₁ —
+        icosahedrally symmetric, all 240 present at once. Drag to orbit around it.</p>
+      <div class="toggles">
+        <label><input type="checkbox" id="v5-edges" checked> edges</label>
+        <label><input type="checkbox" id="v5-outer" checked> outer φ-shell</label>
+        <label><input type="checkbox" id="v5-spin" checked> spin</label>
+      </div>
+      <p class="cap" id="cap5"></p>
     </div>
 
     <!-- ── v4 ── -->
@@ -513,6 +529,36 @@
       v3parts.base.visible = document.getElementById('v3-base').checked;
     }
 
+    /* ═══════════════════ v5 — E8 in 3D (the 600-cell shadow), all 240 at once ═══════════════════ */
+    const v5parts = {};
+    function buildV5() {
+      clearRoot();
+      const cell = group2I(), PHI = (1 + Math.sqrt(5)) / 2;               // 120 icosians = 600-cell
+      const quats = cell.concat(cell.map((q) => q.map((x) => x * PHI)));  // + golden copy → 240 = E8
+      const raw = quats.map((q) => project(q, 1)); let mxr = 0.001; raw.forEach((v) => mxr = Math.max(mxr, v.length()));
+      const S = 7.6 / mxr, P = raw.map((v) => v.multiplyScalar(S));
+      let dmin = Infinity; for (let i = 0; i < 120; i++) for (let j = i + 1; j < 120; j++) { const d = dist2(cell[i], cell[j]); if (d > 1e-6) dmin = Math.min(dmin, d); }
+      const se = []; for (let i = 0; i < 120; i++) for (let j = i + 1; j < 120; j++) if (Math.abs(dist2(cell[i], cell[j]) - dmin) < 1e-3) se.push([i, j]);
+      const inner = new THREE.Color('#e8a13c'), outer = new THREE.Color('#fff2c8'), mid = new THREE.Color('#ffcf6a');
+      v5parts.eInner = edgeTubes(se.map(([i, j]) => [P[i], P[j], inner]), 0.02, 0.42);
+      v5parts.eOuter = edgeTubes(se.map(([i, j]) => [P[120 + i], P[120 + j], outer]), 0.02, 0.38);
+      v5parts.spokes = edgeTubes(Array.from({ length: 120 }, (_, i) => [P[i], P[120 + i], mid]), 0.013, 0.26);
+      root.add(v5parts.eInner); root.add(v5parts.eOuter); root.add(v5parts.spokes);
+      v5parts.pInner = pointsCloud(P.slice(0, 120), '#ffdf9a', 0.3, 0.95);
+      v5parts.pOuter = pointsCloud(P.slice(120, 240), '#fff6e0', 0.32, 0.95);
+      root.add(v5parts.pInner); root.add(v5parts.pOuter);
+      applyV5();
+      document.getElementById('cap5').innerHTML =
+        `All <b>240 roots</b> at once, as E8's exact 3D shadow: two concentric 600-cells (the H4 folding), radii <b>1 : φ</b>. `
+        + `${se.length} edges per shell + 120 golden radial spokes. Volumetric — drag to orbit around it.`;
+    }
+    function applyV5() {
+      if (!v5parts.eInner) return;
+      const e = document.getElementById('v5-edges').checked, o = document.getElementById('v5-outer').checked;
+      v5parts.eInner.visible = e; v5parts.eOuter.visible = e && o; v5parts.spokes.visible = e && o;
+      v5parts.pInner.visible = true; v5parts.pOuter.visible = o;
+    }
+
     /* ═══════════════════ v4 — the E8 mandala IS a Hopf fibration ═══════════════════ */
     const E8B = [
       [-0.075643, -0.436276, -0.305414, -0.136021, 0.064499, 0.287382, 0.522889, -0.576195],
@@ -592,15 +638,16 @@
     }
 
     /* ═══════════════════ version routing ═══════════════════ */
-    let version = 'v4';
-    const camZ = { v1: 19, v2: 30, v3: 26, v4: 25 };
+    let version = 'v5';
+    const camZ = { v1: 19, v2: 30, v3: 26, v4: 25, v5: 22 };
     function setVersion(v) {
       version = v;
       document.querySelectorAll('#verbar button').forEach((b) => b.classList.toggle('on', b.dataset.v === v));
-      ['v1', 'v2', 'v3', 'v4'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
+      ['v1', 'v2', 'v3', 'v4', 'v5'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
       controls.minDistance = v === 'v1' ? 8 : 12; controls.maxDistance = v === 'v1' ? 46 : 90;
-      camera.position.set(0, v === 'v1' ? 1.5 : 7.5, camZ[v]); controls.target.set(0, 0, 0); controls.update();
-      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else if (v === 'v3') buildV3(); else buildV4();
+      const camy = v === 'v1' ? 1.5 : v === 'v5' ? 2 : 7.5;
+      camera.position.set(0, camy, camZ[v]); controls.target.set(0, 0, 0); controls.update();
+      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else if (v === 'v3') buildV3(); else if (v === 'v4') buildV4(); else buildV5();
       root.rotation.y = v === 'v1' ? 0 : 0.5;                 // start at an angle so the 3D structure reads
     }
 
@@ -614,12 +661,13 @@
     ['v3-grid', 'v3-diag', 'v3-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV3));
     document.getElementById('v4-unfold').addEventListener('change', (e) => { if (v4state) v4state.target = e.target.checked ? 1 : 0; });
     ['v4-edges', 'v4-refine'].forEach((id) => document.getElementById(id).addEventListener('change', applyV4));
+    ['v5-edges', 'v5-outer'].forEach((id) => document.getElementById(id).addEventListener('change', applyV5));
     document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
     document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
 
-    setVersion('v4');
-    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin', v4: 'v4-spin' };
+    setVersion('v5');
+    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin', v4: 'v4-spin', v5: 'v5-spin' };
     (function loop() {
       requestAnimationFrame(loop);
       if (version === 'v4') updateV4();
