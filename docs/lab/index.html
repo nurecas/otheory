@@ -53,8 +53,28 @@
   body.panel-off .panel { display: none; }
   body.panel-off .reopen { display: inline-block; }
   .hint { position: fixed; right: 16px; bottom: 16px; z-index: 5; font-size: 11px; color: #6b7690; }
+  .ctl-block { margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,0.09); }
+  .slider { display: flex; align-items: center; gap: 9px; margin-top: 7px; font-size: 11px; color: #aab4c8; }
+  .slider > span { flex: 0 0 58px; }
+  .slider input[type=range] { flex: 1; accent-color: #ffcf6a; height: 4px; min-width: 0; }
+  .seg2 { display: inline-flex; margin-top: 9px; margin-right: 8px; background: rgba(255,255,255,0.06); border-radius: 100px; padding: 3px; gap: 2px; vertical-align: middle; }
+  .seg2 button { border: 0; background: transparent; color: #aab4c8; font: inherit; font-size: 11.5px; font-weight: 600; padding: 5px 11px; border-radius: 100px; cursor: pointer; white-space: nowrap; }
+  .seg2 button.on { background: #ffcf6a; color: #14161f; }
   .fallback { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; text-align: center;
     padding: 2rem; color: #9aa2b5; z-index: 6; }
+  @media (max-width: 700px) {
+    .badge { font-size: 9.5px; letter-spacing: 0.06em; top: 12px; }
+    .badge a { margin-left: 6px; }
+    .verbar { top: 40px; left: 10px; right: 10px; transform: none; justify-content: flex-start;
+      max-width: none; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .verbar::-webkit-scrollbar { display: none; }
+    .verbar button { padding: 6px 10px; font-size: 11px; flex: 0 0 auto; }
+    .panel { left: 8px; right: 8px; bottom: 8px; max-width: none; max-height: 54vh; padding: 12px 13px; }
+    h1 { font-size: 13.5px; }
+    .sub, .caveats { font-size: 11.5px; }
+    .hint { display: none; }
+    .reopen { left: 8px; bottom: 8px; }
+  }
 </style>
 </head>
 <body>
@@ -63,6 +83,7 @@
 
   <div class="verbar" id="verbar">
     <button data-v="v5" class="on">E8 · 3D</button>
+    <button data-v="v6">E8 · icosa</button>
     <button data-v="v1">v1 · McKay</button>
     <button data-v="v2">v2 · ℍ² chiral</button>
     <button data-v="v3">v3 · conjugacy</button>
@@ -111,6 +132,21 @@
       <p class="caveats">Turn off <b>edges</b> and on <b>Hopf fibres</b> to see all 240 roots threaded by the Hopf
         fibration instead: right-multiplication by an order-6 unit quaternion sorts them into <b>40 circles of 6</b>
         (great circles on S⁷), four to each of the ten S³ fibres. Colour = parent fibre.</p>
+    </div>
+
+    <!-- ── v6 · E8 icosahedral ── -->
+    <div id="content-v6">
+      <h1>E8 · the <span>icosahedral</span> shadow, threaded by Hopf</h1>
+      <p class="sub">The same 240 roots, but in the symmetric H4 folding — <b>two concentric 600-cells</b> (radii
+        1 : φ). Turn on <b>Hopf fibres</b> to thread each 600-cell with its own Hopf fibration (right-multiplication
+        on S³): here the circles land as clean, nested rings because the projection is icosahedral.</p>
+      <div class="toggles">
+        <label><input type="checkbox" id="v6-edges" checked> 600-cell edges</label>
+        <label><input type="checkbox" id="v6-hopf" checked> Hopf fibres</label>
+        <label><input type="checkbox" id="v6-points" checked> roots</label>
+        <label><input type="checkbox" id="v6-spin" checked> spin</label>
+      </div>
+      <p class="cap" id="cap6"></p>
     </div>
 
     <!-- ── v4 ── -->
@@ -179,6 +215,16 @@
         (all conjugate); the structure is invariant, the labels aren't. &nbsp;<b>No group lift</b> —
         W(H₄)×W(H₄) ⊄ W(E8); this is geometry, not a chiral Weyl factorization.</p>
     </div>
+
+    <!-- ── shared style controls (E8·3D + icosahedral) ── -->
+    <div id="style-block" class="ctl-block hidden">
+      <div class="seg2" id="hopf-order"><button data-o="6" class="on">40 × 6</button><button data-o="4">60 × 4</button></div>
+      <div class="seg2" id="hopf-color"><button data-c="single" class="on">gold-complement</button><button data-c="fibre">by fibre</button></div>
+      <div class="slider"><span>E8 glow</span><input type="range" id="s-ebright" min="0" max="100" value="28"></div>
+      <div class="slider"><span>E8 width</span><input type="range" id="s-ewidth" min="0" max="100" value="12"></div>
+      <div class="slider"><span>Hopf glow</span><input type="range" id="s-hbright" min="0" max="100" value="62"></div>
+      <div class="slider"><span>Hopf width</span><input type="range" id="s-hwidth" min="0" max="100" value="32"></div>
+    </div>
   </div>
   <button class="reopen" id="panel-show">ⓘ info</button>
   <div class="hint">drag to orbit · scroll to zoom</div>
@@ -234,8 +280,8 @@
       return new THREE.Points(g, new THREE.PointsMaterial({ size, map: GLOW, vertexColors: true, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending }));
     }
     // merged thin tube for straight segments [ [A,B,color], ... ]
-    function edgeTubes(pairs, radius, opacity) {
-      const pos = [], col = [], SIDES = 5;
+    function edgeTubes(pairs, radius, opacity, sides) {
+      const pos = [], col = [], SIDES = sides || 5;
       const AX = new THREE.Vector3(), U = new THREE.Vector3(), W = new THREE.Vector3(), DIR = new THREE.Vector3();
       pairs.forEach(([A, B, c]) => {
         DIR.subVectors(B, A); const Ln = DIR.length(); if (Ln < 1e-6) return; DIR.multiplyScalar(1 / Ln);
@@ -267,6 +313,13 @@
 
     let root = new THREE.Group(); scene.add(root);
     function clearRoot() { scene.remove(root); root.traverse((o) => { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }); root = new THREE.Group(); scene.add(root); }
+
+    // ── shared style state for the two E8 views (E8·3D + icosahedral) ──
+    let hopfOrder = 6, hopfColor = 'single', styleTarget = null;
+    const HOPF_SINGLE = '#46cfe0';                                       // luminous cyan — complement to the amber-gold
+    const sVal = (id, lo, hi) => { const e = document.getElementById(id); return e ? lo + (hi - lo) * (+e.value) / 100 : lo; };
+    const hopfZeta = () => hopfOrder === 6 ? { q: [0.5, 0.5, 0.5, 0.5], ax: [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)], n: 6 } : { q: [0, 1, 0, 0], ax: [1, 0, 0], n: 4 };
+    function disposeObj(o) { if (!o) return; root.remove(o); o.traverse && o.traverse((c) => { if (c.geometry) c.geometry.dispose(); if (c.material) c.material.dispose(); }); if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); }
 
     /* ═══════════════════ v1 — McKay ═══════════════════ */
     function group2T() {
@@ -533,53 +586,98 @@
       v3parts.base.visible = document.getElementById('v3-base').checked;
     }
 
-    /* ═══════════════════ v5 — E8 in 3D (the 600-cell shadow), all 240 at once ═══════════════════ */
-    const v5parts = {};
-    // a 3D projection of the real 8D roots: the Coxeter plane (30-fold) as x,y + an orthonormal z axis,
-    // so points AND the 6720 edges come from the SAME coordinates and stay geometrically honest.
+    /* ═══════════════════ shared: Hopf circles + glow helpers ═══════════════════ */
     const dot8 = (a, b) => { let s = 0; for (let k = 0; k < 8; k++) s += a[k] * b[k]; return s; };
-    function buildV5() {
-      clearRoot();
-      const seed = [0.31, -0.59, 0.2, -0.47, 0.52, -0.14, 0.44, -0.24];   // z axis ⟂ the Coxeter plane
-      let z = seed.map((s, k) => s - dot8(seed, E8B[0]) * E8B[0][k] - dot8(seed, E8B[1]) * E8B[1][k]); const zn = Math.hypot(...z); z = z.map((x) => x / zn);
-      const R = e8roots();
-      const raw = R.map((r) => new THREE.Vector3(dot8(r, E8B[0]), dot8(r, E8B[1]), dot8(r, z)));
-      let mx = 0.001; raw.forEach((v) => mx = Math.max(mx, v.length())); const S = 7.4 / mx, P = raw.map((v) => v.multiplyScalar(S));
-      // the full 6720 E8 minimal edges (roots at squared-distance 2), one additive LineSegments, gold-ramped by radius
-      const inner = new THREE.Color('#d8901f'), outer = new THREE.Color('#fff0c8'), ep = [], ec = []; let n = 0;
-      for (let i = 0; i < 240; i++) for (let j = i + 1; j < 240; j++) { let d = 0; for (let k = 0; k < 8; k++) { const t = R[i][k] - R[j][k]; d += t * t; } if (Math.abs(d - 2) < 1e-6) { const t = Math.min(1, (P[i].length() + P[j].length()) / 2 / 7.4), c = inner.clone().lerp(outer, t); ep.push(P[i].x, P[i].y, P[i].z, P[j].x, P[j].y, P[j].z); ec.push(c.r, c.g, c.b, c.r, c.g, c.b); n++; } }
-      const eg = new THREE.BufferGeometry(); eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3)); eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
-      v5parts.edges = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.08, depthWrite: false, blending: THREE.AdditiveBlending }));
-      root.add(v5parts.edges);
-      v5parts.points = pointsCloud(P, '#fff2cf', 0.28, 0.95); root.add(v5parts.points);
-      // ── Hopf fibres: right-mult by an order-6 unit quaternion threads all 240 roots into 40 circles of 6.
-      // Each is a genuine S¹ orbit (a great circle on S⁷) projected with the same map; colour = parent S³ fibre. ──
-      const ZAX = [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)], ZETA = [0.5, 0.5, 0.5, 0.5];
-      const act = (r, q) => { const A = mul([r[0], r[1], r[2], r[3]], q), B = mul([r[4], r[5], r[6], r[7]], q); return [A[0], A[1], A[2], A[3], B[0], B[1], B[2], B[3]]; };
-      const keyR = (r) => r.map((x) => Math.round(x * 1e4)).join(','); const seenH = new Set();
-      v5parts.hopf = new THREE.Group();
-      R.forEach((r0) => {
-        if (seenH.has(keyR(r0))) return; let cur = r0.slice(); for (let k = 0; k < 6; k++) { seenH.add(keyR(cur)); cur = act(cur, ZETA); }
-        const a = [r0[0], r0[1], r0[2], r0[3]], b = [r0[4], r0[5], r0[6], r0[7]], tt = (dot4(a, a) - dot4(b, b)) / 2;
-        const col = new THREE.Color(FIBCOL[Math.max(0, FIBORDER.indexOf(baseLabel(tt, mul(b, conj(a)))))]);
-        const pts = [], SN = 48;
-        for (let s = 0; s < SN; s++) { const t = s / SN * 2 * Math.PI, q = [Math.cos(t), Math.sin(t) * ZAX[0], Math.sin(t) * ZAX[1], Math.sin(t) * ZAX[2]], rr = act(r0, q); pts.push(new THREE.Vector3(dot8(rr, E8B[0]), dot8(rr, E8B[1]), dot8(rr, z)).multiplyScalar(S)); }
-        const geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), SN, 0.03, 5, true);
+    const setMeshGlow = (m, id, lo, hi) => { if (m) m.material.opacity = sVal(id, lo, hi); };
+    const setGroupGlow = (g, id, lo, hi) => { if (g) g.children.forEach((c) => { if (c.material) c.material.opacity = sVal(id, lo, hi); }); };
+    // items: list of quaternion-arrays; actFn(item,q)->item (right-mult); projFn(item)->Vector3; fibreColorFn(item,idx)->Color
+    function hopfCircles(items, actFn, projFn, fibreColorFn) {
+      const zt = hopfZeta(), radius = sVal('s-hwidth', 0.012, 0.09), glow = sVal('s-hbright', 0, 0.9), SN = 48;
+      const keyOf = (it) => it.map((x) => Math.round(x * 1e4)).join(','), seen = new Set(), grp = new THREE.Group();
+      let idx = 0;
+      items.forEach((it0) => {
+        if (seen.has(keyOf(it0))) return;
+        let cur = it0.slice(); for (let k = 0; k < zt.n; k++) { seen.add(keyOf(cur)); cur = actFn(cur, zt.q); }
+        const col = hopfColor === 'single' ? new THREE.Color(HOPF_SINGLE) : fibreColorFn(it0, idx); idx++;
+        const pts = []; for (let s = 0; s < SN; s++) { const t = s / SN * 2 * Math.PI, q = [Math.cos(t), Math.sin(t) * zt.ax[0], Math.sin(t) * zt.ax[1], Math.sin(t) * zt.ax[2]]; pts.push(projFn(actFn(it0, q))); }
+        const geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), SN, radius, 5, true);
         const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3); for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
         geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
-        v5parts.hopf.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending })));
+        grp.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: glow, depthWrite: false, blending: THREE.AdditiveBlending })));
       });
-      root.add(v5parts.hopf);
+      return grp;
+    }
+
+    /* ═══════════════════ v5 — E8 in 3D (Coxeter × axis), all 240 + full 6720-edge web ═══════════════════ */
+    const v5parts = {};
+    function buildV5() {
+      clearRoot();
+      const seed = [0.31, -0.59, 0.2, -0.47, 0.52, -0.14, 0.44, -0.24];
+      let z = seed.map((s, k) => s - dot8(seed, E8B[0]) * E8B[0][k] - dot8(seed, E8B[1]) * E8B[1][k]); const zn = Math.hypot(...z); z = z.map((x) => x / zn);
+      const R = e8roots(), raw = R.map((r) => new THREE.Vector3(dot8(r, E8B[0]), dot8(r, E8B[1]), dot8(r, z)));
+      let mx = 0.001; raw.forEach((v) => mx = Math.max(mx, v.length())); const S = 7.4 / mx, P = raw.map((v) => v.multiplyScalar(S));
+      const inner = new THREE.Color('#d8901f'), outer = new THREE.Color('#fff0c8'), pairs = [];
+      for (let i = 0; i < 240; i++) for (let j = i + 1; j < 240; j++) { let d = 0; for (let k = 0; k < 8; k++) { const t = R[i][k] - R[j][k]; d += t * t; } if (Math.abs(d - 2) < 1e-6) { const t = Math.min(1, (P[i].length() + P[j].length()) / 2 / 7.4); pairs.push([i, j, inner.clone().lerp(outer, t)]); } }
+      v5parts.R = R; v5parts.P = P; v5parts.z = z; v5parts.S = S; v5parts.e8pairs = pairs;
+      v5parts.points = pointsCloud(P, '#fff2cf', 0.28, 0.95); root.add(v5parts.points);
+      buildV5Edges(); buildV5Hopf();
+      styleTarget = { rebuildEdges: buildV5Edges, rebuildHopf: buildV5Hopf, eglow: () => setMeshGlow(v5parts.edges, 's-ebright', 0, 0.4), hglow: () => setGroupGlow(v5parts.hopf, 's-hbright', 0, 0.9) };
       applyV5();
       document.getElementById('cap5').innerHTML =
-        `All <b>240 roots</b> and their <b>${n} minimal edges</b> — the complete E8 web (the Gosset polytope 4₂₁), `
-        + `projected volumetrically to 3D (Coxeter plane × an orthogonal axis). Every point is a genuine E8 root; every line a true edge.`;
+        `All <b>240 roots</b> + their <b>6720 minimal edges</b> — the complete Gosset polytope 4₂₁ — volumetric (Coxeter plane × axis). `
+        + `Toggle <b>Hopf fibres</b> to thread them instead as ${hopfOrder === 6 ? '40 circles of 6' : '60 circles of 4'}.`;
+    }
+    function buildV5Edges() { disposeObj(v5parts.edges); v5parts.edges = edgeTubes(v5parts.e8pairs.map(([i, j, c]) => [v5parts.P[i], v5parts.P[j], c]), sVal('s-ewidth', 0.005, 0.05), sVal('s-ebright', 0, 0.4), 3); root.add(v5parts.edges); v5parts.edges.visible = document.getElementById('v5-edges').checked; }
+    function buildV5Hopf() {
+      disposeObj(v5parts.hopf);
+      const act = (r, q) => { const A = mul([r[0], r[1], r[2], r[3]], q), B = mul([r[4], r[5], r[6], r[7]], q); return [A[0], A[1], A[2], A[3], B[0], B[1], B[2], B[3]]; };
+      const projf = (rr) => new THREE.Vector3(dot8(rr, E8B[0]), dot8(rr, E8B[1]), dot8(rr, v5parts.z)).multiplyScalar(v5parts.S);
+      const fibcol = (r0) => { const a = [r0[0], r0[1], r0[2], r0[3]], b = [r0[4], r0[5], r0[6], r0[7]], tt = (dot4(a, a) - dot4(b, b)) / 2; return new THREE.Color(FIBCOL[Math.max(0, FIBORDER.indexOf(baseLabel(tt, mul(b, conj(a)))))]); };
+      v5parts.hopf = hopfCircles(v5parts.R, act, projf, fibcol); root.add(v5parts.hopf); v5parts.hopf.visible = document.getElementById('v5-hopf').checked;
     }
     function applyV5() {
       if (!v5parts.edges) return;
       v5parts.edges.visible = document.getElementById('v5-edges').checked;
       v5parts.points.visible = document.getElementById('v5-points').checked;
       if (v5parts.hopf) v5parts.hopf.visible = document.getElementById('v5-hopf').checked;
+    }
+
+    /* ═══════════════════ v6 — E8 icosahedral (two 600-cells) + Hopf ═══════════════════ */
+    const v6parts = {};
+    function buildV6() {
+      clearRoot();
+      const cell = group2I(), PHI = (1 + Math.sqrt(5)) / 2;
+      const items = cell.concat(cell.map((q) => q.map((x) => x * PHI)));
+      const raw = items.map((q) => project(q, 1)); let mxr = 0.001; raw.forEach((v) => mxr = Math.max(mxr, v.length())); const S = 7.4 / mxr;
+      v6parts.cell = cell; v6parts.items = items; v6parts.S = S; v6parts.P = raw.map((v) => v.multiplyScalar(S));
+      v6parts.points = new THREE.Group();
+      v6parts.points.add(pointsCloud(v6parts.P.slice(0, 120), '#ffdf9a', 0.3, 0.95));
+      v6parts.points.add(pointsCloud(v6parts.P.slice(120), '#fff6e0', 0.32, 0.95));
+      root.add(v6parts.points);
+      buildV6Edges(); buildV6Hopf();
+      styleTarget = { rebuildEdges: buildV6Edges, rebuildHopf: buildV6Hopf, eglow: () => setMeshGlow(v6parts.edges, 's-ebright', 0, 0.6), hglow: () => setGroupGlow(v6parts.hopf, 's-hbright', 0, 0.9) };
+      applyV6();
+      document.getElementById('cap6').innerHTML =
+        `All <b>240 roots</b> as two concentric 600-cells (H4 folding, radii 1 : φ). Hopf fibres thread each 600-cell (right-mult on S³) into ${hopfOrder === 6 ? '20 circles of 6 per shell' : '30 circles of 4 per shell'} — clean nested rings.`;
+    }
+    function buildV6Edges() {
+      disposeObj(v6parts.edges);
+      const cell = v6parts.cell; let dmin = Infinity;
+      for (let i = 0; i < 120; i++) for (let j = i + 1; j < 120; j++) { const d = dist2(cell[i], cell[j]); if (d > 1e-6) dmin = Math.min(dmin, d); }
+      const inner = new THREE.Color('#e8a13c'), outer = new THREE.Color('#fff2c8'), pairs = [];
+      for (let i = 0; i < 120; i++) for (let j = i + 1; j < 120; j++) if (Math.abs(dist2(cell[i], cell[j]) - dmin) < 1e-3) { pairs.push([v6parts.P[i], v6parts.P[j], inner]); pairs.push([v6parts.P[120 + i], v6parts.P[120 + j], outer]); }
+      v6parts.edges = edgeTubes(pairs, sVal('s-ewidth', 0.008, 0.05), sVal('s-ebright', 0, 0.6), 4); root.add(v6parts.edges); v6parts.edges.visible = document.getElementById('v6-edges').checked;
+    }
+    function buildV6Hopf() {
+      disposeObj(v6parts.hopf);
+      const act = (q, u) => mul(q, u), projf = (q) => project(q, v6parts.S), fibcol = (q0, idx) => new THREE.Color().setHSL((idx / 20) % 1, 0.62, 0.6);
+      v6parts.hopf = hopfCircles(v6parts.items, act, projf, fibcol); root.add(v6parts.hopf); v6parts.hopf.visible = document.getElementById('v6-hopf').checked;
+    }
+    function applyV6() {
+      if (!v6parts.edges) return;
+      v6parts.edges.visible = document.getElementById('v6-edges').checked;
+      v6parts.points.visible = document.getElementById('v6-points').checked;
+      if (v6parts.hopf) v6parts.hopf.visible = document.getElementById('v6-hopf').checked;
     }
 
     /* ═══════════════════ v4 — the E8 mandala IS a Hopf fibration ═══════════════════ */
@@ -662,16 +760,22 @@
 
     /* ═══════════════════ version routing ═══════════════════ */
     let version = 'v5';
-    const camZ = { v1: 19, v2: 30, v3: 26, v4: 25, v5: 22 };
+    const camZ = { v1: 19, v2: 30, v3: 26, v4: 25, v5: 22, v6: 22 };
     function setVersion(v) {
-      version = v;
+      version = v; styleTarget = null;
       document.querySelectorAll('#verbar button').forEach((b) => b.classList.toggle('on', b.dataset.v === v));
-      ['v1', 'v2', 'v3', 'v4', 'v5'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
+      ['v1', 'v2', 'v3', 'v4', 'v5', 'v6'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
+      document.getElementById('style-block').classList.toggle('hidden', !(v === 'v5' || v === 'v6'));
       controls.minDistance = v === 'v1' ? 8 : 12; controls.maxDistance = v === 'v1' ? 46 : 90;
-      const camy = v === 'v1' ? 1.5 : v === 'v5' ? 2 : 7.5;
+      const camy = (v === 'v1') ? 1.5 : (v === 'v5' || v === 'v6') ? 2 : 7.5;
       camera.position.set(0, camy, camZ[v]); controls.target.set(0, 0, 0); controls.update();
-      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else if (v === 'v3') buildV3(); else if (v === 'v4') buildV4(); else buildV5();
+      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else if (v === 'v3') buildV3(); else if (v === 'v4') buildV4(); else if (v === 'v5') buildV5(); else buildV6();
       root.rotation.y = v === 'v1' ? 0 : 0.5;                 // start at an angle so the 3D structure reads
+    }
+    function updateHopfCap() {
+      const c6 = hopfOrder === 6;
+      if (version === 'v5') document.getElementById('cap5').innerHTML = `All <b>240 roots</b> + <b>6720 edges</b> (Gosset 4₂₁), volumetric. Hopf fibres thread them as <b>${c6 ? '40 circles of 6' : '60 circles of 4'}</b>.`;
+      else if (version === 'v6') document.getElementById('cap6').innerHTML = `Two concentric 600-cells (H4 folding, 1 : φ). Hopf fibres: <b>${c6 ? '20 circles of 6' : '30 circles of 4'} per shell</b> — clean nested rings.`;
     }
 
     // wiring
@@ -685,12 +789,20 @@
     document.getElementById('v4-unfold').addEventListener('change', (e) => { if (v4state) v4state.target = e.target.checked ? 1 : 0; });
     ['v4-edges', 'v4-refine'].forEach((id) => document.getElementById(id).addEventListener('change', applyV4));
     ['v5-edges', 'v5-hopf', 'v5-points'].forEach((id) => document.getElementById(id).addEventListener('change', applyV5));
+    ['v6-edges', 'v6-hopf', 'v6-points'].forEach((id) => document.getElementById(id).addEventListener('change', applyV6));
+    // shared style controls
+    document.getElementById('s-ebright').addEventListener('input', () => styleTarget && styleTarget.eglow());
+    document.getElementById('s-hbright').addEventListener('input', () => styleTarget && styleTarget.hglow());
+    document.getElementById('s-ewidth').addEventListener('change', () => styleTarget && styleTarget.rebuildEdges());
+    document.getElementById('s-hwidth').addEventListener('change', () => styleTarget && styleTarget.rebuildHopf());
+    document.querySelectorAll('#hopf-order button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#hopf-order button').forEach((x) => x.classList.toggle('on', x === b)); hopfOrder = +b.dataset.o; if (styleTarget) styleTarget.rebuildHopf(); updateHopfCap(); }));
+    document.querySelectorAll('#hopf-color button').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('#hopf-color button').forEach((x) => x.classList.toggle('on', x === b)); hopfColor = b.dataset.c; if (styleTarget) styleTarget.rebuildHopf(); }));
     document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
     document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
 
     setVersion('v5');
-    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin', v4: 'v4-spin', v5: 'v5-spin' };
+    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin', v4: 'v4-spin', v5: 'v5-spin', v6: 'v6-spin' };
     (function loop() {
       requestAnimationFrame(loop);
       if (version === 'v4') updateV4();
