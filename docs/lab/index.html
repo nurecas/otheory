@@ -64,7 +64,8 @@
   <div class="verbar" id="verbar">
     <button data-v="v1">v1 · McKay</button>
     <button data-v="v2">v2 · ℍ² chiral</button>
-    <button data-v="v3" class="on">v3 · conjugacy</button>
+    <button data-v="v3">v3 · conjugacy</button>
+    <button data-v="v4" class="on">v4 · E8 ↔ Hopf</button>
   </div>
 
   <div class="panel">
@@ -90,6 +91,29 @@
         <label><input type="checkbox" id="t-spin" checked> spin</label>
       </div>
       <p class="cap" id="cap1"></p>
+    </div>
+
+    <!-- ── v4 ── -->
+    <div id="content-v4">
+      <h1>The E8 mandala <span>is</span> a Hopf fibration</h1>
+      <p class="sub">The 240 roots of E8 you know from the Coxeter plane (the 30-fold mandala) and the quaternionic
+        <b>Hopf fibration S⁷ → S⁴</b> are the <b>same 240 points</b>. One chirality of that fibration sorts them
+        into <b>10 fibres of exactly 24</b> — a 24-cell on each vertex of the 5-orthoplex base. <b>10 × 24 = 240</b>
+        (verified). This is settled mathematics — Sadoc & Mosseri's route from E8 to real icosahedral quasicrystals.
+        Drag <b>unfold</b> to watch the mandala open into its fibres; colour = fibre.</p>
+      <div class="toggles">
+        <label><input type="checkbox" id="v4-unfold" checked> unfold to Hopf fibres</label>
+        <label><input type="checkbox" id="v4-edges" checked> E8 edges (6720)</label>
+        <label><input type="checkbox" id="v4-refine"> both chiralities · 96 + 144</label>
+        <label><input type="checkbox" id="v4-spin" checked> spin</label>
+      </div>
+      <p class="cap" id="cap4"></p>
+      <p class="caveats">
+        The <b>geometry</b> above is exact, settled mathematics (E8 ↔ Hopf ↔ 24-cells ↔ quasicrystals — real matter).
+        Reading it as <b>the root configuration of the universe</b> is a separate, <b>contested</b> claim: Lisi's E8
+        theory is the serious version, but Distler–Garibaldi proved E8 cannot hold all three fermion generations
+        without a <b>mirror antigeneration of the wrong chirality</b> — and that obstruction is chirality itself, the
+        very structure drawn here. Shown as the dream, labelled as the dream.</p>
     </div>
 
     <!-- ── v3 ── -->
@@ -489,16 +513,94 @@
       v3parts.base.visible = document.getElementById('v3-base').checked;
     }
 
+    /* ═══════════════════ v4 — the E8 mandala IS a Hopf fibration ═══════════════════ */
+    const E8B = [
+      [-0.075643, -0.436276, -0.305414, -0.136021, 0.064499, 0.287382, 0.522889, -0.576195],
+      [-0.060561, -0.196697, 0.002379, 0.169897, 0.298535, 0.382672, 0.418630, 0.719694],
+    ];
+    const FIBORDER = ['INF', '+1', '-1', 'ZERO', '+i', '-i', '+j', '-j', '+k', '-k'];
+    const FIBCOL = ['#ffe6b0', '#ffcf6a', '#e8a13c', '#fff2d0', '#ff6a8a', '#ff9a4a', '#8ae06a', '#3fd6c0', '#6aa8ff', '#c08aff'];
+    let v4parts = {}, v4state = null;
+    function buildV4() {
+      clearRoot();
+      const Rs = 5.5, cellScale = 1.0, R = e8roots();
+      const fibreOf = [], stratOf = [];
+      R.forEach((r) => {
+        const a = [r[0], r[1], r[2], r[3]], b = [r[4], r[5], r[6], r[7]], p = dot4(a, a), q = dot4(b, b), t = (p - q) / 2;
+        const rl = baseLabel(t, mul(b, conj(a)));
+        fibreOf.push(FIBORDER.indexOf(rl));
+        stratOf.push((rl === 'INF' || rl === 'ZERO' || rl === '+1' || rl === '-1') ? 'diag' : 'grid');
+      });
+      const dirD = new THREE.Vector3(1, 1, 1).normalize(), baseP = {};
+      ['+i', '-i', '+j', '-j', '+k', '-k'].forEach((k) => { baseP[k] = new THREE.Vector3(...OCT[k]).multiplyScalar(Rs); });
+      baseP['INF'] = dirD.clone().multiplyScalar(Rs); baseP['ZERO'] = dirD.clone().multiplyScalar(-Rs);
+      baseP['+1'] = dirD.clone().multiplyScalar(2.0); baseP['-1'] = dirD.clone().multiplyScalar(-2.0);
+      const CELL24 = group2T().map((q) => project(q, 1));
+      const mand = R.map((r) => { let x = 0, y = 0; for (let k = 0; k < 8; k++) { x += r[k] * E8B[0][k]; y += r[k] * E8B[1][k]; } return [x, y]; });
+      let mx = 0.001; mand.forEach(([x, y]) => mx = Math.max(mx, Math.hypot(x, y))); const ms = 7.6 / mx;
+      const slot = {}; FIBORDER.forEach((l) => slot[l] = 0);
+      const posM = new Float32Array(R.length * 3), posF = new Float32Array(R.length * 3), colArr = new Float32Array(R.length * 3);
+      R.forEach((r, i) => {
+        posM[3 * i] = mand[i][0] * ms; posM[3 * i + 1] = mand[i][1] * ms; posM[3 * i + 2] = 0;
+        const lab = FIBORDER[fibreOf[i]], m = slot[lab]++;
+        const fp = baseP[lab].clone().add(CELL24[m % 24].clone().multiplyScalar(cellScale));
+        posF[3 * i] = fp.x; posF[3 * i + 1] = fp.y; posF[3 * i + 2] = fp.z;
+        const c = new THREE.Color(FIBCOL[fibreOf[i]]); colArr[3 * i] = c.r; colArr[3 * i + 1] = c.g; colArr[3 * i + 2] = c.b;
+      });
+      const pgeo = new THREE.BufferGeometry();
+      pgeo.setAttribute('position', new THREE.Float32BufferAttribute(posM.slice(), 3));
+      pgeo.setAttribute('color', new THREE.Float32BufferAttribute(colArr.slice(), 3));
+      const pts = new THREE.Points(pgeo, new THREE.PointsMaterial({ size: 0.36, map: GLOW, vertexColors: true, transparent: true, opacity: 0.98, depthWrite: false, blending: THREE.AdditiveBlending }));
+      root.add(pts);
+      // 6720 E8 minimal edges, split intra-fibre (the ten 24-cells) vs inter-fibre
+      const intra = [], inter = [];
+      for (let i = 0; i < R.length; i++) for (let j = i + 1; j < R.length; j++) { let d = 0; for (let k = 0; k < 8; k++) { const t = R[i][k] - R[j][k]; d += t * t; } if (Math.abs(d - 2) < 1e-6) (fibreOf[i] === fibreOf[j] ? intra : inter).push([i, j]); }
+      const mkGeo = (n) => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(n * 6), 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(new Float32Array(n * 6), 3)); return g; };
+      const intraGeo = mkGeo(intra.length), interGeo = mkGeo(inter.length);
+      { const carr = intraGeo.attributes.color.array; intra.forEach(([i], e) => { const c = new THREE.Color(FIBCOL[fibreOf[i]]); for (const off of [0, 3]) { carr[6 * e + off] = c.r; carr[6 * e + off + 1] = c.g; carr[6 * e + off + 2] = c.b; } }); }
+      const intraMesh = new THREE.LineSegments(intraGeo, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.55, depthWrite: false, blending: THREE.AdditiveBlending }));
+      const interMesh = new THREE.LineSegments(interGeo, new THREE.LineBasicMaterial({ color: 0x8894b0, transparent: true, opacity: 0.14, depthWrite: false, blending: THREE.AdditiveBlending }));
+      root.add(interMesh); root.add(intraMesh);
+      v4parts = { pts, pgeo, intraMesh, interMesh, intraGeo, interGeo, intra, inter };
+      const uf = document.getElementById('v4-unfold').checked;
+      v4state = { t: uf ? 1 : 0, target: uf ? 1 : 0, posM, posF, fibreOf, stratOf, n: R.length, cur: new Float32Array(R.length * 3) };
+      updateV4(true); applyV4();
+      document.getElementById('cap4').innerHTML =
+        `240 roots · one chirality → <b>10 fibres × 24</b> (a 24-cell on each S⁴ vertex). <b>${intra.length}</b> intra-fibre edges (the ten 24-cells), ${inter.length} between fibres. The same 240 points as the Coxeter mandala.`;
+    }
+    function updateV4(force) {
+      if (!v4state) return; const s = v4state, moving = Math.abs(s.target - s.t) > 0.001;
+      if (!moving && !force) return;
+      if (!force) { s.t += (s.target - s.t) * 0.07; if (Math.abs(s.target - s.t) <= 0.001) s.t = s.target; }
+      const te = s.t < 0.5 ? 2 * s.t * s.t : 1 - Math.pow(-2 * s.t + 2, 2) / 2, cur = s.cur;
+      for (let i = 0; i < s.n * 3; i++) cur[i] = s.posM[i] + (s.posF[i] - s.posM[i]) * te;
+      v4parts.pgeo.attributes.position.array.set(cur); v4parts.pgeo.attributes.position.needsUpdate = true;
+      const fill = (geo, pairs) => { const a = geo.attributes.position.array; for (let e = 0; e < pairs.length; e++) { const p = pairs[e]; for (let k = 0; k < 3; k++) { a[6 * e + k] = cur[3 * p[0] + k]; a[6 * e + 3 + k] = cur[3 * p[1] + k]; } } geo.attributes.position.needsUpdate = true; };
+      fill(v4parts.intraGeo, v4parts.intra); fill(v4parts.interGeo, v4parts.inter);
+      v4parts.interMesh.material.opacity = 0.14 * (1 - te) * (document.getElementById('v4-edges').checked ? 1 : 0);
+    }
+    function refineV4(on) {
+      if (!v4state) return; const s = v4state, carr = v4parts.pgeo.attributes.color.array;
+      for (let i = 0; i < s.n; i++) { const c = on ? (s.stratOf[i] === 'diag' ? new THREE.Color('#ffcf6a') : new THREE.Color().setHSL((s.fibreOf[i] / 10) % 1, 0.62, 0.6)) : new THREE.Color(FIBCOL[s.fibreOf[i]]); carr[3 * i] = c.r; carr[3 * i + 1] = c.g; carr[3 * i + 2] = c.b; }
+      v4parts.pgeo.attributes.color.needsUpdate = true;
+    }
+    function applyV4() {
+      if (!v4parts.pts) return;
+      const showE = document.getElementById('v4-edges').checked;
+      v4parts.intraMesh.visible = showE; v4parts.interMesh.visible = showE;
+      refineV4(document.getElementById('v4-refine').checked);
+    }
+
     /* ═══════════════════ version routing ═══════════════════ */
-    let version = 'v3';
-    const camZ = { v1: 19, v2: 30, v3: 26 };
+    let version = 'v4';
+    const camZ = { v1: 19, v2: 30, v3: 26, v4: 25 };
     function setVersion(v) {
       version = v;
       document.querySelectorAll('#verbar button').forEach((b) => b.classList.toggle('on', b.dataset.v === v));
-      ['v1', 'v2', 'v3'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
+      ['v1', 'v2', 'v3', 'v4'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
       controls.minDistance = v === 'v1' ? 8 : 12; controls.maxDistance = v === 'v1' ? 46 : 90;
       camera.position.set(0, v === 'v1' ? 1.5 : 7.5, camZ[v]); controls.target.set(0, 0, 0); controls.update();
-      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else buildV3();
+      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else if (v === 'v3') buildV3(); else buildV4();
       root.rotation.y = v === 'v1' ? 0 : 0.5;                 // start at an angle so the 3D structure reads
     }
 
@@ -510,14 +612,17 @@
     ['t-fibers', 't-lattice', 't-points', 't-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV1));
     ['v2-diag', 'v2-grid', 'v2-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV2));
     ['v3-grid', 'v3-diag', 'v3-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV3));
+    document.getElementById('v4-unfold').addEventListener('change', (e) => { if (v4state) v4state.target = e.target.checked ? 1 : 0; });
+    ['v4-edges', 'v4-refine'].forEach((id) => document.getElementById(id).addEventListener('change', applyV4));
     document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
     document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
 
-    setVersion('v3');
-    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin' };
+    setVersion('v4');
+    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin', v4: 'v4-spin' };
     (function loop() {
       requestAnimationFrame(loop);
+      if (version === 'v4') updateV4();
       const spin = document.getElementById(SPINID[version]);
       if (spin && spin.checked) { root.rotation.y += 0.0022; root.rotation.x = version === 'v1' ? 0.16 : 0.12; }
       controls.update();
