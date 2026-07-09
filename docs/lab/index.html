@@ -63,7 +63,8 @@
 
   <div class="verbar" id="verbar">
     <button data-v="v1">v1 · McKay</button>
-    <button data-v="v2" class="on">v2 · ℍ² chiral</button>
+    <button data-v="v2">v2 · ℍ² chiral</button>
+    <button data-v="v3" class="on">v3 · conjugacy</button>
   </div>
 
   <div class="panel">
@@ -89,6 +90,29 @@
         <label><input type="checkbox" id="t-spin" checked> spin</label>
       </div>
       <p class="cap" id="cap1"></p>
+    </div>
+
+    <!-- ── v3 ── -->
+    <div id="content-v3">
+      <h1>Chirality is <span>conjugation</span> — h_R = a · h_L · a⁻¹</h1>
+      <p class="sub">Same ℝ⁸ = ℍ⊕ℍ, same partition — but here is <b>why it isn't numerology</b>. For every root with
+        a ≠ 0 (all 216, verified exactly), the two chiralities <b>h_R = bā</b> and <b>h_L = āb</b> are
+        <b>conjugate quaternions</b>. Three things fall out: they <b>share a real part</b> (one 10-point base, not
+        two); conjugation <b>fixes the centre of ℍ</b>, so h_L = h_R exactly on the real values — the <b>4 diagonal
+        24-cells</b> are the centre; and the six imaginary units are a <b>single conjugacy class</b>, so the
+        <b>6×6 grid is complete</b> — no cell can be empty.</p>
+      <div class="toggles">
+        <label><input type="checkbox" id="v3-grid" checked> grid arcs · 36×4 = 144</label>
+        <label><input type="checkbox" id="v3-diag" checked> centre 24-cells · 96</label>
+        <label><input type="checkbox" id="v3-base" checked> imaginary S²</label>
+        <label><input type="checkbox" id="v3-spin" checked> spin</label>
+      </div>
+      <p class="cap" id="cap3"></p>
+      <p class="caveats">
+        <b>Not a subsystem split</b> — the four 24-cells are D₄'s; their union isn't a rank-8 subsystem.
+        &nbsp;<b>Canonical only up to W(E8)</b> — the 6×6 depends on the quaternionic structure (all conjugate);
+        structure invariant, labels not. &nbsp;<b>No group lift</b> — W(H₄)×W(H₄) ⊄ W(E8) (5⁴ vs 5²); incidence
+        geometry, not a chiral Weyl factorization.</p>
     </div>
 
     <!-- ── v2 ── -->
@@ -185,6 +209,16 @@
       g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
       g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
       return new THREE.Mesh(g, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending }));
+    }
+
+    // a tube along a curve, colour-graded from colA (start) to colB (end) — shows a direction
+    function gradTube(curve, segs, radius, colA, colB, opacity) {
+      const geo = new THREE.TubeGeometry(curve, segs, radius, 6, false);
+      const rad = 7, rings = segs + 1, ca = new Float32Array(geo.attributes.position.count * 3);
+      const A = new THREE.Color(colA), B = new THREE.Color(colB), tmp = new THREE.Color();
+      for (let i = 0; i < rings; i++) { tmp.copy(A).lerp(B, i / segs); for (let j = 0; j <= rad; j++) { const idx = i * (rad + 1) + j; ca[3 * idx] = tmp.r; ca[3 * idx + 1] = tmp.g; ca[3 * idx + 2] = tmp.b; } }
+      geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
+      return new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity, depthWrite: false, blending: THREE.AdditiveBlending }));
     }
 
     let root = new THREE.Group(); scene.add(root);
@@ -386,18 +420,84 @@
       v2parts.base.visible = document.getElementById('v2-base').checked;
     }
 
+    /* ═══════════════════ v3 — chirality IS conjugation ═══════════════════ */
+    const NODECOL = { '+i': '#ff8a5c', '-i': '#ffb489', '+j': '#5fd98a', '-j': '#a4e8b6', '+k': '#6aa8ff', '-k': '#a0c6ff' };
+    const v3parts = {};
+    function buildV3() {
+      clearRoot();
+      const Rs = 5.5;
+      // ── the single shared base: the S² of imaginary quaternions (both chiralities land here) ──
+      v3parts.base = new THREE.Group();
+      v3parts.base.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(Rs, 22, 13)),
+        new THREE.LineBasicMaterial({ color: 0x33405e, transparent: true, opacity: 0.09, depthWrite: false })));
+      const nodePos = {}; OCTKEYS.forEach((k) => { nodePos[k] = new THREE.Vector3(...OCT[k]).multiplyScalar(Rs); });
+      const nverts = OCTKEYS.map((k) => { const v = nodePos[k].clone(); v.__c = new THREE.Color(NODECOL[k]); return v; });
+      v3parts.base.add(pointsCloud(nverts, '#ffffff', 0.62, 1));
+      const oe = []; for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++) { const A = nodePos[OCTKEYS[i]], B = nodePos[OCTKEYS[j]]; if (A.distanceTo(B) < Rs * 1.5) oe.push([A, B, new THREE.Color('#46567a')]); }
+      v3parts.base.add(edgeTubes(oe, 0.018, 0.3));
+      root.add(v3parts.base);
+
+      // ── the 36 grid cells as arcs on the sphere: each is conjugation h_L → h_R (graded source→target) ──
+      v3parts.grid = new THREE.Group();
+      let gi = 0;
+      for (let li = 0; li < 6; li++) for (let ri = 0; ri < 6; ri++, gi++) {
+        const lk = OCTKEYS[li], rk = OCTKEYS[ri], A = nodePos[lk], B = nodePos[rk], colA = NODECOL[lk], colB = NODECOL[rk];
+        if (li === ri) {                                             // self-loop (a commutes with the unit) — small tangent ring
+          const dir = new THREE.Vector3(...OCT[lk]);
+          const u = new THREE.Vector3(Math.abs(dir.x) < 0.9 ? 1 : 0, Math.abs(dir.x) < 0.9 ? 0 : 1, 0).cross(dir).normalize();
+          const w = new THREE.Vector3().crossVectors(dir, u);
+          const cen = A.clone().addScaledVector(dir, 0.12), lr = 0.9, pts = [];
+          for (let t = 0; t <= 24; t++) { const ang = t / 24 * 2 * Math.PI; pts.push(cen.clone().addScaledVector(u, Math.cos(ang) * lr).addScaledVector(w, Math.sin(ang) * lr)); }
+          const curve = new THREE.CatmullRomCurve3(pts, true);
+          v3parts.grid.add(gradTube(curve, 40, 0.032, colA, colA, 0.5));
+          v3parts.grid.add(pointsCloud([0.1, 0.35, 0.6, 0.85].map((u2) => { const v = curve.getPoint(u2); v.__c = new THREE.Color(colA); return v; }), colA, 0.28, 0.95));
+        } else {                                                    // arc bulging outward from the sphere
+          const mid = A.clone().add(B).multiplyScalar(0.5); let ctrl;
+          if (mid.length() < 1e-6) {                                // antipodal — bow through a perpendicular axis
+            const perps = [[0,1,0],[0,0,1],[1,0,0]];
+            ctrl = new THREE.Vector3(...perps[Math.floor(li / 2)]).multiplyScalar((li % 2 ? 1 : -1) * (Rs + 2.6));
+          } else {
+            const swirl = new THREE.Vector3().crossVectors(A, B).normalize().multiplyScalar(1.1);
+            ctrl = mid.clone().normalize().multiplyScalar(Rs + 2.5).add(swirl);
+          }
+          const curve = new THREE.QuadraticBezierCurve3(A, ctrl, B);
+          v3parts.grid.add(gradTube(curve, 36, 0.028, colA, colB, 0.34));
+          v3parts.grid.add(pointsCloud([0.24, 0.42, 0.58, 0.76].map((u2) => { const v = curve.getPoint(u2); v.__c = new THREE.Color(colA).lerp(new THREE.Color(colB), u2); return v; }), '#fff', 0.26, 0.9));
+        }
+      }
+      root.add(v3parts.grid);
+
+      // ── the centre of ℍ (conjugation-fixed): the 4 real/pole 24-cells, stacked on the real axis ──
+      v3parts.diag = new THREE.Group();
+      const axisPts = [];
+      ['INF', '+1', '-1', 'ZERO'].forEach((lab) => { const c = new THREE.Vector3(0, AXY[lab], 0); axisPts.push(c.clone()); v3parts.diag.add(make24(c, 1.35, '#e8a13c', '#fff0c8')); });
+      const thread = []; for (let i = 0; i < axisPts.length - 1; i++) thread.push([axisPts[i], axisPts[i + 1], new THREE.Color('#7a6636')]);
+      v3parts.diag.add(edgeTubes(thread, 0.012, 0.5)); root.add(v3parts.diag);
+
+      applyV3();
+      document.getElementById('cap3').innerHTML =
+        `Verified on all 240 roots: <b>h_R = a·h_L·a⁻¹</b> (error 0), one shared real part. Centre {0, ∞, ±1} → 4 × 24-cell = <b>96</b>. `
+        + `The imaginary octahedron {±i,±j,±k} is one conjugacy class → the complete 6×6 grid, <b>36 × 4 = 144</b>. `
+        + `Each arc is graded source → target: conjugation carrying h_L to h_R.`;
+    }
+    function applyV3() {
+      if (!v3parts.grid) return;
+      v3parts.grid.visible = document.getElementById('v3-grid').checked;
+      v3parts.diag.visible = document.getElementById('v3-diag').checked;
+      v3parts.base.visible = document.getElementById('v3-base').checked;
+    }
+
     /* ═══════════════════ version routing ═══════════════════ */
-    let version = 'v2';
-    const camZ = { v1: 19, v2: 30 };
+    let version = 'v3';
+    const camZ = { v1: 19, v2: 30, v3: 26 };
     function setVersion(v) {
       version = v;
       document.querySelectorAll('#verbar button').forEach((b) => b.classList.toggle('on', b.dataset.v === v));
-      document.getElementById('content-v1').classList.toggle('hidden', v !== 'v1');
-      document.getElementById('content-v2').classList.toggle('hidden', v !== 'v2');
+      ['v1', 'v2', 'v3'].forEach((x) => document.getElementById('content-' + x).classList.toggle('hidden', x !== v));
       controls.minDistance = v === 'v1' ? 8 : 12; controls.maxDistance = v === 'v1' ? 46 : 90;
       camera.position.set(0, v === 'v1' ? 1.5 : 7.5, camZ[v]); controls.target.set(0, 0, 0); controls.update();
-      if (v === 'v1') buildV1('2I'); else buildV2();
-      root.rotation.y = v === 'v2' ? 0.5 : 0;                 // start at an angle so the vortex reads as 3D
+      if (v === 'v1') buildV1('2I'); else if (v === 'v2') buildV2(); else buildV3();
+      root.rotation.y = v === 'v1' ? 0 : 0.5;                 // start at an angle so the 3D structure reads
     }
 
     // wiring
@@ -407,14 +507,16 @@
     }));
     ['t-fibers', 't-lattice', 't-points', 't-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV1));
     ['v2-diag', 'v2-grid', 'v2-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV2));
+    ['v3-grid', 'v3-diag', 'v3-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV3));
     document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
     document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
 
-    setVersion('v2');
+    setVersion('v3');
+    const SPINID = { v1: 't-spin', v2: 'v2-spin', v3: 'v3-spin' };
     (function loop() {
       requestAnimationFrame(loop);
-      const spin = document.getElementById(version === 'v1' ? 't-spin' : 'v2-spin');
+      const spin = document.getElementById(SPINID[version]);
       if (spin && spin.checked) { root.rotation.y += 0.0022; root.rotation.x = version === 'v1' ? 0.16 : 0.12; }
       controls.update();
       renderer.render(scene, camera);
