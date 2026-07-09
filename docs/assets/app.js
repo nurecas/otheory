@@ -471,13 +471,12 @@
       honest.add(new THREE.Points(dg, reg('honest', new THREE.PointsMaterial({ size: 0.09, map: glow, opacity: 0.5, vertexColors: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
     })();
 
-    /* — mode B: "as if all were true" — the dream, woven from Hopf-fibration rings around a
-       an E8 mandala + nested vector-equilibrium core. Aesthetics, not a claim. — */
+    /* — mode B: "as if all were true" — the dream, pared to three shapes that share one centre and axis:
+       the 3D E8 (two 600-cells), the Hopf-fibration veil (thick tubes), and the cuboctahedron heart.
+       Aesthetics, not a claim. — */
     try { (function buildUnified() {
-      const rng = mulberry32(seed ^ 0x5f5f5f);
       const nodes = art.nodes || [];
       const N = Math.max(nodes.length, 1);
-      const anchors = {};
       const GA = Math.PI * (3 - Math.sqrt(5));
       // Hopf fiber: base point (theta,phi) on S^2 -> a circle in S^3, stereographically projected to R^3.
       // NO clamp — theta is restricted to a band (0.17π..0.47π) where d=1-y2 stays >= 0.328, so every fiber is a
@@ -504,39 +503,22 @@
         raw.push(ring);
       });
       const scale = 9.6 / maxLen;                            // veil halo at ~9.6, nearly 2× the rosette (5.5)
-      // second pass — one LineSegments for all fibers (vertex-colored) + one anchor Point per node
-      const lpos = [], lcol = [], ppos = [], pcol = [];
+      // second pass — each fiber as a THICK tube (a Villarceau circle swept into a solid ring), domain-colored.
+      // Tubes rather than 1px lines because WebGL line width is unreliable; the tube radius is the real thickness.
+      const TUBE_R = 0.06;
+      const fiberMat = reg('unified', new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.28, depthWrite: false, blending: THREE.AdditiveBlending }));
       nodes.forEach((n, i) => {
-        const col = hex(domCanvas(n.domain)); const ring = raw[i];
-        for (let k = 0; k < ring.length - 1; k++) {
-          const P = ring[k], Q = ring[k + 1];
-          if (P.d < CULL || Q.d < CULL) continue;            // break the strip — never draw a giant chord (spike)
-          lpos.push(P.v.x * scale, P.v.y * scale, P.v.z * scale, Q.v.x * scale, Q.v.y * scale, Q.v.z * scale);
-          lcol.push(col.r, col.g, col.b, col.r, col.g, col.b);
-        }
-        const kept = ring.filter((s) => s.d >= CULL);        // anchor guaranteed on a kept vertex
-        const anc = kept[Math.floor(rng() * kept.length)].v.clone().multiplyScalar(scale);
-        anchors[n.id] = anc; ppos.push(anc.x, anc.y, anc.z); pcol.push(col.r, col.g, col.b);
+        const col = hex(domCanvas(n.domain));
+        const pts = [];
+        for (let k = 0; k < SEG; k++) { const s = raw[i][k]; if (s.d < CULL) continue; pts.push(s.v.clone().multiplyScalar(scale)); }
+        if (pts.length < 6) return;                          // degenerate ring — skip (never happens in-band)
+        const curve = new THREE.CatmullRomCurve3(pts, true); // closed loop, no duplicate endpoint
+        const geo = new THREE.TubeGeometry(curve, Math.min(pts.length, 132), TUBE_R, 6, true);
+        const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3);
+        for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
+        geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
+        unified.add(new THREE.Mesh(geo, fiberMat));
       });
-      const lg = new THREE.BufferGeometry();
-      lg.setAttribute('position', new THREE.Float32BufferAttribute(lpos, 3));
-      lg.setAttribute('color', new THREE.Float32BufferAttribute(lcol, 3));
-      unified.add(new THREE.LineSegments(lg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.18, depthWrite: false, blending: THREE.AdditiveBlending }))));
-      const pg2 = new THREE.BufferGeometry();
-      pg2.setAttribute('position', new THREE.Float32BufferAttribute(ppos, 3));
-      pg2.setAttribute('color', new THREE.Float32BufferAttribute(pcol, 3));
-      unified.add(new THREE.Points(pg2, reg('unified', new THREE.PointsMaterial({ size: 0.55, map: glow, opacity: 0.95, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
-
-      // connections — bridges + relations — as filaments that BOW GENTLY INWARD (not funneled through the exact
-      // centre, which additively blows out to white and hides the core). Dim, so the web reads without glare.
-      const drawFil = (a, b, color, op) => {
-        const A = anchors[a], B = anchors[b]; if (!A || !B) return;
-        const mid = A.clone().add(B).multiplyScalar(0.5).multiplyScalar(0.55);
-        const pts = new THREE.QuadraticBezierCurve3(A, mid, B).getPoints(26);
-        unified.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), reg('unified', new THREE.LineBasicMaterial({ color, transparent: true, opacity: op, depthWrite: false, blending: THREE.AdditiveBlending }))));
-      };
-      (art.bridges || []).forEach((b) => { const col = hex(regCanvas(b.register)); for (let i = 0; i < b.links.length; i++) for (let j = i + 1; j < b.links.length; j++) drawFil(b.links[i], b.links[j], col, 0.24); });
-      (art.relationPairs || []).forEach(([a, b]) => drawFil(a, b, hex('#cdd6ea'), 0.05));
 
       // core — nested vector equilibrium (cuboctahedron), gold
       const core = new THREE.Group(); unified.add(core); unified.userData.core = core;
@@ -591,20 +573,15 @@
           const eg = new THREE.BufferGeometry();
           eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
           eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
-          e8grp.add(new THREE.LineSegments(eg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.13, depthWrite: false, blending: THREE.AdditiveBlending }))));
+          e8grp.add(new THREE.LineSegments(eg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.17, depthWrite: false, blending: THREE.AdditiveBlending }))));
           const pp = [], pc = [];
           V.forEach((v) => { pp.push(v.x, v.y, v.z); pc.push(rim.r, rim.g, rim.b); });
           const pg = new THREE.BufferGeometry();
           pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
           pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
-          e8grp.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.26, map: glow, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }))));
+          e8grp.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.32, map: glow, vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false, blending: THREE.AdditiveBlending }))));
         });
       })();
-      // a SMALL, soft central glow (was a big white sun that hid the geometry)
-      const cpos = [], ccol = []; const g1 = hex('#ffe9b3'), w = hex('#fff3d6');
-      for (let i = 0; i < 90; i++) { const r = Math.pow(rng(), 0.7) * 1.25; const th = Math.acos(2 * rng() - 1), ph = 2 * Math.PI * rng(); cpos.push(r * Math.sin(th) * Math.cos(ph), r * Math.cos(th), r * Math.sin(th) * Math.sin(ph)); const c = rng() < 0.5 ? g1 : w; ccol.push(c.r, c.g, c.b); }
-      const cg = new THREE.BufferGeometry(); cg.setAttribute('position', new THREE.Float32BufferAttribute(cpos, 3)); cg.setAttribute('color', new THREE.Float32BufferAttribute(ccol, 3));
-      unified.add(new THREE.Points(cg, reg('unified', new THREE.PointsMaterial({ size: 0.42, map: glow, opacity: 0.3, vertexColors: true, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending }))));
     })(); } catch (e) { console.error('unified art', e); }
 
     /* — crossfade + loop — */
