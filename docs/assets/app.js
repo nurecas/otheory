@@ -475,9 +475,13 @@
        the 3D E8 (two 600-cells), the Hopf-fibration veil (thick tubes), and the cuboctahedron heart.
        Aesthetics, not a claim. — */
     try { (function buildUnified() {
-      const nodes = art.nodes || [];
-      const N = Math.max(nodes.length, 1);
-      const GA = Math.PI * (3 - Math.sqrt(5));
+      const GA = Math.PI * (3 - Math.sqrt(5));                 // golden angle — the fibre twist
+      // The veil is NOT one-fibre-per-claim (that count is arbitrary). It is a fixed, self-consistent number set
+      // by the geometry itself: COUNT = 144 = Fibonacci F(12) = 12². Under golden-angle phyllotaxis a Fibonacci
+      // count is exactly where the spiral arms (parastichies) close cleanly, and 12 is the cuboctahedron's vertex
+      // count and the 600-cell's vertex degree — so the veil resonates with the two solids it wraps.
+      const COUNT = 144;
+      const GR = 0.6180339887498949;                          // 1/φ — golden-ratio hue step (max-distinct colours)
       // Hopf fiber: base point (theta,phi) on S^2 -> a circle in S^3, stereographically projected to R^3.
       // NO clamp — theta is restricted to a band (0.17π..0.47π) where d=1-y2 stays >= 0.328, so every fiber is a
       // complete SMOOTH Villarceau circle: no singularity walls (the old "rounded-square" look), no far-flung spikes.
@@ -496,29 +500,30 @@
       };
       // first pass — raw rings + max extent (from kept samples only) for scaling
       const raw = []; let maxLen = 0.001;
-      nodes.forEach((n, i) => {
-        const theta = TLO * Math.PI + (THI - TLO) * Math.PI * ((i + 0.5) / N);
+      for (let i = 0; i < COUNT; i++) {
+        const theta = TLO * Math.PI + (THI - TLO) * Math.PI * ((i + 0.5) / COUNT);
         const ring = fiber(theta, GA * i);
         ring.forEach((s) => { if (s.d >= CULL) maxLen = Math.max(maxLen, s.v.length()); });
         raw.push(ring);
-      });
+      }
       const scale = 9.6 / maxLen;                            // veil halo at ~9.6, nearly 2× the rosette (5.5)
-      // second pass — each fiber as a THICK tube (a Villarceau circle swept into a solid ring), domain-colored.
-      // Tubes rather than 1px lines because WebGL line width is unreliable; the tube radius is the real thickness.
+      // second pass — each fiber as a THICK tube (a Villarceau circle swept into a solid ring). Colour is set by a
+      // golden-ratio walk of the hue wheel (h = frac(i/φ)): every theory blended into one full spectrum, no domain
+      // buckets, adjacent fibres maximally distinct. Tubes (not 1px lines) because WebGL line width is unreliable.
       const TUBE_R = 0.06;
       const fiberMat = reg('unified', new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.28, depthWrite: false, blending: THREE.AdditiveBlending }));
-      nodes.forEach((n, i) => {
-        const col = hex(domCanvas(n.domain));
+      for (let i = 0; i < COUNT; i++) {
+        const col = new THREE.Color().setHSL((i * GR) % 1, 0.58, 0.62);
         const pts = [];
         for (let k = 0; k < SEG; k++) { const s = raw[i][k]; if (s.d < CULL) continue; pts.push(s.v.clone().multiplyScalar(scale)); }
-        if (pts.length < 6) return;                          // degenerate ring — skip (never happens in-band)
+        if (pts.length < 6) continue;                        // degenerate ring — skip (never happens in-band)
         const curve = new THREE.CatmullRomCurve3(pts, true); // closed loop, no duplicate endpoint
         const geo = new THREE.TubeGeometry(curve, Math.min(pts.length, 132), TUBE_R, 6, true);
         const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3);
         for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
         geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
         unified.add(new THREE.Mesh(geo, fiberMat));
-      });
+      }
 
       // core — nested vector equilibrium (cuboctahedron), gold
       const core = new THREE.Group(); unified.add(core); unified.userData.core = core;
@@ -563,23 +568,36 @@
         const s = 5.7 / mx;                                             // outer shell lands near the veil's inner reach
         const e8grp = new THREE.Group(); unified.add(e8grp); unified.userData.e8 = e8grp;
         const lerp = (a, c, t) => ({ r: a.r + (c.r - a.r) * t, g: a.g + (c.g - a.g) * t, b: a.b + (c.b - a.b) * t });
+        // draw each shell's 720 edges as thin MERGED tubes (not 1px lines), so the lattice reads as solid and
+        // matches the Hopf veil's thickness. One BufferGeometry per shell → one draw call.
+        const EDGE_R = 0.032, SIDES = 5;
+        const AX = new THREE.Vector3(), U = new THREE.Vector3(), W = new THREE.Vector3(), DIR = new THREE.Vector3();
         shells.forEach(({ R, hub, rim }) => {
           const V = cell.map((q) => proj(q, R).multiplyScalar(s));
-          const ep = [], ec = [];
+          const tp = [], tc = [];
           edges.forEach(([i, j]) => {
             const A = V[i], B = V[j], t = Math.min(1, (A.length() + B.length()) / 2 / 5.7), c = lerp(hub, rim, t);
-            ep.push(A.x, A.y, A.z, B.x, B.y, B.z); ec.push(c.r, c.g, c.b, c.r, c.g, c.b);
+            DIR.subVectors(B, A); const L = DIR.length(); if (L < 1e-6) return; DIR.multiplyScalar(1 / L);
+            AX.set(Math.abs(DIR.x) < 0.9 ? 1 : 0, Math.abs(DIR.x) < 0.9 ? 0 : 1, 0);
+            U.crossVectors(DIR, AX).normalize(); W.crossVectors(DIR, U);
+            for (let sIdx = 0; sIdx < SIDES; sIdx++) {
+              const a0 = (sIdx / SIDES) * 2 * Math.PI, a1 = ((sIdx + 1) / SIDES) * 2 * Math.PI;
+              const o0 = U.clone().multiplyScalar(Math.cos(a0) * EDGE_R).addScaledVector(W, Math.sin(a0) * EDGE_R);
+              const o1 = U.clone().multiplyScalar(Math.cos(a1) * EDGE_R).addScaledVector(W, Math.sin(a1) * EDGE_R);
+              const p = [A.clone().add(o0), B.clone().add(o0), B.clone().add(o1), A.clone().add(o0), B.clone().add(o1), A.clone().add(o1)];
+              p.forEach((v) => { tp.push(v.x, v.y, v.z); tc.push(c.r, c.g, c.b); });
+            }
           });
           const eg = new THREE.BufferGeometry();
-          eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
-          eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
-          e8grp.add(new THREE.LineSegments(eg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.17, depthWrite: false, blending: THREE.AdditiveBlending }))));
+          eg.setAttribute('position', new THREE.Float32BufferAttribute(tp, 3));
+          eg.setAttribute('color', new THREE.Float32BufferAttribute(tc, 3));
+          e8grp.add(new THREE.Mesh(eg, reg('unified', new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.2, depthWrite: false, blending: THREE.AdditiveBlending }))));
           const pp = [], pc = [];
           V.forEach((v) => { pp.push(v.x, v.y, v.z); pc.push(rim.r, rim.g, rim.b); });
           const pg = new THREE.BufferGeometry();
           pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
           pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
-          e8grp.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.32, map: glow, vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false, blending: THREE.AdditiveBlending }))));
+          e8grp.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.3, map: glow, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }))));
         });
       })();
     })(); } catch (e) { console.error('unified art', e); }

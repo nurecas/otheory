@@ -5,8 +5,8 @@ owner: synthesizer
 derived_from: [claims-index, synthesis/framework.md, synthesis/bridges/*]
 regenerate_on: every /research run
 render_target: three.js (docs/index.html landing, the DEFAULT art mode; params inlined as art-data)
-version: three-shapes-2026-07-09
-changed_this_run: "Pared the unified artwork to THREE shapes that share one centre and axis — the 3D E8 (two nested 600-cells via the H4 folding), the Hopf-fibration veil (now solid tubes, not 1px lines), and the cuboctahedron heart. Removed the per-claim beads, the connection web, and the central glow so the geometry reads cleanly. E8 is genuinely three-dimensional now, so it belongs inside the Hopf weave instead of hanging as a flat disc. No new claims; aesthetics only."
+version: three-shapes-golden-veil-2026-07-09
+changed_this_run: "Three shapes (3D E8 as two 600-cells, Hopf veil, cuboctahedron), and the veil is now decoupled from the corpus: a fixed Fibonacci count of 144 fibers laid down by the golden angle (not one-per-claim), colored by a golden-ratio walk of the whole hue wheel (not by domain) so the veil reads as the entire spectrum blended. E8 edges are drawn as thick merged tubes so the lattice is clearly visible. No new claims; aesthetics only."
 ---
 
 # The Unified Portrait
@@ -38,11 +38,15 @@ below names a concrete form, count, color, layer, or motion, so another renderer
 > equilibrium), the one polyhedron whose every direction is in perfect balance, **nested inside itself at three
 > shrinking scales**, turning slowly and against the rest.
 >
-> **The veil — the Hopf weave.** Give every one of the claims a fiber of the **Hopf fibration**: a circle
-> threaded over the surface of a hidden four-dimensional sphere and cast into space as a smooth, closed ring, so
-> that no two ever cross and none can be pulled apart. Render each ring not as a thin line but as a **solid
-> tube** — a bright, tangible thread of light. Color each by the **domain** it came from — ten hues braided
-> evenly through the weave, none ranked above another. Nest the rings into interlocking tori and hang them as a
+> **The veil — the Hopf weave.** Around the core hang a weave of the **Hopf fibration**: circles threaded over
+> the surface of a hidden four-dimensional sphere and cast into space as smooth, closed rings, so that no two
+> ever cross and none can be pulled apart. Their number is not the tally of claims — that count is arbitrary —
+> but a number the geometry itself chooses: **144 fibers**, the twelfth Fibonacci number (and 12²), because
+> under the golden angle that lays them down it is exactly a Fibonacci count at which the spiral arms close
+> cleanly, and twelve is the balance-number of the cuboctahedron and the 600-cell alike. Render each ring not as
+> a thin line but as a **solid tube** — a bright, tangible thread of light. Color them not by domain but by a
+> **golden-ratio walk around the whole color wheel**, so the veil is the entire spectrum at once — every theory
+> blended into one, none ranked above another. Nest the rings into interlocking tori and hang them as a
 > **translucent halo about twice the width of the E8 core**, so the gold lattice shines through a soft mist of
 > colored light. Let the whole turn and breathe slowly, entire and untroubled — a universe that has, for the
 > length of a glance, closed into sense, and is beautiful enough to want.
@@ -63,14 +67,16 @@ out. Only three shapes are drawn — the E8 core, the Hopf veil, and the cubocta
   by radius — inner shell `#e8a13c` → `#ffe0a0`, outer shell `#ffc65a` → `#fff2c8`. **Vertex stars:** 120
   `Points` per shell, size **0.32**, opacity **1.0**, rim color. Its own slow tumble (`rotation.x += 0.0015`,
   `rotation.y += 0.0011`) reveals the depth.
-- **Layer 2 — Hopf veil (thick tubes).** One fiber per claim: base angle `theta = 0.17π + 0.30π·(i+0.5)/N` (a
-  band that keeps the projection denominator `1 − y₂ ≥ 0.328`, so **no singularity clamp and no spikes**), twist
-  `phi = goldenAngle · i`. Each fiber is a circle in S³ `(a·cosψ, a·sinψ, b·cos(ψ+φ), b·sin(ψ+φ))`,
-  `a = cos(θ/2)`, `b = sin(θ/2)`, stereographically projected by dividing `(x₁, y₁, x₂)` by `1 − y₂`, sampled at
-  **SEG = 220** (any segment with `d < 0.28` is dropped — a guard that fires on 0 segments in this band). Sweep
-  each closed ring into a **`TubeGeometry`** (radius **0.06**, 6 radial segments, closed) instead of a line, so
-  the fibers have real thickness. One shared vertex-colored `MeshBasicMaterial` in domain colors (`domCanvas`),
-  opacity **0.28**; halo scale `9.6 / maxExtent` (≈ 4.25, nearly 2× the E8 core).
+- **Layer 2 — Hopf veil (thick tubes).** A fixed **COUNT = 144** fibers (Fibonacci F(12) = 12²), independent of
+  the corpus size. Fiber `i`: base angle `theta = 0.17π + 0.30π·(i+0.5)/COUNT` (a band that keeps the projection
+  denominator `1 − y₂ ≥ 0.328`, so **no singularity clamp and no spikes**), twist `phi = goldenAngle · i`. Each
+  fiber is a circle in S³ `(a·cosψ, a·sinψ, b·cos(ψ+φ), b·sin(ψ+φ))`, `a = cos(θ/2)`, `b = sin(θ/2)`,
+  stereographically projected by dividing `(x₁, y₁, x₂)` by `1 − y₂`, sampled at **SEG = 220** (any segment with
+  `d < 0.28` is dropped — a guard that fires on 0 segments in this band). Sweep each closed ring into a
+  **`TubeGeometry`** (radius **0.06**, 6 radial segments, closed) instead of a line, so the fibers have real
+  thickness. Color by a **golden-ratio hue walk** — `HSL(frac(i/φ), 0.58, 0.62)` — so adjacent fibers are
+  maximally distinct and the whole spectrum is present (no domain buckets). One shared vertex-colored
+  `MeshBasicMaterial`, opacity **0.28**; halo scale `9.6 / maxExtent` (≈ 4.25, nearly 2× the E8 core).
 - **Layer 3 — cuboctahedron heart.** A 12-vertex cuboctahedron (edges at distance √2), three nested scales
   **2.3 / 1.42 / 0.78**, color `#ffe4a0`, opacities **0.7 / 0.55 / 0.4**, in a slowly counter-rotating group at
   the exact center.
