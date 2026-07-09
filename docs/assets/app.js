@@ -293,7 +293,12 @@
     host.appendChild(r.domElement); return r;
   }
   function onResize(host, renderer, camera) {
-    window.addEventListener('resize', () => { const w = host.clientWidth, h = host.clientHeight; if (!w || !h) return; renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); });
+    const fit = () => { const w = host.clientWidth, h = host.clientHeight; if (!w || !h) return; renderer.setSize(w, h); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+    window.addEventListener('resize', fit);
+    // ResizeObserver catches a host that was 0-sized at init (e.g. mobile layout not yet
+    // settled) or reflows on orientation change — without it the canvas can stick at 0px.
+    if (typeof ResizeObserver !== 'undefined') { const ro = new ResizeObserver(fit); ro.observe(host); }
+    fit();
   }
   const hex = (c) => new THREE.Color(c);
   function mulberry32(a) { return function () { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
@@ -543,46 +548,57 @@
       const ve = [[1,1,0],[1,-1,0],[-1,1,0],[-1,-1,0],[1,0,1],[1,0,-1],[-1,0,1],[-1,0,-1],[0,1,1],[0,1,-1],[0,-1,1],[0,-1,-1]].map((v) => new THREE.Vector3(v[0], v[1], v[2]));
       const veEdges = []; for (let i = 0; i < 12; i++) for (let j = i + 1; j < 12; j++) if (Math.abs(ve[i].distanceTo(ve[j]) - Math.SQRT2) < 0.02) veEdges.push([i, j]);
       goldLines(ve, veEdges, 2.3, 0.7); goldLines(ve, veEdges, 1.42, 0.55); goldLines(ve, veEdges, 0.78, 0.4); // fractal nesting, brighter so it reads as a structure
-      // the E8 ROSETTE — the recognizable 30-fold mandala, and the focal centrepiece. 240 roots in the true
-      // Coxeter plane; its 6720 minimal-distance edges are drawn faint (0.10) in ONE additive buffer so they stay a
-      // whisper alone but bloom into 240 crisp stars where 40-68 chords bundle at each ring-vertex. Color-ramped by
-      // root radius (deep-gold hub → pale rim) so the mid-rings don't blob. Flat on a radius-only bowl (symmetry-safe).
-      (function e8mandala() {
-        const roots = e8Roots(), b = e8Basis(), edges = e8Edges(roots);
-        const raw = roots.map((r) => { let x = 0, y = 0; for (let k = 0; k < 8; k++) { x += r[k] * b[0][k]; y += r[k] * b[1][k]; } return [x, y]; });
-        let mx = 0.001; raw.forEach(([x, y]) => { mx = Math.max(mx, Math.hypot(x, y)); }); // mx ≈ 1.1396
-        const s = 5.5 / mx;                                              // outer ring lands at r = 5.5
-        const P = raw.map(([x, y]) => { const X = x * s, Y = y * s, rr = Math.hypot(X, Y); return new THREE.Vector3(X, Y, rr * rr * 0.05 - 1.0); });
-        const rr8 = raw.map(([x, y]) => Math.hypot(x, y));               // root radius 0.238..1.140
-        // edges — warm-hub → pale-rim ramp by mean root radius (anti-blob), ONE LineSegments
-        const inner = hex('#e8a13c'), midc = hex('#ffc65a'), outer = hex('#fff2c8');
+      // the E8 CENTREPIECE — now genuinely THREE-DIMENSIONAL, so it belongs inside the Hopf weave instead of
+      // hanging as a flat disc. E8 folds exactly onto the H4 Coxeter group: its 240 roots split into two
+      // concentric 600-cells (the icosians) whose circumradii sit in the golden ratio 1 : φ. The 600-cell is the
+      // discrete Hopf fibration of S³ — 120 unit quaternions — so its 4D→3D shadow is literally a nest of Hopf
+      // rings, sharing geometry with the Villarceau fibres woven around it. Settled mathematics (e8-lie-group,
+      // E1). Never asserted as physics.
+      (function e8Polytope() {
+        const phi = (1 + Math.sqrt(5)) / 2, inv = 1 / phi;
+        // 120 icosians = vertices of the unit 600-cell (circumradius 1)
+        const cell = (() => {
+          const map = new Map(); const key = (a) => a.map((x) => Math.round(x * 1e4)).join(',');
+          const add = (a) => { const k = key(a); if (!map.has(k)) map.set(k, a); };
+          for (let i = 0; i < 4; i++) for (const sgn of [1, -1]) { const v = [0, 0, 0, 0]; v[i] = sgn; add(v); } // (±1,0,0,0)
+          for (let m = 0; m < 16; m++) add([0, 1, 2, 3].map((k) => ((m >> k) & 1 ? -0.5 : 0.5)));               // (±½,±½,±½,±½)
+          const base = [phi / 2, 0.5, inv / 2, 0];                                                             // even perms of ½(φ,1,1/φ,0)
+          const perms = []; (function gen(rem, acc) { if (!rem.length) { perms.push(acc); return; } for (let i = 0; i < rem.length; i++) gen(rem.slice(0, i).concat(rem.slice(i + 1)), acc.concat(rem[i])); })([0, 1, 2, 3], []);
+          perms.forEach((p) => { let iv = 0; for (let i = 0; i < 4; i++) for (let j = i + 1; j < 4; j++) if (p[i] > p[j]) iv++; if (iv % 2) return; const v0 = p.map((k) => base[k]); for (let sg = 0; sg < 16; sg++) add(v0.map((x, k) => ((sg >> k) & 1 ? -x : x))); });
+          return [...map.values()];                                                                            // exactly 120
+        })();
+        // 600-cell edges: the nearest-neighbour pairs (720 of them at circumradius 1)
+        let dmin = Infinity;
+        const d2 = (a, b) => { let s = 0; for (let k = 0; k < 4; k++) { const t = a[k] - b[k]; s += t * t; } return s; };
+        for (let i = 0; i < cell.length; i++) for (let j = i + 1; j < cell.length; j++) dmin = Math.min(dmin, d2(cell[i], cell[j]));
+        const edges = [];
+        for (let i = 0; i < cell.length; i++) for (let j = i + 1; j < cell.length; j++) if (Math.abs(d2(cell[i], cell[j]) - dmin) < 1e-3) edges.push([i, j]);
+        // 4D→3D perspective shadow from a viewpoint on the w-axis (F beyond the outer shell so it stays bounded)
+        const F = phi + 1.3;
+        const proj = (q, R) => { const sc = F / (F - q[3] * R); return new THREE.Vector3(q[0] * R * sc, q[1] * R * sc, q[2] * R * sc); };
+        const shells = [{ R: 1, hub: hex('#e8a13c'), rim: hex('#ffe0a0') }, { R: phi, hub: hex('#ffc65a'), rim: hex('#fff2c8') }];
+        let mx = 0.001; shells.forEach(({ R }) => cell.forEach((q) => { mx = Math.max(mx, proj(q, R).length()); }));
+        const s = 5.7 / mx;                                             // outer shell lands near the veil's inner reach
+        const e8grp = new THREE.Group(); unified.add(e8grp); unified.userData.e8 = e8grp;
         const lerp = (a, c, t) => ({ r: a.r + (c.r - a.r) * t, g: a.g + (c.g - a.g) * t, b: a.b + (c.b - a.b) * t });
-        const ramp = (t) => (t < 0.5 ? lerp(inner, midc, t * 2) : lerp(midc, outer, (t - 0.5) * 2));
-        const ep = [], ec = [];
-        edges.forEach(([i, j]) => {
-          const A = P[i], B = P[j], t = Math.min(1, (rr8[i] + rr8[j]) / 2 / mx), c = ramp(t);
-          ep.push(A.x, A.y, A.z, B.x, B.y, B.z); ec.push(c.r, c.g, c.b, c.r, c.g, c.b);
+        shells.forEach(({ R, hub, rim }) => {
+          const V = cell.map((q) => proj(q, R).multiplyScalar(s));
+          const ep = [], ec = [];
+          edges.forEach(([i, j]) => {
+            const A = V[i], B = V[j], t = Math.min(1, (A.length() + B.length()) / 2 / 5.7), c = lerp(hub, rim, t);
+            ep.push(A.x, A.y, A.z, B.x, B.y, B.z); ec.push(c.r, c.g, c.b, c.r, c.g, c.b);
+          });
+          const eg = new THREE.BufferGeometry();
+          eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
+          eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
+          e8grp.add(new THREE.LineSegments(eg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.13, depthWrite: false, blending: THREE.AdditiveBlending }))));
+          const pp = [], pc = [];
+          V.forEach((v) => { pp.push(v.x, v.y, v.z); pc.push(rim.r, rim.g, rim.b); });
+          const pg = new THREE.BufferGeometry();
+          pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
+          pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
+          e8grp.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.26, map: glow, vertexColors: true, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending }))));
         });
-        const eg = new THREE.BufferGeometry();
-        eg.setAttribute('position', new THREE.Float32BufferAttribute(ep, 3));
-        eg.setAttribute('color', new THREE.Float32BufferAttribute(ec, 3));
-        unified.add(new THREE.LineSegments(eg, reg('unified', new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.10, depthWrite: false, blending: THREE.AdditiveBlending }))));
-        // 8 concentric 30-gon ring-circles — subliminal scaffolding, ONE LineSegments
-        const RINGS = [0.2382, 0.3855, 0.4739, 0.5729, 0.7043, 0.7667, 0.9270, 1.1396];
-        const rp = [], SEGc = 96;
-        RINGS.forEach((rr) => {
-          const R = rr * s, Z = R * R * 0.05 - 1.0;
-          for (let k = 0; k < SEGc; k++) { const a0 = (k / SEGc) * 2 * Math.PI, a1 = ((k + 1) / SEGc) * 2 * Math.PI; rp.push(Math.cos(a0) * R, Math.sin(a0) * R, Z, Math.cos(a1) * R, Math.sin(a1) * R, Z); }
-        });
-        const rg = new THREE.BufferGeometry(); rg.setAttribute('position', new THREE.Float32BufferAttribute(rp, 3));
-        unified.add(new THREE.LineSegments(rg, reg('unified', new THREE.LineBasicMaterial({ color: 0xffe4a0, transparent: true, opacity: 0.08, depthWrite: false, blending: THREE.AdditiveBlending }))));
-        // promoted 240 root points — the lattice stars atop the edge blooms
-        const gp = hex('#ffe0a0'), wp = hex('#fff6e0'), pp = [], pc = [];
-        P.forEach((v, i) => { pp.push(v.x, v.y, v.z); const c = (i % 2 === 0) ? gp : wp; pc.push(c.r, c.g, c.b); });
-        const pg = new THREE.BufferGeometry();
-        pg.setAttribute('position', new THREE.Float32BufferAttribute(pp, 3));
-        pg.setAttribute('color', new THREE.Float32BufferAttribute(pc, 3));
-        unified.add(new THREE.Points(pg, reg('unified', new THREE.PointsMaterial({ size: 0.30, map: glow, vertexColors: true, transparent: true, opacity: 0.92, depthWrite: false, blending: THREE.AdditiveBlending }))));
       })();
       // a SMALL, soft central glow (was a big white sun that hid the geometry)
       const cpos = [], ccol = []; const g1 = hex('#ffe9b3'), w = hex('#fff3d6');
@@ -626,6 +642,7 @@
       honest.rotation.y += 0.0016;
       unified.rotation.y += 0.0011;
       if (unified.userData.core) { unified.userData.core.rotation.y -= 0.005; unified.userData.core.rotation.x += 0.0025; }
+      if (unified.userData.e8) { unified.userData.e8.rotation.y += 0.0011; unified.userData.e8.rotation.x += 0.0015; } // gentle tumble reveals the 600-cell's depth
       const b = 1 + Math.sin(t) * 0.02;
       honest.scale.setScalar(b);
       unified.scale.setScalar(1 + Math.sin(t * 0.8) * 0.03);

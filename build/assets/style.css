@@ -268,7 +268,9 @@ main { display: block; }
 @media (max-width: 980px) {
   .landing { grid-template-columns: 1fr; }
   .landing-art { position: relative; top: 0; height: auto; }
-  #portrait-canvas { height: min(58vh, 480px); }
+  /* flex:1 from the base rule sets flex-basis:0 which, in an auto-height column,
+     collapses the canvas to 0px (art invisible on mobile) — pin an explicit height. */
+  #portrait-canvas { flex: 0 0 auto; height: min(64vh, 460px); min-height: 320px; }
   .landing-text { padding-top: 1.4rem; }
 }
 
