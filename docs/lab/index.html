@@ -32,6 +32,16 @@
   .toggles input { accent-color: #ffcf6a; }
   #cap { margin-top: 10px; font-size: 12px; line-height: 1.5; color: #cbd4e6; min-height: 2.6em; }
   #cap b { color: #ffcf6a; }
+  .panel-hide { position: absolute; top: 10px; right: 12px; width: 24px; height: 24px; border: 0; cursor: pointer;
+    background: rgba(255,255,255,0.06); color: #aab4c8; border-radius: 7px; font-size: 15px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+  .panel-hide:hover { background: rgba(255,255,255,0.14); color: #fff; }
+  .reopen { position: fixed; left: 16px; bottom: 16px; z-index: 5; display: none; border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(12,14,22,0.72); backdrop-filter: blur(8px); color: #ffcf6a; font: inherit; font-size: 12px;
+    font-weight: 600; padding: 8px 14px; border-radius: 100px; cursor: pointer; }
+  .reopen:hover { border-color: rgba(255,207,106,0.5); }
+  body.panel-off .panel { display: none; }
+  body.panel-off .reopen { display: inline-block; }
   .hint { position: fixed; right: 16px; bottom: 16px; z-index: 5; font-size: 11px; color: #6b7690; }
   .fallback { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; text-align: center;
     padding: 2rem; color: #9aa2b5; z-index: 6; }
@@ -42,6 +52,7 @@
   <div class="badge">Experimental · O Theory Lab <a href="../">← back to the site</a></div>
 
   <div class="panel">
+    <button class="panel-hide" id="panel-hide" aria-label="Hide panel" title="Hide">×</button>
     <h1>McKay's bridge — one group <span>Γ ⊂ SU(2)</span>, two faces</h1>
     <p class="sub">The <b>affine ADE ↔ binary-polyhedral</b> dictionary: <b>Ê₆ ↔ 2T</b>, <b>Ê₇ ↔ 2O</b>,
       <b>Ê₈ ↔ 2I</b>. The exceptional root lattice and the Hopf fibration are the same finite subgroup
@@ -61,6 +72,7 @@
     </div>
     <p id="cap"></p>
   </div>
+  <button class="reopen" id="panel-show">ⓘ info</button>
   <div class="hint">drag to orbit · scroll to zoom</div>
   <div class="fallback" id="fallback">This experiment needs WebGL, which isn't available in this browser.</div>
 
@@ -285,6 +297,8 @@
       build(b.dataset.g);
     }));
     ['t-fibers', 't-lattice', 't-points', 't-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyToggles));
+    document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
+    document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
 
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
 
