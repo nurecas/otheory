@@ -103,10 +103,14 @@
         direction, so the whole edge web is real. Drag to orbit around it.</p>
       <div class="toggles">
         <label><input type="checkbox" id="v5-edges" checked> edges (6720)</label>
+        <label><input type="checkbox" id="v5-hopf"> Hopf fibres (40 circles)</label>
         <label><input type="checkbox" id="v5-points" checked> roots (240)</label>
         <label><input type="checkbox" id="v5-spin" checked> spin</label>
       </div>
       <p class="cap" id="cap5"></p>
+      <p class="caveats">Turn off <b>edges</b> and on <b>Hopf fibres</b> to see all 240 roots threaded by the Hopf
+        fibration instead: right-multiplication by an order-6 unit quaternion sorts them into <b>40 circles of 6</b>
+        (great circles on S⁷), four to each of the ten S³ fibres. Colour = parent fibre.</p>
     </div>
 
     <!-- ── v4 ── -->
@@ -548,6 +552,24 @@
       v5parts.edges = new THREE.LineSegments(eg, new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.08, depthWrite: false, blending: THREE.AdditiveBlending }));
       root.add(v5parts.edges);
       v5parts.points = pointsCloud(P, '#fff2cf', 0.28, 0.95); root.add(v5parts.points);
+      // ── Hopf fibres: right-mult by an order-6 unit quaternion threads all 240 roots into 40 circles of 6.
+      // Each is a genuine S¹ orbit (a great circle on S⁷) projected with the same map; colour = parent S³ fibre. ──
+      const ZAX = [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)], ZETA = [0.5, 0.5, 0.5, 0.5];
+      const act = (r, q) => { const A = mul([r[0], r[1], r[2], r[3]], q), B = mul([r[4], r[5], r[6], r[7]], q); return [A[0], A[1], A[2], A[3], B[0], B[1], B[2], B[3]]; };
+      const keyR = (r) => r.map((x) => Math.round(x * 1e4)).join(','); const seenH = new Set();
+      v5parts.hopf = new THREE.Group();
+      R.forEach((r0) => {
+        if (seenH.has(keyR(r0))) return; let cur = r0.slice(); for (let k = 0; k < 6; k++) { seenH.add(keyR(cur)); cur = act(cur, ZETA); }
+        const a = [r0[0], r0[1], r0[2], r0[3]], b = [r0[4], r0[5], r0[6], r0[7]], tt = (dot4(a, a) - dot4(b, b)) / 2;
+        const col = new THREE.Color(FIBCOL[Math.max(0, FIBORDER.indexOf(baseLabel(tt, mul(b, conj(a)))))]);
+        const pts = [], SN = 48;
+        for (let s = 0; s < SN; s++) { const t = s / SN * 2 * Math.PI, q = [Math.cos(t), Math.sin(t) * ZAX[0], Math.sin(t) * ZAX[1], Math.sin(t) * ZAX[2]], rr = act(r0, q); pts.push(new THREE.Vector3(dot8(rr, E8B[0]), dot8(rr, E8B[1]), dot8(rr, z)).multiplyScalar(S)); }
+        const geo = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts, true), SN, 0.03, 5, true);
+        const cnt = geo.attributes.position.count, ca = new Float32Array(cnt * 3); for (let k = 0; k < cnt; k++) { ca[3 * k] = col.r; ca[3 * k + 1] = col.g; ca[3 * k + 2] = col.b; }
+        geo.setAttribute('color', new THREE.Float32BufferAttribute(ca, 3));
+        v5parts.hopf.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: 0.5, depthWrite: false, blending: THREE.AdditiveBlending })));
+      });
+      root.add(v5parts.hopf);
       applyV5();
       document.getElementById('cap5').innerHTML =
         `All <b>240 roots</b> and their <b>${n} minimal edges</b> — the complete E8 web (the Gosset polytope 4₂₁), `
@@ -557,6 +579,7 @@
       if (!v5parts.edges) return;
       v5parts.edges.visible = document.getElementById('v5-edges').checked;
       v5parts.points.visible = document.getElementById('v5-points').checked;
+      if (v5parts.hopf) v5parts.hopf.visible = document.getElementById('v5-hopf').checked;
     }
 
     /* ═══════════════════ v4 — the E8 mandala IS a Hopf fibration ═══════════════════ */
@@ -661,7 +684,7 @@
     ['v3-grid', 'v3-diag', 'v3-base'].forEach((id) => document.getElementById(id).addEventListener('change', applyV3));
     document.getElementById('v4-unfold').addEventListener('change', (e) => { if (v4state) v4state.target = e.target.checked ? 1 : 0; });
     ['v4-edges', 'v4-refine'].forEach((id) => document.getElementById(id).addEventListener('change', applyV4));
-    ['v5-edges', 'v5-points'].forEach((id) => document.getElementById(id).addEventListener('change', applyV5));
+    ['v5-edges', 'v5-hopf', 'v5-points'].forEach((id) => document.getElementById(id).addEventListener('change', applyV5));
     document.getElementById('panel-hide').addEventListener('click', () => document.body.classList.add('panel-off'));
     document.getElementById('panel-show').addEventListener('click', () => document.body.classList.remove('panel-off'));
     addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); });
