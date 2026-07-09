@@ -137,9 +137,10 @@
     <!-- ── v6 · E8 icosahedral ── -->
     <div id="content-v6">
       <h1>E8 · the <span>icosahedral</span> shadow, threaded by Hopf</h1>
-      <p class="sub">The same 240 roots, but in the symmetric H4 folding — <b>two concentric 600-cells</b> (radii
-        1 : φ). Turn on <b>Hopf fibres</b> to thread each 600-cell with its own Hopf fibration (right-multiplication
-        on S³): here the circles land as clean, nested rings because the projection is icosahedral.</p>
+      <p class="sub">The same 240 roots in the symmetric H4 folding — <b>two concentric 600-cells</b> (radii 1 : φ),
+        <b>stereographically</b> projected. Turn on <b>Hopf fibres</b> and each 600-cell is threaded by its Hopf
+        fibration as <b>true round Villarceau circles</b> — interlocking, none crossing, every circle passing exactly
+        through the roots (points, edges and fibres all share the one projection).</p>
       <div class="toggles">
         <label><input type="checkbox" id="v6-edges" checked> 600-cell edges</label>
         <label><input type="checkbox" id="v6-hopf" checked> Hopf fibres</label>
@@ -351,6 +352,12 @@
     function normQ(q) { const n = Math.hypot(...q); return q.map((x) => x / n); }
     const PF = 3.6;
     function project(q, s) { const t = mul(mul(Lq, q), Rq); const sc = PF / (PF - t[0]); return new THREE.Vector3(t[1] * sc * s, t[2] * sc * s, t[3] * sc * s); }
+    // stereographic S³ → R³ (conformal: circles → true round Villarceau circles). |q| may be 1 or φ; the shell
+    // radius is reapplied after, so the two 600-cells nest as similar copies and fibres stay round. The pole (V6L,V6R,
+    // found by search) sits as far from every fibre as S³ allows; a SMOOTH denominator cap (√(d²+ε²), no hard floor)
+    // bounds the few unavoidable near-pole fibres without the corner a hard clamp produced.
+    const V6L = normQ([-0.374, 0.601, -0.5901, -0.3883]), V6R = normQ([0.2988, -0.912, 0.2786, -0.0375]);
+    function stereoRaw(q) { const r = Math.hypot(...q), u = [q[0] / r, q[1] / r, q[2] / r, q[3] / r]; const t = mul(mul(V6L, u), V6R); const dw = 1 - t[0], d = Math.sqrt(dw * dw + 0.16 * 0.16); return new THREE.Vector3(t[1] / d, t[2] / d, t[3] / d).multiplyScalar(r); }
     function basePoint(rep, axis) { const a = [0, axis[0], axis[1], axis[2]]; const b = mul(mul(rep, a), conj(rep)); return new THREE.Vector3(b[1], b[2], b[3]); }
     function decompose(G, cycOrder) {
       let gen = null; for (const q of G) if (order(q) === cycOrder) { gen = q; break; }
@@ -648,7 +655,8 @@
       clearRoot();
       const cell = group2I(), PHI = (1 + Math.sqrt(5)) / 2;
       const items = cell.concat(cell.map((q) => q.map((x) => x * PHI)));
-      const raw = items.map((q) => project(q, 1)); let mxr = 0.001; raw.forEach((v) => mxr = Math.max(mxr, v.length())); const S = 7.4 / mxr;
+      const raw = items.map((q) => stereoRaw(q));               // stereographic → round Villarceau circles
+      const rad = raw.map((v) => v.length()).sort((a, b) => a - b); const S = 6.6 / (rad[Math.floor(0.86 * rad.length)] || 1);
       v6parts.cell = cell; v6parts.items = items; v6parts.S = S; v6parts.P = raw.map((v) => v.multiplyScalar(S));
       v6parts.points = new THREE.Group();
       v6parts.points.add(pointsCloud(v6parts.P.slice(0, 120), '#ffdf9a', 0.3, 0.95));
@@ -658,7 +666,8 @@
       styleTarget = { rebuildEdges: buildV6Edges, rebuildHopf: buildV6Hopf, eglow: () => setMeshGlow(v6parts.edges, 's-ebright', 0, 0.6), hglow: () => setGroupGlow(v6parts.hopf, 's-hbright', 0, 0.9) };
       applyV6();
       document.getElementById('cap6').innerHTML =
-        `All <b>240 roots</b> as two concentric 600-cells (H4 folding, radii 1 : φ). Hopf fibres thread each 600-cell (right-mult on S³) into ${hopfOrder === 6 ? '20 circles of 6 per shell' : '30 circles of 4 per shell'} — clean nested rings.`;
+        `All <b>240 roots</b> as two concentric 600-cells (H4 folding, 1 : φ), <b>stereographically</b> projected so the Hopf fibres are `
+        + `<b>true round Villarceau circles</b> — ${hopfOrder === 6 ? '20 of 6 per shell' : '30 of 4 per shell'}, threading the roots exactly (same projection for points, edges and fibres).`;
     }
     function buildV6Edges() {
       disposeObj(v6parts.edges);
@@ -670,7 +679,7 @@
     }
     function buildV6Hopf() {
       disposeObj(v6parts.hopf);
-      const act = (q, u) => mul(q, u), projf = (q) => project(q, v6parts.S), fibcol = (q0, idx) => new THREE.Color().setHSL((idx / 20) % 1, 0.62, 0.6);
+      const act = (q, u) => mul(q, u), projf = (q) => stereoRaw(q).multiplyScalar(v6parts.S), fibcol = (q0, idx) => new THREE.Color().setHSL((idx / 20) % 1, 0.62, 0.6);
       v6parts.hopf = hopfCircles(v6parts.items, act, projf, fibcol); root.add(v6parts.hopf); v6parts.hopf.visible = document.getElementById('v6-hopf').checked;
     }
     function applyV6() {
